@@ -1,0 +1,1164 @@
+[
+  {
+    "objectID": "tp3.html",
+    "href": "tp3.html",
+    "title": "TP3 - Liste chaînée",
+    "section": "",
+    "text": "Dans cet exercice, vous allez implémenter progressivement une liste chaînée simple en Scala 3."
+  },
+  {
+    "objectID": "tp3.html#objectif",
+    "href": "tp3.html#objectif",
+    "title": "TP3 - Liste chaînée",
+    "section": "",
+    "text": "Dans cet exercice, vous allez implémenter progressivement une liste chaînée simple en Scala 3."
+  },
+  {
+    "objectID": "tp3.html#contexte",
+    "href": "tp3.html#contexte",
+    "title": "TP3 - Liste chaînée",
+    "section": "Contexte",
+    "text": "Contexte\nUne liste chaînée est une structure de données linéaire où chaque élément pointe vers le suivant. En programmation fonctionnelle, nous utilisons des structures de données immutables."
+  },
+  {
+    "objectID": "tp3.html#liste-dentiers-avec-sealed-trait",
+    "href": "tp3.html#liste-dentiers-avec-sealed-trait",
+    "title": "TP3 - Liste chaînée",
+    "section": "Liste d’entiers avec sealed trait",
+    "text": "Liste d’entiers avec sealed trait\nCommençons par une approche classique avec une liste qui ne contient que des entiers :\n\nDéfinition de base\nsealed trait IntList\ncase object Empty extends IntList\ncase class Cons(head: Int, tail: IntList) extends IntList\nQuestions :\n\nQue signifie sealed ?\nPourquoi utilise-t-on case object pour Empty et case class pour Cons ?\n\n\n\nPremières méthodes\nImplémentez ces méthodes :\n \nsealed trait IntList:\n  // TODO : Ajouter un élément en tête\n  def prepend(element: Int): IntList\n  \n  // TODO : Calculer la longueur \n  def length: Int\n\nobject IntList:\n  // TODO : Créer une liste vide\n  def empty: IntList = ???\n\n\nTest de base\n@main def testIntList1(): Unit =\n  val empty = IntList.empty\n  val list1 = empty.prepend(1)\n  val list2 = list1.prepend(2)\n  println(s\"Liste : $list2\")\n  println(s\"Longueur : ${list2.length}\")\n\n\nMéthodes plus avancées\nsealed trait IntList:\n  // ... (méthodes précédentes) ...\n  \n  // TODO : Vérifier si la liste contient un élément. Utiliser la récursion\n  def contains(element: Int): Boolean = ???\n  \n  // TODO : conserver uniquement les éléments qui vérifient la fonction predicate\n  def filter(predicate: Int =&gt; Boolean): IntList = ???\n  \n  // TODO : transformer en chaîne\n  def mkString: String = ???"
+  },
+  {
+    "objectID": "tp3.html#opérations-fonctionnelles",
+    "href": "tp3.html#opérations-fonctionnelles",
+    "title": "TP3 - Liste chaînée",
+    "section": "Opérations fonctionnelles",
+    "text": "Opérations fonctionnelles\n\nTransformation et réduction\nsealed trait IntList:\n  // ... (méthodes précédentes) ...\n\n  // TODO : Multiplier chaque élément par 2\n  def double: IntList\n  \n  // TODO : généralise le cas précédent. transformation des éléments\n  def map(transfo: Int =&gt; Int): IntList\n  \n // TODO : Calculer la somme de tous les éléments\n  def sum: Int\n\n\nTest des opérations\nÉcrivez vos propres tests pour vérifier votre implémentation."
+  },
+  {
+    "objectID": "tp3.html#tail-recursion",
+    "href": "tp3.html#tail-recursion",
+    "title": "TP3 - Liste chaînée",
+    "section": "Tail recursion",
+    "text": "Tail recursion\n\nImplémentez les méthodes précédentes en utilisant l’annotation @tailrec."
+  },
+  {
+    "objectID": "tp5.html",
+    "href": "tp5.html",
+    "title": "TP5 - Paramètres de type",
+    "section": "",
+    "text": "Reprenons la liste chaînée du TP3. Rendons notre liste générique pour accepter n’importe quel type. Vous pouvez partir du corrigé publié sur GitHub.\nsealed trait MyList[+A]:\n  // TODO méthodes prepend, length, ...\ncase object Empty extends MyList[Nothing]\ncase class Cons[A](head: A, tail: MyList[A]) extends MyList[A]\n\nCorrigez les méthodes précédentes pour utiliser le paramètre de type A au lieu de Int.\nTestez votre MyList avec d’autres types que Int, comme String"
+  },
+  {
+    "objectID": "tp5.html#liste-chaînée",
+    "href": "tp5.html#liste-chaînée",
+    "title": "TP5 - Paramètres de type",
+    "section": "",
+    "text": "Reprenons la liste chaînée du TP3. Rendons notre liste générique pour accepter n’importe quel type. Vous pouvez partir du corrigé publié sur GitHub.\nsealed trait MyList[+A]:\n  // TODO méthodes prepend, length, ...\ncase object Empty extends MyList[Nothing]\ncase class Cons[A](head: A, tail: MyList[A]) extends MyList[A]\n\nCorrigez les méthodes précédentes pour utiliser le paramètre de type A au lieu de Int.\nTestez votre MyList avec d’autres types que Int, comme String"
+  },
+  {
+    "objectID": "tp5.html#foldleft",
+    "href": "tp5.html#foldleft",
+    "title": "TP5 - Paramètres de type",
+    "section": "foldLeft",
+    "text": "foldLeft\nObservez le corrigé de IntList dans le package tp3_list_tailrec. Toutes les méthodes se ressemblent. Il serait intéressant de refactorer ce code pour éviter la duplication.\n\nImplémentez foldLeft en utilisant @tailrec\n\nsealed trait MyList[+A]:\n  def foldLeft[B](initial: A)(reduceFn: (B, A) =&gt; B): B = ???\n\nRéimplémentez length, contains, filter, mkString, map, sum en utilisant foldLeft.\n\n\n\n\n\n\n\nNote\n\n\n\nfoldLeft est une opération clé, disponible dans toutes les collections. Presque toutes les opérations peuvent être implémentées avec foldLeft. Au lieu d’écrire les fonctions récursives manuellement, foldLeft fournit un pattern réutilisable."
+  },
+  {
+    "objectID": "cm5.html",
+    "href": "cm5.html",
+    "title": "CM5 - Gestion des erreurs",
+    "section": "",
+    "text": "Exceptions and error handling\nZIO Validation"
+  },
+  {
+    "objectID": "cm5.html#throw",
+    "href": "cm5.html#throw",
+    "title": "CM5 - Gestion des erreurs",
+    "section": "throw",
+    "text": "throw\n// En Java, cette exception serait \"checked\", car elle hérite d'Exception \n// En Java, les exceptions \"unchecked\" héritent de RuntimeException ou Error\nclass MinorException(s: String) extends Exception(s)\n\ncase class Person(name: String, age: Int)\n\n// pas de déclaration throws, MinorException est unchecked\ndef validateAge(ageStr: String) : Int = \n  val age = ageStr.toInt // peut lancer NumberFormatException\n  if (age &lt; 18)\n    throw new MinorException(\"Age must be &gt;= 18\")"
+  },
+  {
+    "objectID": "cm5.html#trycatchfinally",
+    "href": "cm5.html#trycatchfinally",
+    "title": "CM5 - Gestion des erreurs",
+    "section": "try/catch/finally",
+    "text": "try/catch/finally\n\nVous pouvez utiliser try, catch, finally comme en Java.\nla différence est que le block catch utilise le pattern matching, avec des case pour chaque exception\n\nOn peut utiliser NonFatal(e) pour intercepter les exceptions qui ne sont pas “fatales” pour l’application.\nLes exceptions fatales sont par exemple les OutOfMemoryError, StackOverflowError, … (voir le source de scala.util.control.NonFatal)\n\n\n/** @return \"ok\" ou un message d'erreur */\ndef validatePerson(name: String, age: String): String =\n  try\n    age = validateAge(ageStr)\n    \"ok\"\n  catch\n    case e: MinorException =&gt; e.getMessage\n    case e: (IllegalArgumentException | NumberFormatException) =&gt; e.getMessage\n    case NonFatal(e) =&gt;\n      logger.error(\"Not too bad\", e)\n      e.getMessage\n  finally\n    println(\"ce code s'exécute même si une exception n'est pas interceptée\")\n\n\n\n\n\n\nTip\n\n\n\nVous pouvez annoter une méthode avec @throws[MinorException] pour documenter quelles exceptions peuvent être lancées. Le compilateur Scala n’en tiendra pas compte pour valider votre code Scala.\nCependant, le byte-code généré aura une clause throws MinorException. Cela peut être utile si votre code est appelé depuis Java."
+  },
+  {
+    "objectID": "cm5.html#option---exemple-dutilisation",
+    "href": "cm5.html#option---exemple-dutilisation",
+    "title": "CM5 - Gestion des erreurs",
+    "section": "Option - Exemple d’utilisation",
+    "text": "Option - Exemple d’utilisation\nval myList = List(1, 2, 3)\nval head: Option[Int] = liste.headOption // Some(1)\n\nval myList2 = List.empty\nval head2: Option[Int] = liste.headOption // None\n\nval nameToAge = Map(\"alice\" -&gt; 18, \"bob\" -&gt; 17)\nval name1 = \"bob\"\nval optAge: Option[Int] = nameToAge.get(name1) // Some(17)\n\nval name2 = \"charles\"\nval optAge2: Option[Int] = nameToAge.get(name2) // None\nPour récupérer la valeur, nous utiliserons le pattern matching, ou getOrElse :\noptAge match\n  case Some(age) =&gt; age\n  case None =&gt; -1\n  \n// équivalent\noptAge.getOrElse(-1)\n\n\n\n\n\n\nImportant\n\n\n\nIl existe une méthode Option.get qui lance une NoSuchElementException lorsque l’option est un None.\nIl ne faut pas l’utiliser. Cela équivaut à utiliser un null et risquer des NullPointerException. L’objectif du type Option est justement d’éviter ces exceptions."
+  },
+  {
+    "objectID": "cm5.html#option---remplacer-une-exception",
+    "href": "cm5.html#option---remplacer-une-exception",
+    "title": "CM5 - Gestion des erreurs",
+    "section": "Option - Remplacer une exception",
+    "text": "Option - Remplacer une exception\nNous pouvons l’utiliser pour remplacer une gestion d’exception. L’inconvénient est que nous perdons le message d’erreur de l’exception :\ndef parseAge(age: String): Option[Int] =\n  try\n    Some(age.toInt)\n  catch\n    case e: NumberFormatException =&gt; None\n\nparseAge(\"toto\") // None \nparseAge(\"18\")   // Some(18)\nLorsque parseAge renvoie None, nous savons qu’il y a eu un problème, mais nous n’avons pas de message d’erreur.\nNous pouvons également modifier notre autre méthode checkAge pour utiliser Option au lieu de lancer une exception :\ndef checkAge(age: Int) : Option[Int] =\n  if (age &lt; 18) \n    None \n  else \n    Some(age)  \nPour combiner des méthodes qui renvoient une Option, nous pouvons utiliser le pattern matching :\ncase class Person(name: String, age: Int)\n\ndef checkName(name: String): Option[String] =\n  if (name.isEmpty) None else Some(name)\n\ndef validatePerson(name: String, ageStr: String): Option[Person] =\n  checkName(name) match\n    case Some(checkedName) =&gt;\n      parseAge(ageStr) match\n        case Some(age) =&gt;\n          checkAge(age) match\n            case Some(checkedAge) =&gt; Some(Person(checkedName, checkedAge))\n            case None =&gt; None\n        case None =&gt; None\n    case None =&gt; None"
+  },
+  {
+    "objectID": "cm5.html#option---combiner-avec-map-et-flatmap",
+    "href": "cm5.html#option---combiner-avec-map-et-flatmap",
+    "title": "CM5 - Gestion des erreurs",
+    "section": "Option - combiner avec map et flatMap",
+    "text": "Option - combiner avec map et flatMap\nCette approche est peu lisible. Nous pouvons simplifier ce code en utilisant map et flatMap. Le type Option peut en effet être considéré comme une Seq contenant 0 ou 1 élément. Il possède beaucoup de méthodes communes avec Seq.\ndef validatePerson2(name: String, ageStr: String): Option[Person] =\n  checkName(name)\n    .flatMap(checkedName =&gt; \n      parseAge(ageStr)\n        .flatMap(age =&gt; checkAge(age)) \n        .map(checkedAge =&gt; Person(checkedName, checkedAge))\n    )\nC’est un peu plus concis, mais pas encore très lisible !\nDans le CM3, nous avions vu que le for/yield de Scala est un “sucre syntaxique” qui permet de remplacer map et flatMap. Nous pouvons donc l’utiliser pour simplifier encore notre code !\ndef validatePerson3(name: String, ageStr: String): Option[Person] = \n  for \n    checkedName &lt;- checkName(name)\n    age &lt;- parseAge(ageStr)\n    checkedAge &lt;- checkAge(age)\n  yield\n    Person(checkedName, checkedAge)"
+  },
+  {
+    "objectID": "cm5.html#either---exemple",
+    "href": "cm5.html#either---exemple",
+    "title": "CM5 - Gestion des erreurs",
+    "section": "Either - Exemple",
+    "text": "Either - Exemple\nReprenons nos méthodes précédentes pour utiliser Either :\ndef parseAge(ageStr: String): Either[String, Int] =\n  try\n    Right(ageStr.toInt)\n  catch\n    case e: NumberFormatException =&gt; Left(s\"$ageStr is not an int\")\n\n\ndef checkAge(age: Int) : Either[String, Int] =\n  if (age &lt; 18)\n    Left(s\"$age must be &gt;= 18\")\n  else\n    Right(age)\n\n\ndef checkName(name: String): Either[String, String] =\n  if (name.isEmpty) Left(\"name is required\") else Right(name)\nLe type Either est “right-biased”. Cela signifie que lorsqu’on appelle map ou flatMap, cela transforme les instances Right, et laisse les Left inchangés. Comme Either implémente map et flatMap, nous pouvons réutiliser validatePerson quasiment inchangé ! Nous avons juste à changer le type de retour :\ndef validatePerson(name: String, ageStr: String): Either[String, Person] =\n  for\n    checkedName &lt;- checkName(name)\n    age &lt;- parseAge(ageStr)\n    checkedAge &lt;- checkAge(age)\n  yield\n    Person(checkedName, checkedAge)\nExemple d’utilisation :\nvalidatePerson(\"\", \"17\")\n// Left(name is required)\n\nvalidatePerson(\"John\", \"abc\")\n// Left(abc is not an int)\n\nvalidatePerson(\"John\", \"17\")\n// Left(17 must be &gt;= 18)\n\nvalidatePerson(\"John\", \"20\")\n// Right(Person(John,20))"
+  },
+  {
+    "objectID": "cm5.html#either---modélisation-des-erreurs",
+    "href": "cm5.html#either---modélisation-des-erreurs",
+    "title": "CM5 - Gestion des erreurs",
+    "section": "Either - modélisation des erreurs",
+    "text": "Either - modélisation des erreurs\nDans notre exemple, nous avions utilisé String comme type erreur dans Either[String, A]. Cela permet d’avoir un message sous forme de chaîne de caractères. Cela peut être suffisant pour afficher un message dans un programme simple.\nCependant, cette approche est souvent insuffisante en production :\n\nles messages d’erreurs sont couplés avec le code qui produit l’erreur\n\nles messages sont répartis partout dans le code.\ndifficile d’offrir d’autres langues\n\nles appelants ne peuvent pas traiter une erreur particulière\n\nIl est plus pratique d’avoir des types structurés pour pouvoir réagir différemment en fonction du type d’erreur, et pour pouvoir conserver plus d’informations sur l’erreur. En Java, nous utilisions des exceptions personnalisées. Avec Either, nous pouvons créer nos propres ADT pour modéliser nos erreurs :\nsealed trait PersonError:\n  def message: String\n\ncase class PersonIntFieldParsingError(field: String, value: String) extends PersonError:\n  override def message: String = s\"$field with value: $value is not an integer\"\n\ncase object PersonAgeMinorError extends PersonError:\n  override def message: String = s\"age must be &gt;= 18\"\n\ncase class PersonFieldRequiredError(field: String) extends PersonError:\n  override def message: String = s\"$field is required\"\nNos messages d’erreur sont maintenant centralisés. Nos fonctions de validation peuvent renvoyer un type qui indique clairement à l’appelant le problème qui peut se produire :\ndef parseAge(ageStr: String): Either[PersonIntFieldParsingError, Int] =\n  try\n    Right(ageStr.toInt)\n  catch\n    case e: NumberFormatException =&gt; Left(PersonIntFieldParsingError(\"age\", ageStr))\n\n\ndef checkAge(age: Int) : Either[PersonAgeMinorError.type, Int] =\n  if (age &lt; 18)\n    Left(PersonAgeMinorError)\n  else\n    Right(age)\n\n\ndef checkName(name: String): Either[PersonFieldRequiredError, String] =\n  if (name.isEmpty)\n    Left(PersonFieldRequiredError(\"name\"))\n  else\n    Right(name)\nLorsqu’on combine les fonctions de validations, on peut traiter toutes les erreurs en utilisant le trait PersonError :\ndef validatePerson(name: String, ageStr: String): Either[PersonError, Person] =\n  for\n    checkedName &lt;- checkName(name)\n    age &lt;- parseAge(ageStr)\n    checkedAge &lt;- checkAge(age)\n  yield\n    Person(checkedName, checkedAge)"
+  },
+  {
+    "objectID": "cm5.html#constructeur",
+    "href": "cm5.html#constructeur",
+    "title": "CM5 - Gestion des erreurs",
+    "section": "Constructeur",
+    "text": "Constructeur\nLa définition de Try.apply prend une fonction en paramètre “by-name” avec r: =&gt; T. Cela signifie que la fonction r ne sera évaluée que lorsqu’on l’appelle.\nTry:\n  def apply[T](r: =&gt; T): Try[T] =\n    try\n      val r1 = r\n      Success(r1)\n    catch\n      case NonFatal(e) =&gt; Failure(e)"
+  },
+  {
+    "objectID": "cm5.html#utilisation",
+    "href": "cm5.html#utilisation",
+    "title": "CM5 - Gestion des erreurs",
+    "section": "Utilisation",
+    "text": "Utilisation\nimport scala.util.Try \n\ndef parseAgeTry(ageStr: String): Try[Int] =\n  Try(ageStr.toInt)\n\nparseAgeTry(\"abc\")\n// Failure(java.lang.NumberFormatException: For input string: \"abc\")\nparseAgeTry(\"18\")\n// Success(18)\nSi l’on souhaite conserver notre définition qui renvoyait un Either, on peut utiliser .toEither :\ndef parseAge(ageStr: String): Either[PersonIntFieldParsingError, Int] =\n  Try(ageStr.toInt)\n    .toEither\n    .left // on souhaite transformer la partie gauche\n    .map(exception =&gt; PersonIntFieldParsingError(\"age\", ageStr))"
+  },
+  {
+    "objectID": "cm2.html",
+    "href": "cm2.html",
+    "title": "CM2 - Introduction à Scala",
+    "section": "",
+    "text": "Scala staircase\n\n\n\n\n\nCréateur : 2003 Martin Odersky (EPFL). A été impliqué dans le développement des types génériques en Java 5.\nSCA(lable) LA(nguage)\n\non peut écrire des petits scripts jusqu’à des systèmes très larges avec des millions d’utilisateurs.-\n\norienté objet\nfonctionnel\ntypage statique\ncompilable vers :\n\nJVM byte-code\n\nScala peut appeler des bibliothèques Java,\nJava peut appeler des bibliothèques Scala.\n\nJavascript\nCode Natif avec LLVM\n\nKiller apps : Spark (Big Data), Akka/Pekko (Actor model), Kafka (distributed pub/sub)\nUtilisé dans la finance, chez Netflix, Twitter, LinkedIn, …\nPermet d’écrire du code très puissant très rapidement. On lit du code 10x plus qu’on ne l’écrit. Un langage concis permet de garder plus de contexte en tête et de naviguer facilement dans des programmes volumineux. Typage fort : si ça compile, ça marche !\n\n\n\n\n\nTour of Scala\nFunctional Programming In Scala\nScala Programming Projects\nBoris Cherny (Creator of Claude code)\n\n“The one technical book I would recommend to everyone that has had the greatest impact on me as an engineer is functional programming in Scala.”\n\nMartin Odersky (Creator of Scala)\n\nMartin Odersky explique comment le code généré par IA nécéssite des systèmes de type plus puissants pour éviter les vulnérabilités."
+  },
+  {
+    "objectID": "cm2.html#présentation",
+    "href": "cm2.html#présentation",
+    "title": "CM2 - Introduction à Scala",
+    "section": "",
+    "text": "Créateur : 2003 Martin Odersky (EPFL). A été impliqué dans le développement des types génériques en Java 5.\nSCA(lable) LA(nguage)\n\non peut écrire des petits scripts jusqu’à des systèmes très larges avec des millions d’utilisateurs.-\n\norienté objet\nfonctionnel\ntypage statique\ncompilable vers :\n\nJVM byte-code\n\nScala peut appeler des bibliothèques Java,\nJava peut appeler des bibliothèques Scala.\n\nJavascript\nCode Natif avec LLVM\n\nKiller apps : Spark (Big Data), Akka/Pekko (Actor model), Kafka (distributed pub/sub)\nUtilisé dans la finance, chez Netflix, Twitter, LinkedIn, …\nPermet d’écrire du code très puissant très rapidement. On lit du code 10x plus qu’on ne l’écrit. Un langage concis permet de garder plus de contexte en tête et de naviguer facilement dans des programmes volumineux. Typage fort : si ça compile, ça marche !"
+  },
+  {
+    "objectID": "cm2.html#références",
+    "href": "cm2.html#références",
+    "title": "CM2 - Introduction à Scala",
+    "section": "",
+    "text": "Tour of Scala\nFunctional Programming In Scala\nScala Programming Projects\nBoris Cherny (Creator of Claude code)\n\n“The one technical book I would recommend to everyone that has had the greatest impact on me as an engineer is functional programming in Scala.”\n\nMartin Odersky (Creator of Scala)\n\nMartin Odersky explique comment le code généré par IA nécéssite des systèmes de type plus puissants pour éviter les vulnérabilités."
+  },
+  {
+    "objectID": "cm2.html#hello-world",
+    "href": "cm2.html#hello-world",
+    "title": "CM2 - Introduction à Scala",
+    "section": "Hello World",
+    "text": "Hello World\n// object = singleton, une seule instance possible\nobject HelloScala:\n  // Definition d'une méthode\n  def greet(person: String): String =\n    s\"Hello, $person! Welcome to Scala.\"\n\n  // méthode @main: le programme commence ici\n  @main def hello(): Unit =\n    val firstName: String = \"Scala\"    // variable immutable (final en Java)\n    val name = firstName + \" Beginner\" // le type est inféré\n    var count = 1                      // variable mutable (modifiable)\n\n    println(greet(name)) // scala.Predef.println est importé par défaut\n    println(s\"This is your $count attempt at Scala.\")\n\n    count += 1\n    println(s\"Now your attempt count is $count.\")\n\n\nLes ; sont optionnels.\nScala 2 utilisait une syntaxe avec des {}\nScala 3 supporte également la “braceless syntax” à la Python. C’est maintenant le style par défaut.\nLes types sont inférés (devinés par le compilateur). Il n’est généralement pas nécéssaire de les préciser, sauf pour les paramètres de fonctions. Pour les méthodes publiques, c’est une bonne pratique de préciser le type de retour."
+  },
+  {
+    "objectID": "cm2.html#val-vs-var",
+    "href": "cm2.html#val-vs-var",
+    "title": "CM2 - Introduction à Scala",
+    "section": "val vs var",
+    "text": "val vs var\n\nutiliser val par défaut\nen programmation fonctionnelle, tout doit être immutable\nvar est un “code smell”. Si vous l’utilisez, documentez pourquoi\n\n\nVous pouvez utiliser var pour écrire un algorithme optimisé. Si la variable mutable n’est pas visible de l’extérieur, la fonction reste une fonction “pure” du point de vue de l’appelant."
+  },
+  {
+    "objectID": "cm2.html#classes",
+    "href": "cm2.html#classes",
+    "title": "CM2 - Introduction à Scala",
+    "section": "Classes",
+    "text": "Classes\n// width et height sont à la fois des paramètres du constructeur \n// et des attributs privés immutables\nclass Rectangle(width: Float, height: Float): \n  val area: Float = width * height // membre public\n  \n  // Les attributs sont immutables =&gt; on doit renvoyer un nouveau Rectangle\n  def scale(mult: Float): Rectangle =\n    new Rectangle(width * mult, height * mult)\n  \nval rect = Rectangle(10, 3) // new n'est pas obligatoire\nprintln(rect.area)\nprintln(rect.width) // erreur ! pas accessible\nprintln(rect.scale(2))\nprintln(rect.scale(mult = 2)) // les arguments peuvent être nommés"
+  },
+  {
+    "objectID": "cm2.html#case-class",
+    "href": "cm2.html#case-class",
+    "title": "CM2 - Introduction à Scala",
+    "section": "Case Class",
+    "text": "Case Class\n\nNotre classe Rectangle aurait besoin :\n\nde méthodes accesseurs publiques (getters en Java)\nde equals, hashCode, toString\nd’un constructeur par copie\nd’implémenter Serializable\n… boilerplate !!\n\ncase class indique au compilateur qu’il doit générer tout cela.\n\ncase class Rectangle(width: Float, height: Float)\n\nval rect = Rectangle(10, 3) \nprintln(rect.width) // accesseur\nrect == Rectangle(10,3) // true. En Scala, == appelle .equals\nprintln(rect) // toString est appelé. Sortie: Rectangle(10.0,3.0)\nval rect2 = rect.copy(width = 5, height = 2) // constructeur par copie"
+  },
+  {
+    "objectID": "cm2.html#héritage",
+    "href": "cm2.html#héritage",
+    "title": "CM2 - Introduction à Scala",
+    "section": "Héritage",
+    "text": "Héritage\n\nextends pour définir une relation d’héritage entre 2 classes\n\n// paramètres déclarés avec val =&gt; accesseurs public\nclass Shape(val x: Int, val y: Int):\n  val isAtOrigin: Boolean = x == 0 && y == 0\n\nclass Rectangle(x: Int, y: Int, \n                val width: Int, val height: Int) extends Shape(x, y)\n\nclass Circle(x: Int, y: Int, \n             val radius: Int) extends Shape(x, y)\n\nproblème : x et y sont des attributs dans la classe mère ET dans la classe fille\nil faudrait implémenter equals, toString, …"
+  },
+  {
+    "objectID": "cm2.html#héritage---classe-abstraite",
+    "href": "cm2.html#héritage---classe-abstraite",
+    "title": "CM2 - Introduction à Scala",
+    "section": "Héritage - classe abstraite",
+    "text": "Héritage - classe abstraite\n\nsolution : Shape doit être abstraite\nremarque : on ne peut pas hériter d’une case class\n\nabstract class Shape:\n  def x: Int\n  def y: Int\n  val isAtOrigin: Boolean = x == 0 && y == 0\n\ncase class Rectangle(x: Int, y: Int, \n                     width: Int, height: Int) extends Shape\n\ncase class Circle(x: Int, y: Int, val radius: Int) extends Shape\n\nval shape: Shape = Circle(1, 5, 10)"
+  },
+  {
+    "objectID": "cm2.html#héritage---overriding",
+    "href": "cm2.html#héritage---overriding",
+    "title": "CM2 - Introduction à Scala",
+    "section": "Héritage - overriding",
+    "text": "Héritage - overriding\nabstract class Shape:\n  def x: Int\n  def y: Int\n  \n  // area is abstract (le mot-clé abstract est facultatif)\n  def area: Double\n  \n  // s\"...$myvar... \" : String interpolation\n  def description: String = s\"Shape at ($x, $y)\"\n  \ncase class Rectangle(x: Int, y: Int, \n                     width: Int, val height: Int) extends Shape:\n  // val ou def fonctionnent. area est abstract =&gt; override est facultatif    \n  val area: Double = width * height\n\n  // le mot-clé \"override\" est obligatoire\n  override def description: String = \n    super.description + s\" - Rectangle $width * $height\"\n\nval rect = Rectangle(x = 0, y = 3, width = 3, height = 2)\nrect.description\nrect.area\n\n\nval pour garder le calcul (plus de mémoire, moins de CPU)\ndef pour le refaire à chaque fois (moins de mémoire, plus de CPU)"
+  },
+  {
+    "objectID": "cm2.html#trait",
+    "href": "cm2.html#trait",
+    "title": "CM2 - Introduction à Scala",
+    "section": "Trait",
+    "text": "Trait\n\nEn Scala, les interfaces sont des trait\nils peuvent contenir des implémentations\nextends pour le premier trait ou classe étendue\nwith pour les suivants\nune classe ou trait qui implémente plusieurs traits est un mixin\n\ntrait Description:\n  def description: String\n\ntrait Coordinates extends Description:\n  def x: Int\n  def y: Int\n  def description: String = s\"Coordinates ($x, $y)\"\n\ntrait Area:\n  def area: Double\n\ncase class Rectangle(x: Int, y: Int, width: Int, height: Int) \n        extends Coordinates with Description with Area:\n  \n  def area: Double = width * height\n  \n  override def description: String =\n    super.description + s\" - Rectangle $width * $height\""
+  },
+  {
+    "objectID": "cm2.html#traits---conflits",
+    "href": "cm2.html#traits---conflits",
+    "title": "CM2 - Introduction à Scala",
+    "section": "Traits - conflits",
+    "text": "Traits - conflits\nSi plusieurs traits redéfinissent la même méthode, le trait le plus à droite a la priorité. Scala implémente un algorithme appelé linéarisation\ntrait A:\n  def methode = \"a\"\n\ntrait B:\n  def methode = \"b\"\n\ntrait C:\n  def methode = \"c\"\n\nclass ABC extends A with B with C:\n  override def methode = super.methode\n  def methodeA = super[A].methode\n\nclass CAB extends C with A with B:\n  override def methode = super.methode\n\nABC().methode // c\nABC().methodeA // a\nCAB().methode // b"
+  },
+  {
+    "objectID": "cm2.html#companion-object",
+    "href": "cm2.html#companion-object",
+    "title": "CM2 - Introduction à Scala",
+    "section": "Companion object",
+    "text": "Companion object\n\nToute classe peut avoir un objet “compagnon”.\nil va typiquement contenir des méthodes qui seraient statiques en Java :\n\nconstructeurs alternatifs\ncalculs qui ne dépendent pas des attributs\ntraitements sur des collections de la classe\n\n\nimport java.time.LocalDate\n\ncase class Person(name: String, dob: LocalDate)\n\nobject Person:\n  // Les constructeurs ont le nom réservé apply\n  def apply(nom: String, age: Int): Person = ???\n  def computeAge(today: LocalDate, dob: LocalDate): Int = ???\n  def averageAge(personnes: Array[Person]): Float = ???\n  \nval p = Person(\"John\", 25)\n\n??? est utile lorsqu’on veut coder une signature de fonction, mais que l’on souhaite implémenter plus tard.\ndef ??? : Nothing = throw new NotImplementedError"
+  },
+  {
+    "objectID": "cm2.html#instructions-conditionelles-ifelse",
+    "href": "cm2.html#instructions-conditionelles-ifelse",
+    "title": "CM2 - Introduction à Scala",
+    "section": "Instructions conditionelles : if/else",
+    "text": "Instructions conditionelles : if/else\n\nif (condition) exprTrue else exprFalse\nc’est une expression, et a son propre type\n\ndef agePeriod(age: Int): String = \n  if (age &gt;= 18)\n    \"adult\"\n  else\n    \"child\"\n\nPas besoin de return, le if renvoie une String."
+  },
+  {
+    "objectID": "cm2.html#instructions-conditionelles-pattern-matching",
+    "href": "cm2.html#instructions-conditionelles-pattern-matching",
+    "title": "CM2 - Introduction à Scala",
+    "section": "Instructions conditionelles : pattern matching",
+    "text": "Instructions conditionelles : pattern matching\nUtilisation basique : remplace switch/case\ndef daysInMonthByNumber(monthNumber: Int, isLeapYear: Boolean = false): Int =\n  monthNumber match\n    case 1 | 3 | 5 | 7 | 8 | 10 | 12 =&gt; 31\n    case 4 | 6 | 9 | 11 =&gt; 30\n    case 2 =&gt; if isLeapYear then 29 else 28\n    // _ signifie \"n'importe quelle valeur\"\n    case _ =&gt; throw IllegalArgumentException(s\"Invalid month: $monthNumber\")"
+  },
+  {
+    "objectID": "cm2.html#instructions-conditionelles-pattern-matching-1",
+    "href": "cm2.html#instructions-conditionelles-pattern-matching-1",
+    "title": "CM2 - Introduction à Scala",
+    "section": "Instructions conditionelles : pattern matching",
+    "text": "Instructions conditionelles : pattern matching\n\nUtilisation avancée : déstructure les types\nsealed permet de garantir que toutes les implémentations du trait sont définies\nShape est un “Union Type” (OU). Rectangle est un “Product Type” (ET).\n\nsealed trait Shape\n\ncase class Square(side: Double) extends Shape\ncase class Rectangle(width: Double, height: Double) extends Shape\ncase class Circle(radius: Double) extends Shape\n\ndef calculateArea(shape: Shape): Double = shape match\n  case Square(side) =&gt; side * side\n  case Rectangle(width, height) =&gt; width * height\n  // avec affectation de variable\n  case c @ Circle(_) =&gt; math.Pi * c.radius * c.radius\n  // case _ =&gt; // pas nécéssaire, pas d'autres Shape possible"
+  },
+  {
+    "objectID": "cm2.html#hiérarchie-des-types-scala",
+    "href": "cm2.html#hiérarchie-des-types-scala",
+    "title": "CM2 - Introduction à Scala",
+    "section": "Hiérarchie des types Scala",
+    "text": "Hiérarchie des types Scala\n\n\n\nScala Type Hierarchy\n\n\n\n\nVos propres classes héritent de AnyRef, qui hérite de java.lang.Object. Ces objets sont passés par référence (adresse) en argument de méthodes.\nAny est la super-classe de toutes les classes\nAnyVal est la super-classe des valeurs. Les objets ayant ce type sont copiés lorsqu’ils sont passés en argument.\nIl n’y a pas de types primitifs comme en Java. Tout est objet.\nnull existe mais n’est jamais utilisé, sauf pour utiliser des bibliothèques Java.\nNothing est le bottom type. Aucune valeur ne peut avoir ce type. Il peut être utilisé comme type de retour pour des fonctions non implémentées."
+  },
+  {
+    "objectID": "exercices-scala-option.html",
+    "href": "exercices-scala-option.html",
+    "title": "Exercices sur Option en Scala 3",
+    "section": "",
+    "text": "Voici trois exercices progressifs sur l’utilisation des Option en Scala 3, conçus pour une durée totale de 30 minutes."
+  },
+  {
+    "objectID": "exercices-scala-option.html#introduction",
+    "href": "exercices-scala-option.html#introduction",
+    "title": "Exercices sur Option en Scala 3",
+    "section": "",
+    "text": "Voici trois exercices progressifs sur l’utilisation des Option en Scala 3, conçus pour une durée totale de 30 minutes."
+  },
+  {
+    "objectID": "exercices-scala-option.html#exercice-1-manipulation-basique-doption-10-minutes",
+    "href": "exercices-scala-option.html#exercice-1-manipulation-basique-doption-10-minutes",
+    "title": "Exercices sur Option en Scala 3",
+    "section": "Exercice 1 : Manipulation basique d’Option (10 minutes)",
+    "text": "Exercice 1 : Manipulation basique d’Option (10 minutes)\n\nContexte\nVous travaillez sur un système de gestion d’utilisateurs. Créez une classe User et implémentez des fonctions utilisant Option.\n\n\nTâches\ncase class User(id: Int, name: String, email: Option[String], age: Option[Int])\n\n// 1. Créer une fonction qui retourne l'email d'un utilisateur ou \"Pas d'email\"\ndef getEmailOrDefault(user: User): String = ???\n\n// 2. Créer une fonction qui retourne true si l'utilisateur est majeur (&gt;= 18)\n// Retourner false si l'âge n'est pas défini\ndef isAdult(user: User): Boolean = ???\n\n// 3. Créer une fonction qui transforme l'email en majuscules s'il existe\ndef uppercaseEmail(user: User): Option[String] = ???\n\n\nTestez avec\nval user1 = User(1, \"Alice\", Some(\"alice@example.com\"), Some(25))\nval user2 = User(2, \"Bob\", None, Some(16))\nval user3 = User(3, \"Charlie\", Some(\"charlie@example.com\"), None)"
+  },
+  {
+    "objectID": "exercices-scala-option.html#exercice-2-chaînage-et-combinaison-doptions-10-minutes",
+    "href": "exercices-scala-option.html#exercice-2-chaînage-et-combinaison-doptions-10-minutes",
+    "title": "Exercices sur Option en Scala 3",
+    "section": "Exercice 2 : Chaînage et combinaison d’Options (10 minutes)",
+    "text": "Exercice 2 : Chaînage et combinaison d’Options (10 minutes)\n\nContexte\nVous développez un service de recherche de produits dans un catalogue.\n\n\nTâches\ncase class Product(id: Int, name: String, price: Double, category: String)\n\nval catalog: Map[Int, Product] = Map(\n  1 -&gt; Product(1, \"Laptop\", 999.99, \"Électronique\"),\n  2 -&gt; Product(2, \"Livre Scala\", 45.50, \"Livres\"),\n  3 -&gt; Product(3, \"Clavier\", 79.99, \"Électronique\")\n)\n\n// 1. Créer une fonction qui recherche un produit par ID\ndef findProduct(id: Int): Option[Product] = ???\n\n// 2. Créer une fonction qui applique une réduction de 10% si le prix &gt; 100€\ndef applyDiscount(product: Product): Option[Double] = ???\n\n// 3. Combiner les deux : chercher un produit ET appliquer la réduction\ndef findProductWithDiscount(id: Int): Option[Double] = ???\n\n// 4. Créer une fonction qui retourne le nom du produit en majuscules, \n// ou \"Produit introuvable\" si le produit n'existe pas\ndef getProductNameOrDefault(id: Int): String = ???"
+  },
+  {
+    "objectID": "exercices-scala-option.html#exercice-3-gestion-derreurs-avec-option-10-minutes",
+    "href": "exercices-scala-option.html#exercice-3-gestion-derreurs-avec-option-10-minutes",
+    "title": "Exercices sur Option en Scala 3",
+    "section": "Exercice 3 : Gestion d’erreurs avec Option (10 minutes)",
+    "text": "Exercice 3 : Gestion d’erreurs avec Option (10 minutes)\n\nContexte\nVous créez un système de configuration avec des valeurs optionnelles qui doivent être validées. On distingue la configuration brute (pouvant être invalide) de la configuration validée (garantie correcte).\n\n\nTâches\n// Configuration brute issue d'un fichier ou de variables d'environnement\ncase class RawConfig(\n  host: Option[String],\n  port: Option[Int],\n  timeout: Option[Int]\n)\n\n// Configuration validée avec des valeurs garanties correctes\ncase class ValidatedConfig(\n  host: String,\n  port: Int,\n  timeout: Int\n)\n\n// 1. Créer une fonction qui valide le port (entre 1 et 65535)\ndef validatePort(port: Int): Option[Int] = ???\n\n// 2. Créer une fonction qui valide le host (non vide et non blanc)\ndef validateHost(host: String): Option[String] = ???\n\n// 3. Créer une fonction qui valide le timeout (&gt; 0)\ndef validateTimeout(timeout: Int): Option[Int] = ???\n\n// 4. Créer une fonction qui transforme une RawConfig en ValidatedConfig\n// Toutes les valeurs doivent être présentes et valides\ndef validateConfig(config: RawConfig): Option[ValidatedConfig] = ???\n\n// 5. Créer une fonction qui construit une URL depuis une ValidatedConfig\n// Format: \"http://host:port\"\ndef buildUrl(config: ValidatedConfig): String = ???\n\n// 6. BONUS : Créer une fonction qui valide avec des valeurs par défaut\n// Défauts : host = \"localhost\", port = 8080, timeout = 3000\ndef validateConfigWithDefaults(config: RawConfig): ValidatedConfig = ???\n\n\nTestez avec\nval validRaw = RawConfig(Some(\"api.example.com\"), Some(443), Some(5000))\nval invalidHost = RawConfig(Some(\"\"), Some(443), Some(5000))\nval invalidPort = RawConfig(Some(\"api.example.com\"), Some(99999), Some(5000))\nval partialRaw = RawConfig(None, None, Some(1000))\nval completelyEmpty = RawConfig(None, None, None)"
+  },
+  {
+    "objectID": "exercices-scala-option.html#méthodes-utiles-à-connaître",
+    "href": "exercices-scala-option.html#méthodes-utiles-à-connaître",
+    "title": "Exercices sur Option en Scala 3",
+    "section": "Méthodes utiles à connaître",
+    "text": "Méthodes utiles à connaître\n\n\n\n\n\n\nAstuceMéthodes principales d’Option\n\n\n\n\nOption.map: transforme la valeur si elle existe\nOption.flatMap: transforme et aplatit\nOption.getOrElse: retourne la valeur ou un défaut\nOption.filter: filtre selon une condition\nOption.fold: fournit une valeur par défaut et une transformation\nOption.isDefined / Option.isEmpty: teste la présence de valeur"
+  },
+  {
+    "objectID": "exercices-scala-option.html#solutions",
+    "href": "exercices-scala-option.html#solutions",
+    "title": "Exercices sur Option en Scala 3",
+    "section": "Solutions",
+    "text": "Solutions\n\n\n\n\n\n\nNoteSolution Exercice 1\n\n\n\n\n\ndef getEmailOrDefault(user: User): String = \n  user.email.getOrElse(\"Pas d'email\")\n\ndef isAdult(user: User): Boolean = \n  user.age.getOrElse(0) &gt;= 18\n\ndef uppercaseEmail(user: User): Option[String] = \n  user.email.map(_.toUpperCase)\n\n\n\n\n\n\n\n\n\nNoteSolution Exercice 2\n\n\n\n\n\ndef findProduct(id: Int): Option[Product] = \n  catalog.get(id)\n\ndef applyDiscount(product: Product): Option[Double] = \n  if (product.price &gt; 100) Some(product.price * 0.9)\n  else None\n\ndef findProductWithDiscount(id: Int): Option[Double] = \n  findProduct(id).flatMap(applyDiscount)\n\ndef getProductNameOrDefault(id: Int): String = \n  findProduct(id).map(_.name.toUpperCase).getOrElse(\"Produit introuvable\")\n\n\n\n\n\n\n\n\n\nNoteSolution Exercice 3\n\n\n\n\n\ndef validatePort(port: Int): Option[Int] = \n  if (port &gt;= 1 && port &lt;= 65535) Some(port)\n  else None\n\ndef validateHost(host: String): Option[String] = \n  if (host.trim.nonEmpty) Some(host.trim)\n  else None\n\ndef validateTimeout(timeout: Int): Option[Int] = \n  if (timeout &gt; 0) Some(timeout)\n  else None\n\ndef validateConfig(config: RawConfig): Option[ValidatedConfig] = \n  for {\n    host &lt;- config.host.flatMap(validateHost)\n    port &lt;- config.port.flatMap(validatePort)\n    timeout &lt;- config.timeout.flatMap(validateTimeout)\n  } yield ValidatedConfig(host, port, timeout)\n\ndef buildUrl(config: ValidatedConfig): String = \n  s\"http://${config.host}:${config.port}\"\n\ndef validateConfigWithDefaults(config: RawConfig): ValidatedConfig = \n  ValidatedConfig(\n    host = config.host.flatMap(validateHost).getOrElse(\"localhost\"),\n    port = config.port.flatMap(validatePort).getOrElse(8080),\n    timeout = config.timeout.flatMap(validateTimeout).getOrElse(3000)\n  )\n\n\n\n\nBon courage ! 🚀"
+  },
+  {
+    "objectID": "tp4.html",
+    "href": "tp4.html",
+    "title": "TP4 - Collections",
+    "section": "",
+    "text": "Utilisez l’invitation GitHub Classroom pour créer un dépôt, puis clonez-le.\n\n\n\n\n\n\nNote\n\n\n\nN’oubliez pas de commit & push régulièrement et avant la fin du cours."
+  },
+  {
+    "objectID": "tp4.html#installation",
+    "href": "tp4.html#installation",
+    "title": "TP4 - Collections",
+    "section": "",
+    "text": "Utilisez l’invitation GitHub Classroom pour créer un dépôt, puis clonez-le.\n\n\n\n\n\n\nNote\n\n\n\nN’oubliez pas de commit & push régulièrement et avant la fin du cours."
+  },
+  {
+    "objectID": "tp4.html#salesanalysis",
+    "href": "tp4.html#salesanalysis",
+    "title": "TP4 - Collections",
+    "section": "SalesAnalysis",
+    "text": "SalesAnalysis\nComplétez la classe SalesAnalysis dans le repository. Lancez les tests SalesAnalysisSpec après chaque exercice pour vérifier votre implémentation."
+  },
+  {
+    "objectID": "tp4.html#issorted",
+    "href": "tp4.html#issorted",
+    "title": "TP4 - Collections",
+    "section": "isSorted",
+    "text": "isSorted\nImplémenter isSorted, qui vérifie si une Seq[Int] est triée selon une fonction de comparaison gt. gt renvoie true si le premier paramètre est supérieur au second paramètre.\ndef isSorted(as: Seq[Int], gt: (Int, Int) =&gt; Boolean): Boolean = ???\nVotre implémentation doit renvoyer les résultats suivants :\n@main\ndef main(): Unit = \n  println(isSorted(Seq(1, 2, 3), _ &gt; _)) // true\n  println(isSorted(Seq(1, 2, 1), _ &gt; _)) // false\n  println(isSorted(Seq(3, 2, 1), _ &lt; _)) // true\n  println(isSorted(Seq(1, 2, 3), _ &lt; _)) // false"
+  },
+  {
+    "objectID": "tp4.html#curry",
+    "href": "tp4.html#curry",
+    "title": "TP4 - Collections",
+    "section": "curry",
+    "text": "curry\nÉcrire une fonction curry, qui convertit une fonction f prenant deux arguments en une fonction prenant un seul argument. Il n’y a qu’une seule solution possible.\ndef curry(f: (Int, Int) =&gt; Int): Int =&gt; Int =&gt; Int = ???\nVotre implémentation doit pouvoir être utilisée de la manière suivante :\n@main\ndef main(): Unit =\n  val subXY = (x: Int, y: Int) =&gt; x - y\n  val subXYCurried: Int =&gt; Int =&gt; Int = curry(subXY)\n  val subY: Int =&gt; Int = subXYCurried(2)\n  println(subY(3)) // -1\n\n\n\n\n\n\nTip\n\n\n\nCet exercice permet de renforcer votre compréhension du currying. En pratique, le SDK possède les méthodes myFn.curried et Function.uncurried(myFn)."
+  },
+  {
+    "objectID": "cm4_wooclap.html",
+    "href": "cm4_wooclap.html",
+    "title": "Quelle variance choisir pour A ?",
+    "section": "",
+    "text": "Quelle variance choisir pour A ?\ntrait Serializer[A]:\n  def serialize(a: A): String\n\n\nQuelle variance choisir pour A ?\nclass Buffer[A]:\n  var elements: Seq[A] = Seq.empty\n\n\nQuelle variance choisir pour A ?\nsealed trait Option[A]\ncase object Empty extends Option[Nothing]\ncase class Some[A](a: A) extends Option[A]"
+  },
+  {
+    "objectID": "~BROMIUM/exercices-scala-option.html",
+    "href": "~BROMIUM/exercices-scala-option.html",
+    "title": "",
+    "section": "",
+    "text": "LavaStatus=0 XM\u0002\u0004�\u0002\u0001\u0001\u0001\f�\u0002e \u0001�\u0002e\u0001T^\u0002\u0001(z�8-6W�\u0001\u0002\u001f\u0004\u0004\u001b�\u0006&lt;2\u00014G\u0015\u0003[2\u00014\u0016,\u00012\u0001J�\u0001.\u00012\u0001�\u0001vexercices-scala-option.qmdfirefox.exehttps://claude.ai/api/organizations/2aa66844-452f-4abd-8afa-a5d4fba443b9/conversations/5ac4aab2-b56c-4658-837f-ae9912e7dfb4/wiggle/download-file?path=%2Fmnt%2Fuser-data%2Foutputs%2Fexercices-scala-option.qmdhttps://claude.ai/chat/5ac4aab2-b56c-4658-837f-ae9912e7dfb4ܩ\u0018�"
+  },
+  {
+    "objectID": "zio_cheatsheet.html",
+    "href": "zio_cheatsheet.html",
+    "title": "ZIO Cheat Sheet",
+    "section": "",
+    "text": "ZIO est un système d’effets fonctionnel pour Scala. Ce document couvre les patterns dont vous aurez besoin pour ce projet."
+  },
+  {
+    "objectID": "zio_cheatsheet.html#concept-principal",
+    "href": "zio_cheatsheet.html#concept-principal",
+    "title": "ZIO Cheat Sheet",
+    "section": "Concept principal",
+    "text": "Concept principal\nZIO[R, E, A] représente un programme qui :\n\nNécessite un environnement R\nPeut échouer avec une erreur E\nPeut réussir avec une valeur A\n\nDans ce projet, nous utilisons ZIO[Any, Throwable, A] (pas d’environnement, peut lever des exceptions)."
+  },
+  {
+    "objectID": "zio_cheatsheet.html#séquencement-avec-for-comprehension",
+    "href": "zio_cheatsheet.html#séquencement-avec-for-comprehension",
+    "title": "ZIO Cheat Sheet",
+    "section": "1. Séquencement avec for-comprehension",
+    "text": "1. Séquencement avec for-comprehension\nfor\n  a &lt;- doSomething()        // Execute first effect, bind result to 'a'\n  b &lt;- doSomethingElse(a)   // Execute second effect using 'a'\n  c &lt;- anotherEffect()      // Execute third effect\nyield (a, b, c)             // Return tuple of results\nC’est similaire à async/await dans d’autres langages."
+  },
+  {
+    "objectID": "zio_cheatsheet.html#wrapper-du-code-bloquant",
+    "href": "zio_cheatsheet.html#wrapper-du-code-bloquant",
+    "title": "ZIO Cheat Sheet",
+    "section": "2. Wrapper du code bloquant",
+    "text": "2. Wrapper du code bloquant\nZIO.attemptBlocking {\n  // Code that blocks (e.g., socket I/O, file reads)\n  socket.getInputStream.read()\n}\nUtilisez ceci pour tout code qui bloque le thread (I/O réseau, lecture de fichiers, etc.)."
+  },
+  {
+    "objectID": "zio_cheatsheet.html#logging",
+    "href": "zio_cheatsheet.html#logging",
+    "title": "ZIO Cheat Sheet",
+    "section": "3. Logging",
+    "text": "3. Logging\nZIO.logInfo(s\"Processing ${items.size} items\")\nZIO.logWarning(\"Something unexpected happened\")\nZIO.logError(\"Failed to connect\")"
+  },
+  {
+    "objectID": "zio_cheatsheet.html#itération-avec-effets",
+    "href": "zio_cheatsheet.html#itération-avec-effets",
+    "title": "ZIO Cheat Sheet",
+    "section": "4. Itération avec effets",
+    "text": "4. Itération avec effets\n// Séquentiel : un après l'autre\nZIO.foreach(workers) { worker =&gt;\n  sendMessage(worker)\n}\n\n// Parallèle : tous en même temps\nZIO.foreachPar(workers) { worker =&gt;\n  sendMessage(worker)\n}\n\n// Ignorer les résultats (retourne Unit)\nZIO.foreachDiscard(workers) { worker =&gt;\n  sendMessage(worker)\n}"
+  },
+  {
+    "objectID": "zio_cheatsheet.html#créer-des-effets-simples",
+    "href": "zio_cheatsheet.html#créer-des-effets-simples",
+    "title": "ZIO Cheat Sheet",
+    "section": "5. Créer des effets simples",
+    "text": "5. Créer des effets simples\nZIO.succeed(42)              // Always succeeds with 42\nZIO.fail(new Exception(...)) // Always fails\nZIO.unit                     // Succeeds with ()"
+  },
+  {
+    "objectID": "zio_cheatsheet.html#état-mutable-avec-ref",
+    "href": "zio_cheatsheet.html#état-mutable-avec-ref",
+    "title": "ZIO Cheat Sheet",
+    "section": "6. État mutable avec Ref",
+    "text": "6. État mutable avec Ref\nfor\n  ref &lt;- Ref.make(0)         // Create a Ref holding 0\n  _   &lt;- ref.set(42)         // Set value to 42\n  v   &lt;- ref.get             // Get current value\n  _   &lt;- ref.update(_ + 1)   // Update value\nyield v\nRef est une référence thread-safe. Utilisez-la pour stocker l’état du worker."
+  },
+  {
+    "objectID": "zio_cheatsheet.html#combiner-des-effets",
+    "href": "zio_cheatsheet.html#combiner-des-effets",
+    "title": "ZIO Cheat Sheet",
+    "section": "7. Combiner des effets",
+    "text": "7. Combiner des effets\neffect1 *&gt; effect2    // Run effect1, discard result, run effect2\neffect1 &lt;* effect2    // Run both, keep result of effect1\neffect1.zip(effect2)  // Run both, return tuple of results"
+  },
+  {
+    "objectID": "zio_cheatsheet.html#pattern-matching-dans-les-for-comprehensions",
+    "href": "zio_cheatsheet.html#pattern-matching-dans-les-for-comprehensions",
+    "title": "ZIO Cheat Sheet",
+    "section": "8. Pattern matching dans les for-comprehensions",
+    "text": "8. Pattern matching dans les for-comprehensions\nfor\n  msg &lt;- SocketUtils.read[Message](socket)\n  _ &lt;- msg match\n    case Message.Hello(name) =&gt; ZIO.logInfo(s\"Hello $name\")\n    case Message.Goodbye     =&gt; ZIO.logInfo(\"Goodbye\")\nyield ()"
+  },
+  {
+    "objectID": "zio_cheatsheet.html#exemples-de-ce-projet",
+    "href": "zio_cheatsheet.html#exemples-de-ce-projet",
+    "title": "ZIO Cheat Sheet",
+    "section": "Exemples de ce projet",
+    "text": "Exemples de ce projet\n\nLire depuis un socket\nfor\n  msg &lt;- SocketUtils.read[WorkerMessage](driverSocket)\n  _ &lt;- ZIO.logInfo(s\"Received: $msg\")\nyield ()\n\n\nDiffuser à plusieurs sockets\nval sockets = workers.map(_.socket)\nSocketUtils.broadcast(WorkerMessage.StartShuffle(stageId, n), sockets)\n\n\nCollecter les réponses de tous les workers\nSocketUtils.readAll[DriverMessage, Map[Int, List[Any]]](sockets) {\n  case DriverMessage.ShuffleData(_, _, partitions) =&gt; ZIO.succeed(partitions)\n}"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ALTN73 Programmation Fonctionnelle avec Scala",
+    "section": "",
+    "text": "Référence : Beej’s Guide to Learning Computer Science - Use of AI\n\n\n\n\n\n\n\nConseillé\nDéconseillé\n\n\n\n\nFaire des fiches de cours\nObtenir des corrigés\n\n\nCréer des quiz pour s’entraîner\nGénérer le code des TPs ou du projet\n\n\nPoser des questions sur une API ou un message d’erreur\nNe pas essayer de comprendre les messages d’erreurs\n\n\nPoser des questions pour éclaircir des points du cours ou d’un énoncé\n\n\n\nGénérer des données de tests\nGénérer tous les tests JUnit - En TDD le test est la spec !\n\n\nDemander de critiquer votre code (mais c’est mieux de demander à votre enseignant !)\n\n\n\n\nEn entreprise, vous serez de plus en plus contraints à utiliser l’IA pour livrer plus rapidement.\nLes TPs et projets d’école sont une occasion de pouvoir prendre son temps, de comprendre chaque ligne de code, de poser des questions. Apprendre demande des efforts, d’être confronté à des difficultés et de les surmonter.\n\n\n\nRobot lifting weights\n\n\n\n\nPour bien apprendre la programmation en Scala dans IntelliJ, il est essentiel de désactiver l’IA ainsi que l’inline code completion.\nEtape 1 : désactiver l’IA \nEtape 2 : désactiver l’inline completion :\n\nAllez dans File &gt; Settings &gt; Editor &gt; General &gt; Inline completion\nDécochez “Enable Local Full Line completion suggestions”\ncliquez sur OK"
+  },
+  {
+    "objectID": "index.html#désactiver-lia-dans-intellij",
+    "href": "index.html#désactiver-lia-dans-intellij",
+    "title": "ALTN73 Programmation Fonctionnelle avec Scala",
+    "section": "",
+    "text": "Pour bien apprendre la programmation en Scala dans IntelliJ, il est essentiel de désactiver l’IA ainsi que l’inline code completion.\nEtape 1 : désactiver l’IA \nEtape 2 : désactiver l’inline completion :\n\nAllez dans File &gt; Settings &gt; Editor &gt; General &gt; Inline completion\nDécochez “Enable Local Full Line completion suggestions”\ncliquez sur OK"
+  },
+  {
+    "objectID": "cm3.html",
+    "href": "cm3.html",
+    "title": "CM3 - Collections, Fonctions, Boucles",
+    "section": "",
+    "text": "Scala collections"
+  },
+  {
+    "objectID": "cm3.html#récursion-stack-unsafe",
+    "href": "cm3.html#récursion-stack-unsafe",
+    "title": "CM3 - Collections, Fonctions, Boucles",
+    "section": "Récursion stack-unsafe",
+    "text": "Récursion stack-unsafe\ndef somme(n: Int): Int =\n  if n &lt;= 0 then\n    0\n  else\n    n + somme(n - 1)\n\nproblème : chaque appel consomme de la mémoire dans la pile.\nOK jusqu’à une centaine d’appels\nsomme(100000) =&gt; StackOverFlowError"
+  },
+  {
+    "objectID": "cm3.html#récursion-stack-safe",
+    "href": "cm3.html#récursion-stack-safe",
+    "title": "CM3 - Collections, Fonctions, Boucles",
+    "section": "Récursion stack-safe",
+    "text": "Récursion stack-safe\n\nLorsque l’appel récursif est le dernier appel de la fonction, le compilateur peut transformer l’appel en une boucle itérative.\nl’appel est en dit en “tail position”\non peut annoter la fonction @tailrec pour garantir que l’optimisation a lieu. Le compilateur génèrera une erreur s’il ne peut pas optimiser.\n\n@tailrec\ndef somme(n: Int): Int =\n  if n &lt;= 0 then\n    0\n  else\n    n + somme(n - 1)\n/*\n6 |    n + somme(n - 1)\n  |        ^^^^^^^^^^^^\n  |        Cannot rewrite recursive call: it is not in tail position\n*/ \n\nle dernier appel n’est pas somme mais +.\nil faut introduire une fonction loop interne\n\ndef somme(n: Int): Int = \n  @tailrec\n  def loop(acc: Int, i: Int): Int =\n    if i &lt;= 0 then // condition de sortie\n      acc // renvoie la donnée accumulée\n    else \n      loop(acc + i, i - 1)\n    \n  loop(0, n)    \nLa fonction est optimisée avec une boucle semblable à ceci :\ndef sommeImperative(n: Int): Int =\n  var acc = 0\n  var i = n\n  while !(i &lt;= 0) do\n    acc = acc + i\n    i = i - 1\n  acc"
+  },
+  {
+    "objectID": "cm3.html#collections-mutable",
+    "href": "cm3.html#collections-mutable",
+    "title": "CM3 - Collections, Fonctions, Boucles",
+    "section": "Collections Mutable",
+    "text": "Collections Mutable\n\npackage scala.collection.mutable\nOn privilégie le style fonctionnel\n\n=&gt; à éviter, sauf pour optimiser les performances\n\nArray[T] est représenté comme un tableau Java\n\nval arr = Array(1, 2, 3)\narr(0) = 2\nprintln(arr(0)) // 2\nprintln(arr.length) // 3\n\nmutable.ArraySeq[T] implémente Seq. Taille fixe. En cas d’ajouts/suppression, une copie est effectuée\nmutable.ArrayBuffer[T] se comporte comme un ArrayList en Java\nmutable.ListBuffer[T] se comporte comme une LinkedList en Java\nmutable.HashMap[K, V] se comporte comme une HashMap en Java"
+  },
+  {
+    "objectID": "cm3.html#collections-immuable",
+    "href": "cm3.html#collections-immuable",
+    "title": "CM3 - Collections, Fonctions, Boucles",
+    "section": "Collections Immuable",
+    "text": "Collections Immuable\n\npackage scala.collection.immutable\nImportées par défaut si on n’importe pas les collections mutables.\nles méthodes qui modifient la collection renvoient une nouvelle collection\nce sont des collections persistantes\n\nelles préservent la version précédente lorsqu’elles sont modifiées\n\nles implémentations sont efficaces et ne dupliquent pas complètement les données"
+  },
+  {
+    "objectID": "cm3.html#séquences-immuables---implémentations",
+    "href": "cm3.html#séquences-immuables---implémentations",
+    "title": "CM3 - Collections, Fonctions, Boucles",
+    "section": "Séquences Immuables - implémentations",
+    "text": "Séquences Immuables - implémentations\n\nList est une liste chaînée.\npar défaut, lorsqu’on construit une Seq, on a une List\nVector est un arbre large et peu profond\n\nperformant pour la plupart des opérations\nradix-balanced finger tree of width 32\n\n\nval seq = Seq(1, 2, 3) // val seq: Seq[Int] = List(1, 2, 3)\n\n\n\n\n\nclassDiagram\n    class `Seq[T]` {\n        &lt;&lt;interface&gt;&gt;\n    }\n    \n    class `List[T]` {\n        par défaut\n        liste chaînée\n    }\n    \n    class `Vector[T]` {\n        arbre\n    }\n    \n    class `ArraySeq[T]` {\n        tableau\n    }\n    \n\n   `Seq[T]` &lt;|.. `List[T]`: implements\n   `Seq[T]` &lt;|.. `Vector[T]` : implements\n   `Seq[T]` &lt;|.. `ArraySeq[T]` : implements\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nUtiliser Seq pour le code standard avec moins de 1000 éléments. Basculer sur Vector ou List en fonction des usages."
+  },
+  {
+    "objectID": "cm3.html#sets-immuables---implémentations",
+    "href": "cm3.html#sets-immuables---implémentations",
+    "title": "CM3 - Collections, Fonctions, Boucles",
+    "section": "Sets immuables - implémentations",
+    "text": "Sets immuables - implémentations\n\nSet(1, 2, 3) =&gt; utilise HashSet par défaut\nTreeSet pour conserver un ordre\n\n\n\n\n\n\nclassDiagram\n  class `Set[T]` {\n    &lt;&lt;interface&gt;&gt;\n  }\n\n  class `HashSet[T]` {\n      par défaut\n  }\n\n  class `TreeSet[T]` {\n      conserve l'ordre\n  }\n\n  `Set[T]` &lt;|.. `HashSet[T]`: implements\n  `Set[T]` &lt;|.. `TreeSet[T]` : implements"
+  },
+  {
+    "objectID": "cm3.html#dictionnaires-immuables---implémentations",
+    "href": "cm3.html#dictionnaires-immuables---implémentations",
+    "title": "CM3 - Collections, Fonctions, Boucles",
+    "section": "Dictionnaires immuables - implémentations",
+    "text": "Dictionnaires immuables - implémentations\n\nMap =&gt; utilise HashMap par défaut (sauf pour moins de 5 clés)\nListMap conserve l’ordre d’insertion\nSortedMap garde les clés triées, et est implémentée par TreeMap\n\n\n\n\n\n\nclassDiagram\n  class `Map[K, V]` {\n    &lt;&lt;interface&gt;&gt;\n  }\n\n  class `HashMap[K, V]` {\n      par défaut\n  }\n\n  class `TreeMap[K, V]` {\n      conserve l'ordre\n  }\n\n  class `ListMap[K, V]` {\n    conserve l'ordre d'insertion\n  }\n        \n\n  `Map[K, V]` &lt;|.. `HashMap[K, V]`: implements\n  `Map[K, V]` &lt;|.. `TreeMap[K, V]` : implements\n  `Map[K, V]` &lt;|.. `ListMap[K, V]` : implements"
+  },
+  {
+    "objectID": "cm3.html#performance",
+    "href": "cm3.html#performance",
+    "title": "CM3 - Collections, Fonctions, Boucles",
+    "section": "Performance",
+    "text": "Performance\nScala Collections Performance Characteristics\n\nSéquences Immuables\n\n\n\n\n\n\n\n\n\n\nCollection\nAccès (apply)\nAjout début\nAjout fin\nMise à jour\n\n\n\n\nList\nO(n)\nO(1)\nO(n)\nO(n)\n\n\nVector\nO(1)eff\nO(1)eff\nO(1)eff\nO(1)eff\n\n\nArraySeq\nO(1)\nO(n)\nO(n)\nO(n)\n\n\n\n\n\nSéquences Mutables\n\n\n\n\n\n\n\n\n\n\nCollection\nAccès (apply)\nAjout début\nAjout fin\nMise à jour\n\n\n\n\nArrayBuffer\nO(1)\nO(n)\nO(1)am\nO(1)\n\n\nListBuffer\nO(n)\nO(1)\nO(1)\nO(n)\n\n\nArray\nO(1)\n-\n-\nO(1)\n\n\n\n\n\nSets et Maps (Immuables)\n\n\n\nCollection\nRecherche\nAjout\nSuppression\n\n\n\n\nHashSet/HashMap\nO(1)eff\nO(1)eff\nO(1)eff\n\n\nTreeSet/TreeMap\nO(log n)\nO(log n)\nO(log n)\n\n\nListMap\nO(n)\nO(n)\nO(n)\n\n\n\n\n\nSets et Maps (Mutables)\n\n\n\nCollection\nRecherche\nAjout\nSuppression\n\n\n\n\nHashSet/HashMap\nO(1)eff\nO(1)eff\nO(1)eff\n\n\nTreeSet\nO(log n)\nO(log n)\nO(log n)\n\n\n\n\n\nLégende\n\nO(1) = Temps constant\nO(1)eff = Temps effectivement constant (comme le log32 n de Vector)\nO(1)am = Temps constant amorti (occasionnellement plus lent, mais constant en moyenne)\nO(log n) = Temps logarithmique\nO(n) = Temps linéaire\n- = Opération non supportée\n\n\n\nGuide de décision rapide\n\n\n\n\n\n\nTip\n\n\n\nBesoin d’accès aléatoire rapide ? → Vector ou ArrayBuffer\nBeaucoup d’ajouts en début ? → List ou ListBuffer\nBeaucoup d’ajouts en fin ? → ArrayBuffer ou Vector\nRecherche clé-valeur ? → HashMap (immuable ou mutable)\nBesoin d’ordre trié ? → TreeSet ou TreeMap"
+  },
+  {
+    "objectID": "cm3.html#collections---opérations",
+    "href": "cm3.html#collections---opérations",
+    "title": "CM3 - Collections, Fonctions, Boucles",
+    "section": "Collections - opérations",
+    "text": "Collections - opérations\n\nCréation et Ajout\nval seq = Seq(1, 2, 3)\nval seq2 = seq :+ 4 // seq.appended(4) =&gt; Seq(1, 2, 3, 4)\nval seq3 = 0 +: seq // seq.prepended(0) =&gt; Seq(0, 1, 2, 3, 4)\nval seq4 = seq3 ++ Seq(5, 6) // Seq(0, 1, 2, 3, 4, 5, 6)\n\n// syntaxe tuple: (clé, valeur) ou clé -&gt; valeur\nval map = Map(\"a\" -&gt; 65, \"b\" -&gt; 66, \"c\" -&gt; 67)\nval map2 = map + ((\"d\", 68)) // Map(a -&gt; 65, b -&gt; 66, c -&gt; 67, d -&gt; 68)\n\ncomment se rappeler de +: et :+ ?\n\nle : est du côté du Seq\n\n\n\n\nSuppression\nval seq = Seq(1, 2, 3)\nseq.tail // Seq(2, 3)\n\nval set = Set(1, 2, 3, 3, 1)\nset - 1 // Set(2, 3)\n\nval map = Map(\"a\" -&gt; 1, \"b\" -&gt; 2, \"c\" -&gt; 3)\nmap - \"b\" // Map(a -&gt; 1, c -&gt; 3) \n\nseq.take(2) // Seq(1, 2)\nseq.drop(2) // Seq(3)\n\n\nAccès\nval seq = Seq(\"début\", \"milieu\", \"fin\")\nseq.head // \"début\"\nseq.last // \"fin\"\nseq(1)   // \"milieu\"\nseq.size // 3\n\nval myMap = Map(\"a\" -&gt; 65, \"b\" -&gt; 66, \"c\" -&gt; 67)\nmyMap(\"a\") // 65\nmyMap(\"d\") // NoSuchElementException\n// Il vaut mieux utiliser .getOrElse ou .get \nmyMap.getOrElse(\"a\", 0) // 0\n// nous verrons le type Option[T] au CM4\nmyMap.get(\"a\") // Option[Int] = Some(65)\nmyMap.get(\"d\") // Option[Int] = None\n\n\nComparaison\nSeq(1, 2, 3) == Seq(1, 2) :+ 3    // true\n// same category\nVector(1, 2, 3) == List(1, 2, 3) // true\nSet(1, 2, 3) == List(1, 2, 3)    // false, compiler warning"
+  },
+  {
+    "objectID": "cm3.html#collections---higher-order-functions",
+    "href": "cm3.html#collections---higher-order-functions",
+    "title": "CM3 - Collections, Fonctions, Boucles",
+    "section": "Collections - higher order functions",
+    "text": "Collections - higher order functions\n\nFunction as value\n\n!! Le mot-clé def définit une méthode\nUne fonction est une valeur qui peut être affectée à une variable, ou passée en paramètre.\nSon type est de la forme :\n\nParamType =&gt; ResultType\n(Param1Type, Param2Type, ...) =&gt; ResultType\nParam1Type =&gt; Param2Type =&gt; ... =&gt; ResultType : currying\n\nLe type peut être inféré si le compilateur a assez d’informations\nSa définition prend les formes suivantes :\n\nparam =&gt; Body lorsque ParamType peut être inféré\n(param: ParamType) =&gt; Body\n(param1, param2, ...) =&gt; Body lorsque Param1Type et Param2Type peuvent être inférés\n(param1: Param1Type, param2: Param2Type, ...) =&gt; Body\n(param1: Param1Type) =&gt; (param2: Param2Type) =&gt; ... =&gt; Body : currying\nBody contenant des caractères _. Chaque _ correspond à un paramètre\n\n\n// le type de la variable \"mult\" est inféré\nval mult                  = (x: Int) =&gt; x * 2  // val mult: Int =&gt; Int \n// le type du paramètre x est inféré à l'aide du type de la variable \"multInfer\"\nval multInfer: Int =&gt; Int = x =&gt; x * 2         // val multInfer: Int =&gt; Int \nval multShort: Int =&gt; Int =      _ * 2         // val multShort: Int =&gt; Int \n\nval addXY                         = (x: Int, y: Int) =&gt; x + y     // val addXY: (Int, Int) =&gt; Int\nval addXYInfer: (Int, Int) =&gt; Int = (x, y) =&gt; x + y               // val addXYInfer: (Int, Int) =&gt; Int\nval addXYShort: (Int, Int) =&gt; Int = _ + _                         // val addXYShort: (Int, Int) =&gt; Int\n\n// currying : fonction qui renvoie une fonction qui renvoie un résultat\nval addXYCurry                       = (x: Int) =&gt; (y: Int) =&gt; x + y // val addXYCurry: Int =&gt; Int =&gt; Int\nval addXYCurryInf: Int =&gt; Int =&gt; Int = x =&gt; y =&gt; x + y               // val addXYCurryInf: Int =&gt; Int =&gt; Int\n\n// appel d'une fonction \"curried\"\naddXYCurry(2)(3) // 5\n// la fonction est partiellement appliquée, pour le paramètre x uniquement\nval addY = addXYCurry(2) // val addY: Int =&gt; Int \naddY(3) // 5\n\n\nTransformation\nTransformation de Seq ou Set :\nval seq = Seq(1, 2, 3)\nseq.map(x =&gt; x * 2) // List(2, 4, 6)\nseq.map(_ + 1) // List(2, 3, 4)\n\nseq.filter(_ % 2 == 0) // List(2)\n// les valeurs sont filtrées à la demande (lazy evaluation)\nval seq2 = seq.withFilter(_ % 2 == 0) // seq2: WithFilter[Int, Seq] = ...\n// il faut appeler map pour forcer l'évaluation\nseq2.map(x =&gt; x) // List(2)\n\n// aplatir après transformation\nseq.flatMap(x =&gt; Seq(x, x * 2))     // List(1, 2, 2, 4, 3, 6)\nseq.map(x =&gt; Seq(x, x * 2)).flatten // List(1, 2, 2, 4, 3, 6)\n\n// collect = filter + map\nseq.collect:\n  case x if x % 2 == 0 =&gt; x * 2\nTransformation de Map :\nval m = Map(\"a\" -&gt; 1, \"b\" -&gt; 2, \"c\" -&gt; 3)\n// les valeurs sont transformées à la demande (lazy evaluation)\nval m2 = m.view.mapValues(v =&gt; v * 2) // scala.collection.MapView[String, Int]\n// force la création d'une nouvelle map\nval m3 = m2.toMap // Map[String, Int] = Map(a -&gt; 2, b -&gt; 4, c -&gt; 6)\n\n// transforme les clés et les valeurs\nm.map((k, v) =&gt; k + k -&gt; v * 2) // Map(aa -&gt; 2, bb -&gt; 4, cc -&gt; 6)\n\n\nRéduction\nval sum = seq.reduce(_ + _) // !! exception si collection vide\nval product = seq.foldLeft(1)(_ * _)\n\nval words = Seq(\"Hello\", \"Scala\", \"World\")\nwords.foldLeft(\"\")((acc, word) =&gt; acc + \", \" + word) // \", Hello, Scala, World\"\n\n\nTri\nval unsorted = Seq(5, 2, 8, 1, 9)\nunsorted.sorted         // List(1, 2, 5, 8, 9) \nunsorted.sorted.reverse // List(9, 8, 5, 2, 1)\n\ncase class Person(name: String, age: Int)\nval persons = Seq(Person(\"John\", 40), Person(\"Bob\", 20), Person(\"Alice\", 30))\npersons.sortBy(_.age)                           \n// List(Person(Bob,20), Person(Alice,30), Person(John,40))\npersons.sortWith((p1, p2) =&gt; p1.name &lt; p2.name) \n// List(Person(Alice,30), Person(Bob,20), Person(John,40))\n\n\nAutres fonctions\nval words = Seq(\"groupBy\", \"regroupe\", \"par\", \"critère\")\nval sizeToWord = words.groupBy(_.length) \n// HashMap(7 -&gt; List(groupBy, critère), \n//         3 -&gt; List(par), \n//         8 -&gt; List(regroupe))\n\nval seq = Seq(1, 2, 3)\nseq.sum // 6\nseq.max // 3\nseq.min // 1"
+  },
+  {
+    "objectID": "cm3.html#foreach",
+    "href": "cm3.html#foreach",
+    "title": "CM3 - Collections, Fonctions, Boucles",
+    "section": "foreach",
+    "text": "foreach\nval nums = Seq(1,2,3)\nfor n &lt;- nums do\n  print(n.toString + \"; \") // 1; 2; 3\n  \n// équivalent \"desugared\" \nnums.foreach(n =&gt; n.toString + \"; \")"
+  },
+  {
+    "objectID": "cm3.html#foreach---générateurs",
+    "href": "cm3.html#foreach---générateurs",
+    "title": "CM3 - Collections, Fonctions, Boucles",
+    "section": "foreach - générateurs",
+    "text": "foreach - générateurs\nfor\n  i &lt;- 1 to 2\n  j &lt;- 'a' to 'b'\n  k &lt;- 1 to 10 by 5\ndo\n  println(s\"i = $i, j = $j, k = $k\")"
+  },
+  {
+    "objectID": "cm3.html#for-yield",
+    "href": "cm3.html#for-yield",
+    "title": "CM3 - Collections, Fonctions, Boucles",
+    "section": "for-yield",
+    "text": "for-yield\nval list =\n  for i &lt;- 10 to 12\n  yield i * 2\n// Vector(20, 22, 24)\n    \n// desugared\nval list2 = (10 to 12).map(i =&gt; i * 2)\nval result = \n  for \n    x &lt;- List(1, 2, 3)\n    y &lt;- List(10, 20)\n  yield x + y\n\n// desugared\nval result2 = List(1, 2, 3).flatMap(x =&gt; List(10, 20).map(y =&gt; x + y)"
+  },
+  {
+    "objectID": "cm3.html#for-yield-avec-if",
+    "href": "cm3.html#for-yield-avec-if",
+    "title": "CM3 - Collections, Fonctions, Boucles",
+    "section": "for-yield avec if",
+    "text": "for-yield avec if\nfor\n  i &lt;- 1 to 10\n  if i &gt; 3\n  if i &lt; 6\nyield i \n// Vector(4, 5)\n\n// desugared\n(1 to 10).withFilter(_ &gt; 3).withFilter(_ &lt; 6).map(x =&gt; x)"
+  },
+  {
+    "objectID": "cm3.html#while",
+    "href": "cm3.html#while",
+    "title": "CM3 - Collections, Fonctions, Boucles",
+    "section": "while",
+    "text": "while\nvar i = 0\n\nwhile i &lt; 3 do\n  println(i)\n  i += 1"
+  },
+  {
+    "objectID": "tp7.html",
+    "href": "tp7.html",
+    "title": "TP7 - Classes de type",
+    "section": "",
+    "text": "Avant de démarrer, cliquez sur le lien GitHub Classroom pour créer votre repository."
+  },
+  {
+    "objectID": "tp7.html#objectif",
+    "href": "tp7.html#objectif",
+    "title": "TP7 - Classes de type",
+    "section": "Objectif",
+    "text": "Objectif\nCréer un système de gestion de notifications qui utilise given/using pour injecter la configuration de différents environnements (dev, staging, prod)."
+  },
+  {
+    "objectID": "tp7.html#contexte",
+    "href": "tp7.html#contexte",
+    "title": "TP7 - Classes de type",
+    "section": "Contexte",
+    "text": "Contexte\nVous développez un système de notifications pour une application. Selon l’environnement, les notifications doivent se comporter différemment :\n\nDev : logs en console uniquement\nStaging : logs + email de test\nProduction : email réel + SMS"
+  },
+  {
+    "objectID": "tp7.html#définir-les-structures",
+    "href": "tp7.html#définir-les-structures",
+    "title": "TP7 - Classes de type",
+    "section": "Définir les structures",
+    "text": "Définir les structures\nLes structures suivantes sont fournies dans un package exo1_notification :\n// 1. Configuration d'environnement\ncase class AppConfig(\n  environment: String,\n  enableEmail: Boolean,\n  enableSMS: Boolean,\n  emailEndpoint: String,\n  smsEndpoint: String,\n  debugMode: Boolean\n)\n\n// 2. Service email \nobject EmailService:\n  def sendEmail(to: String, message: String)(using config: AppConfig): Unit =\n    if config.enableEmail then\n      println(s\"[${config.environment}] Email envoyé à $to via ${config.emailEndpoint}: $message\")\n    else\n      println(s\"[${config.environment}] Email désactivé\")\n\n// 3. Service SMS \nobject SmsService:\n  def sendSMS(to: String, message: String)(using config: AppConfig): Unit =\n    if config.enableSMS then\n      println(s\"[${config.environment}] SMS envoyé à $to via ${config.smsEndpoint}: $message\")\n    else\n      println(s\"[${config.environment}] SMS désactivé\")"
+  },
+  {
+    "objectID": "tp7.html#créer-les-configurations-given",
+    "href": "tp7.html#créer-les-configurations-given",
+    "title": "TP7 - Classes de type",
+    "section": "Créer les configurations given",
+    "text": "Créer les configurations given\nDéfinissez trois configurations implicites différentes :\nobject Environments:\n  // TODO: Créer given devConfig: AppConfig pour dev\n  // environment = \"DEV\", email + SMS désactivés, debugMode = true\n  \n  // TODO: Créer given stagingConfig: AppConfig pour staging  \n  // environment = \"STAGING\", email activé, SMS désactivé, debugMode = true\n  \n  // TODO: Créer given prodConfig: AppConfig pour production\n  // environment = \"PROD\", email + SMS activés, debugMode = false"
+  },
+  {
+    "objectID": "tp7.html#implémenter-notificationservice",
+    "href": "tp7.html#implémenter-notificationservice",
+    "title": "TP7 - Classes de type",
+    "section": "Implémenter NotificationService",
+    "text": "Implémenter NotificationService\nCréez un object NotificationManager avec une méthode send qui :\n\nAccepte une configuration implicite via using\nUtilise EmailService et SmsService\nImplémente la logique d’envoi selon la config :\n\nsi config.debugMode est true, logger l’action\nEnvoyer email si activé (EmailService.sendEmail)\nEnvoyer SMS si activé (SmsService.sendSMS)"
+  },
+  {
+    "objectID": "tp7.html#tester-le-système",
+    "href": "tp7.html#tester-le-système",
+    "title": "TP7 - Classes de type",
+    "section": "Tester le système",
+    "text": "Tester le système\nCréez un object Main qui teste les trois environnements :\nobject Main:\n  @main def testNotifications(): Unit =\n    println(\"=== Test DEV ===\")\n    // TODO: Importer devConfig et créer NotificationManager\n  \n    println(\"\\n=== Test STAGING ===\")\n    // TODO: Importer stagingConfig et créer NotificationManager\n  \n    println(\"\\n=== Test PROD ===\")\n    // TODO: Importer prodConfig et créer NotificationManager\nQuand vous exécutez le programme, vous devriez voir :\n=== Test DEV ===\n[DEV] DEBUG: Envoi notification à user@example.com\n[DEV] Email désactivé\n[DEV] SMS désactivé\n\n=== Test STAGING ===\n[STAGING] DEBUG: Envoi notification à user@example.com\n[STAGING] Email envoyé à user@example.com via smtp.staging.com: Alerte importante\n[STAGING] SMS désactivé\n\n=== Test PROD ===\n[PROD] Email envoyé à user@example.com via smtp.prod.com: Alerte importante\n[PROD] SMS envoyé à user@example.com via api.sms.com: Alerte importante\nRemarque : Dans vrai système, il serait préférable de charger la configuration depuis un fichier. Mais le principe d’injecter AppConfig avec using serait conservé."
+  },
+  {
+    "objectID": "tp7.html#points-clés-à-retenir",
+    "href": "tp7.html#points-clés-à-retenir",
+    "title": "TP7 - Classes de type",
+    "section": "Points clés à retenir",
+    "text": "Points clés à retenir\n\ngiven déclare des valeurs implicites disponibles dans un scope\nusing demande l’injection d’une valeur implicite\nLes given peuvent être importés sélectivement\nParfait pour l’injection de dépendances sans framework\nAlternative moderne aux implicit de Scala 2"
+  },
+  {
+    "objectID": "tp7.html#code-fourni",
+    "href": "tp7.html#code-fourni",
+    "title": "TP7 - Classes de type",
+    "section": "Code fourni",
+    "text": "Code fourni\n\nStructure YamlValue\nenum YamlValue:\n  case YString(value: String)\n  case YNumber(value: Double)\n  case YBoolean(value: Boolean)\n  case YNull\n  case YArray(values: List[YamlValue])\n  case YObject(fields: Map[String, YamlValue])\n\n\nClasse de type YamlEncoder\ntrait YamlEncoder[A]:\n  def encode(value: A): YamlValue\n\n\nRenderer YAML\nobject YamlRenderer:\n  def render(yaml: YamlValue, indent: Int = 0): String =\n    val spaces = \"  \" * indent\n    yaml match\n      case YamlValue.YString(s) =&gt; \n        if s.contains('\\n') || s.contains(':') then\n          s\"|\\n${s.linesIterator.map(l =&gt; s\"$spaces  $l\").mkString(\"\\n\")}\"\n        else if s.matches(\".*[:#\\\\[\\\\]{}].*\") then s\"'$s'\"\n        else s\n      \n      case YamlValue.YNumber(n) =&gt; \n        if n.isWhole then n.toLong.toString else n.toString\n      \n      case YamlValue.YBoolean(b) =&gt; b.toString\n      \n      case YamlValue.YNull =&gt; \"null\"\n      \n      case YamlValue.YArray(values) if values.isEmpty =&gt; \"[]\"\n      \n      case YamlValue.YArray(values) =&gt;\n        values.map(v =&gt; s\"\\n$spaces- ${render(v, indent + 1).trim}\")\n              .mkString(\"\")\n      \n      case YamlValue.YObject(fields) if fields.isEmpty =&gt; \"{}\"\n      \n      case YamlValue.YObject(fields) =&gt;\n        fields.map { (key, value) =&gt;\n          value match\n            case YamlValue.YObject(_) | YamlValue.YArray(_) =&gt;\n              s\"\\n$spaces$key:${render(value, indent + 1)}\"\n            case _ =&gt;\n              s\"\\n$spaces$key: ${render(value, indent + 1)}\"\n        }.mkString(\"\")\n\n\nCode de test\nVoir YamlEncoderSpec dans le code fourni."
+  },
+  {
+    "objectID": "tp7.html#travail-à-réaliser",
+    "href": "tp7.html#travail-à-réaliser",
+    "title": "TP7 - Classes de type",
+    "section": "Travail à réaliser",
+    "text": "Travail à réaliser\n\nInstances pour les types primitifs\nImplémentez les instances given de YamlEncoder pour les types suivants : - String - Int - Double - Boolean - Long\n// TODO: Implémentez les instances ici\ngiven YamlEncoder[String] = ???\ngiven YamlEncoder[Int] = ???\ngiven YamlEncoder[Double] = ???\ngiven YamlEncoder[Boolean] = ???\ngiven YamlEncoder[Long] = ???\n\n\nInstances pour les classes Person, Address, Employee\n\n\nCombinateurs pour collections\nImplémentez les instances pour les types génériques :\n\nList[A] (si A a un encoder)\nOption[A] (si A a un encoder)\n\n// TODO: Implémentez les combinateurs\ngiven [A](using enc: YamlEncoder[A]): YamlEncoder[List[A]] = ???\n\ngiven [A](using enc: YamlEncoder[A]): YamlEncoder[Option[A]] = ???\n\n\n\nExtension method\nCréez une extension method toYaml qui permet d’appeler .toYaml sur n’importe quelle valeur ayant un YamlEncoder.\n// TODO: Implémentez l'extension method\nextension [A](value: A)\n  def toYaml(using enc: YamlEncoder[A]): YamlValue = ???"
+  },
+  {
+    "objectID": "tp7.html#résultat-attendu",
+    "href": "tp7.html#résultat-attendu",
+    "title": "TP7 - Classes de type",
+    "section": "Résultat attendu",
+    "text": "Résultat attendu\nExécutez les tests YamlEncoderSpec, tous les tests doivent passer."
+  },
+  {
+    "objectID": "tp7.html#bonus-support-pour-mapstring-a",
+    "href": "tp7.html#bonus-support-pour-mapstring-a",
+    "title": "TP7 - Classes de type",
+    "section": "(Bonus) Support pour Map[String, A]",
+    "text": "(Bonus) Support pour Map[String, A]\nImplémentez le support pour Map[String, A] :\ngiven [A](using enc: YamlEncoder[A]): YamlEncoder[Map[String, A]] = ???\nPuis testez avec :\ntest(\"encoder Map[String, A]\") {\n   case class Config(host: String, port: Int, ssl: Boolean) derives YamlEncoder\n\n   val configMap = Map(\n      \"database\" -&gt; Config(\"localhost\", 5432, true),\n      \"cache\" -&gt; Config(\"redis.local\", 6379, false)\n   )\n\n   val yaml = YamlRenderer.render(configMap.toYaml)\n\n   yaml shouldBe \"\"\"\ndatabase:\n  host: localhost\n  port: 5432\n  ssl: true\ncache:\n  host: redis.local\n  port: 6379\n  ssl: false\"\"\".trim\n}"
+  },
+  {
+    "objectID": "tp7.html#bonus-dérivation-automatique-pour-case-classes",
+    "href": "tp7.html#bonus-dérivation-automatique-pour-case-classes",
+    "title": "TP7 - Classes de type",
+    "section": "(Bonus) Dérivation automatique pour case classes",
+    "text": "(Bonus) Dérivation automatique pour case classes\nImplémentez la dérivation automatique en utilisant les méthodes de Product. Ce trait est implémenté par toutes les case classes.\nimport scala.deriving.*\n\n// TODO: Fonction helper pour encoder n'importe quel type\nprivate def encodeAny(value: Any): YamlValue = ???\n\n// TODO: Instance dérivée automatiquement\ngiven derivedProduct[T &lt;: Product]: YamlEncoder[T] = ???"
+  },
+  {
+    "objectID": "tp7.html#bonus---difficile-dérivation-automatique-pour-case-classes-avec-macros",
+    "href": "tp7.html#bonus---difficile-dérivation-automatique-pour-case-classes-avec-macros",
+    "title": "TP7 - Classes de type",
+    "section": "(Bonus - Difficile) Dérivation automatique pour case classes avec macros",
+    "text": "(Bonus - Difficile) Dérivation automatique pour case classes avec macros\nL’approche précédente avec Product n’est pas satisfaisante. En effet, si notre case class possède des attributs d’un type que nous ne savons pas encoder, le programme compilera quand même.\nIl serait préférable de tout valider à la compilation. Scala 3 offre un mécanisme permettant de séparer les composants d’un ADT avec la classe Mirror. Lisez cet article et implémentez la dérivation automatique de case class pour YamlEncoder :\nType Class Derivation in Scala 3"
+  },
+  {
+    "objectID": "tp2.html",
+    "href": "tp2.html",
+    "title": "TP2 - Calculateur d’Impôt sur le Revenu",
+    "section": "",
+    "text": "Cet exercice vous permettra de découvrir et pratiquer les concepts fondamentaux de Scala :\n\nTypes de base (Int, Double, String)\ncase class et types algébriques (ADT)\nTraits avec méthodes abstraites\nMixin de traits\nPattern matching\n\n\n\n\n\nInstallez IntelliJ Idea (dernière version)\nInstallez le plugin Scala\nUtilisez le lien Moodle pour créer un repository GitHub classroom\nClonez le repo\nOuvrez le projet dans IntelliJ\n\n\n\n\nVous allez développer un calculateur d’impôt sur le revenu en modélisant les foyers fiscaux. Un foyer fiscal est l’entité qui déclare et paie l’impôt (célibataire, couple, famille, etc.)."
+  },
+  {
+    "objectID": "tp2.html#objectifs-pédagogiques",
+    "href": "tp2.html#objectifs-pédagogiques",
+    "title": "TP2 - Calculateur d’Impôt sur le Revenu",
+    "section": "",
+    "text": "Cet exercice vous permettra de découvrir et pratiquer les concepts fondamentaux de Scala :\n\nTypes de base (Int, Double, String)\ncase class et types algébriques (ADT)\nTraits avec méthodes abstraites\nMixin de traits\nPattern matching"
+  },
+  {
+    "objectID": "tp2.html#installation",
+    "href": "tp2.html#installation",
+    "title": "TP2 - Calculateur d’Impôt sur le Revenu",
+    "section": "",
+    "text": "Installez IntelliJ Idea (dernière version)\nInstallez le plugin Scala\nUtilisez le lien Moodle pour créer un repository GitHub classroom\nClonez le repo\nOuvrez le projet dans IntelliJ"
+  },
+  {
+    "objectID": "tp2.html#contexte",
+    "href": "tp2.html#contexte",
+    "title": "TP2 - Calculateur d’Impôt sur le Revenu",
+    "section": "",
+    "text": "Vous allez développer un calculateur d’impôt sur le revenu en modélisant les foyers fiscaux. Un foyer fiscal est l’entité qui déclare et paie l’impôt (célibataire, couple, famille, etc.)."
+  },
+  {
+    "objectID": "tp2.html#trait-de-base",
+    "href": "tp2.html#trait-de-base",
+    "title": "TP2 - Calculateur d’Impôt sur le Revenu",
+    "section": "Trait de base",
+    "text": "Trait de base\nCréez le trait de base pour tous les foyers fiscaux.\nsealed trait FoyerFiscal {\n  def revenuTotal: Double\n  def nombreParts: Double  // Pour le quotient familial\n}"
+  },
+  {
+    "objectID": "tp2.html#première-implémentation-célibataire",
+    "href": "tp2.html#première-implémentation-célibataire",
+    "title": "TP2 - Calculateur d’Impôt sur le Revenu",
+    "section": "Première implémentation : Célibataire",
+    "text": "Première implémentation : Célibataire\nCréez une case class pour un foyer célibataire. Elle doit contenir son nom, son revenu, et doit hériter de FoyerFiscal."
+  },
+  {
+    "objectID": "tp2.html#test-de-la-partie-1",
+    "href": "tp2.html#test-de-la-partie-1",
+    "title": "TP2 - Calculateur d’Impôt sur le Revenu",
+    "section": "Test de la Partie 1",
+    "text": "Test de la Partie 1\nAjoutez ce code dans un object contenant une méthode annotée @main, et exécutez-le.\nval pierre = Celibataire(\"Pierre Dupont\", 35000.0)\nprintln(s\"${pierre.nom}: ${pierre.revenuTotal}€, ${pierre.nombreParts} parts\")\n// Sortie attendue: Pierre Dupont: 35000.0€, 1.0 parts"
+  },
+  {
+    "objectID": "tp2.html#trait-calculateurimpot",
+    "href": "tp2.html#trait-calculateurimpot",
+    "title": "TP2 - Calculateur d’Impôt sur le Revenu",
+    "section": "Trait CalculateurImpot",
+    "text": "Trait CalculateurImpot\nCréez un trait qui définit les calculs d’impôt. Ce trait nécessite l’accès au revenu et au nombre de parts :\ntrait CalculateurImpot {\n  // Méthodes abstraites que les classes doivent fournir\n  def revenuTotal: Double\n  def nombreParts: Double\n  \n  // Méthodes concrètes qui utilisent les méthodes abstraites\n  def calculerQuotientFamilial(): Double = {\n    if (nombreParts &gt; 0) revenuTotal / nombreParts else 0.0\n  }\n  \n  def calculerTauxEffectif(impot: Double): Double = {\n    if (revenuTotal &gt; 0) (impot / revenuTotal) * 100 else 0.0\n  }\n}"
+  },
+  {
+    "objectID": "tp2.html#mixin-avec-célibataire",
+    "href": "tp2.html#mixin-avec-célibataire",
+    "title": "TP2 - Calculateur d’Impôt sur le Revenu",
+    "section": "Mixin avec Célibataire",
+    "text": "Mixin avec Célibataire\nModifiez votre classe Celibataire pour qu’elle utilise aussi le trait CalculateurImpot."
+  },
+  {
+    "objectID": "tp2.html#test",
+    "href": "tp2.html#test",
+    "title": "TP2 - Calculateur d’Impôt sur le Revenu",
+    "section": "Test",
+    "text": "Test\nAjoutez une méthode de test contenant le code suivant :\nval marie = Celibataire(\"Marie Martin\", 40000.0)\nprintln(f\"${marie.nom}:\")\nprintln(f\"  Quotient familial: ${marie.calculerQuotientFamilial()}%.2f€\")\nprintln(f\"  Taux effectif: ${marie.calculerTauxEffectif(6000)}%.2f%%\")\n\n// Sortie attendue:\n// Marie Martin:\n//   Quotient familial: 40000.00€\n//   Impôt à 15%: 6000.00€\n//   Taux effectif: 15.00%"
+  },
+  {
+    "objectID": "tp2.html#barème-progressif-dans-le-trait",
+    "href": "tp2.html#barème-progressif-dans-le-trait",
+    "title": "TP2 - Calculateur d’Impôt sur le Revenu",
+    "section": "Barème progressif dans le trait",
+    "text": "Barème progressif dans le trait\nAjoutez une méthode calculerImpotProgressif() à votre trait CalculateurImpot. Utilisez le pattern matching pour effectuer le calcul. Vous pouvez utiliser ce site pour comprendre le calcul : (Simulateur Impot)[https://www.boursorama.com/impots/simulateurs/impot-revenu]\nBarème français simplifié :\n\n0€ à 11 497€ : 0% (exonéré)\n11 498€ à 29 315€ : 11% sur la tranche\n29 316€ à 83 823€ : 30% sur la tranche\n83 824€ à 180 294 : 41% sur la tranche\nPlus de 180 295 : 45% sur la tranche\n\nOn commence par calculer le revenu par part, puis on applique le barème pour chaque tranche de revenu. Ensuite, on multiplie l’impôt calculé par le nombre de parts.\ntrait CalculateurImpot:\n  def revenuTotal: Double\n  def nombreParts: Double\n  \n  // Méthodes existantes...\n  \n  def calculerImpotProgressif(): Double = ???\n}"
+  },
+  {
+    "objectID": "tp2.html#test-1",
+    "href": "tp2.html#test-1",
+    "title": "TP2 - Calculateur d’Impôt sur le Revenu",
+    "section": "Test",
+    "text": "Test\nval testeurs = List(\n  Celibataire(\"Paul\", 8000.0),    // Exonéré\n  Celibataire(\"Sophie\", 20000.0), // Tranche 11%\n  Celibataire(\"Jean\", 50000.0),   // Tranche 30%\n  Celibataire(\"Claire\", 100000.0) // Tranche 41%\n)\n\nprintln(\"=== Calcul progressif ===\")\ntesteurs.foreach { foyer =&gt;\n  val impot = foyer.calculerImpotProgressif()\n  val taux = foyer.calculerTauxEffectif(impot)\n  println(f\"${foyer.nom}: ${impot}%.2f€ (${taux}%.2f%%)\")\n}\nRésultats attendus :\n\nPaul: 0.00€ (0.00%)\nSophie: 935.22€ (4.68%)\nJean: 8165.18€ (16.33%)\nClaire: 24944.54€ (24.94%)"
+  },
+  {
+    "objectID": "tp2.html#foyer-couple",
+    "href": "tp2.html#foyer-couple",
+    "title": "TP2 - Calculateur d’Impôt sur le Revenu",
+    "section": "Foyer Couple",
+    "text": "Foyer Couple\nCréez une case class pour un couple. Elle doit posséder les deux noms et deux revenus, et hériter de FoyerFiscal ainsi que de CalculateurImpot. Un couple possède 2 parts fiscales."
+  },
+  {
+    "objectID": "tp2.html#foyer-avec-enfants",
+    "href": "tp2.html#foyer-avec-enfants",
+    "title": "TP2 - Calculateur d’Impôt sur le Revenu",
+    "section": "Foyer avec enfants",
+    "text": "Foyer avec enfants\nCréez une case class FoyerAvecEnfants. Elle doit posséder un attribut foyerParent et un attribut nombreEnfants.\n\nLes deux premiers enfants comptent pour une 1/2 part chacun.\nA partir du 3ème enfant, chaque enfant compte pour une part complète.\nUn parent célibataire a une 1/2 part supplémentaire."
+  },
+  {
+    "objectID": "tp2.html#test-2",
+    "href": "tp2.html#test-2",
+    "title": "TP2 - Calculateur d’Impôt sur le Revenu",
+    "section": "Test",
+    "text": "Test\nAjoutez une méthode de test contenant le code suivant :\nval celibataireSeul = Celibataire(\"Alice\", 45000.0)\nval couple = Couple(\"Bob\", \"Emma\", 25000.0, 20000.0)\nval celibataireAvecEnfants = FoyerAvecEnfants(Celibataire(\"Carol\", 45000.0), 2)\nval coupleAvecEnfants = FoyerAvecEnfants(couple, 1)\nval coupleAvec4Enfants = FoyerAvecEnfants(couple, 4)\n\nval foyers = List(celibataireSeul, couple, celibataireAvecEnfants, coupleAvecEnfants)\n\nprintln(\"=== Comparaison des foyers ===\")\nfoyers.foreach { foyer =&gt;\n  val impot = foyer.calculerImpotProgressif()\n  val quotient = foyer.calculerQuotientFamilial()\n  val taux = foyer.calculerTauxEffectif(impot)\n  \n  val nom = foyer.toString\n  println(f\"$nom:\")\n  println(f\"  Revenu total: ${foyer.revenuTotal}%.2f€\")\n  println(f\"  Nombre de parts: ${foyer.nombreParts}%.1f\")\n  println(f\"  Quotient familial: ${quotient}%.2f€\")\n  println(f\"  Impôt: ${impot}%.2f€\")\n  println(f\"  Taux effectif: ${taux}%.2f%%\")\n  println()\n}"
+  },
+  {
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "",
+    "section": "",
+    "text": "Au terme de ce module, les apprentis seront capables de: 1. Appréhender les concepts de base de la programmation fonctionnelle - Eval : exercice lambda calcul, currying, récursion 2. Mettre en œuvre ces concepts pour répondre à des problématiques simples 3. Identifier la pertinence de l’immutabilité pour les calculs massivement distribués 4. Comparer le paradigme impératif et le paradigme fonctionnel dans l’objectif d’une aide à la décision tant sur un plan technique que sur un plan managérial. 5. Implémenter un algorithme de Map-Reduce - Eval : projet mini-spark ?"
+  },
+  {
+    "objectID": "cm4.html",
+    "href": "cm4.html",
+    "title": "CM4 - Paramètres de type",
+    "section": "",
+    "text": "Generic Classes\nVariance\nUpper Type Bounds\nPolymorphic Methods\nGenerics and Variance with Java"
+  },
+  {
+    "objectID": "cm4.html#classes-génériques---type-bounds",
+    "href": "cm4.html#classes-génériques---type-bounds",
+    "title": "CM4 - Paramètres de type",
+    "section": "Classes génériques - Type bounds",
+    "text": "Classes génériques - Type bounds\nOn peut spécifier des contraintes sur un paramètre de type :\n\nA &lt;: Upper : borne supérieure (upper type bound). A doit être une sous-classe de Upper.\nA &gt;: Lower : borne inférieure (lower type bound). A doit être une super-classe de Lower.\n\nutilisé dans les définitions de méthodes polymorphiques (voir ci-dessous)\n\n\n// Pile qui accepte uniquement des éléments Comparable\nclass SortedStack[T &lt;: Comparable[T]]:\n  // ..."
+  },
+  {
+    "objectID": "cm4.html#méthodes-polymorphiques",
+    "href": "cm4.html#méthodes-polymorphiques",
+    "title": "CM4 - Paramètres de type",
+    "section": "Méthodes polymorphiques",
+    "text": "Méthodes polymorphiques\nDes paramètres de types peuvent être déclarés dans les méthodes.\nCela permet de définir des méthodes qui s’appliquent de manière très générale, sans contraindre fortement le type des paramètres.\nobject Utils:\n  def isSorted[A](as: Seq[A], gt: (A,A) =&gt; Boolean): Boolean = ???\n    \n  def pair[A, B](first: A, second: B): (A, B) =\n    (first, second)\n\n  // T has an upper type bound\n  def max[T &lt;: Comparable[T]](a: T, b: T): T =\n    if a.compareTo(b) &gt; 0 then a else b"
+  },
+  {
+    "objectID": "cm4.html#covariance-a",
+    "href": "cm4.html#covariance-a",
+    "title": "CM4 - Paramètres de type",
+    "section": "Covariance [+A]",
+    "text": "Covariance [+A]\nÀ utiliser lorsque la classe générique produit des A : Collections, Décodeurs, Cache\n\n\n\n\n\nclassDiagram\n    class Animal {\n    }\n    \n    class Dog {\n    }\n    \n    \n    Animal &lt;|-- Dog \n\n    class `F[+A]` {\n        produce(): A\n    }\n    \n    class `F[Animal]`\n    `F[Animal]` &lt;|-- `F[Dog]`\n\n\n\n\n\n\nval dogs: Stack[Dog] = Stack(List(Dog()))\n// on peut assigner car Stack[Dog] &lt;:&lt; Stack[Animal]\nval animals: Stack[Animal] = dogs\n\nval catsAndDogs = animals.push(Cat())\n// val catsAndDogs: Stack[Animal] = ...\n// Ne fonctionnerait pas si Stack était mutable"
+  },
+  {
+    "objectID": "cm4.html#contravariance--a",
+    "href": "cm4.html#contravariance--a",
+    "title": "CM4 - Paramètres de type",
+    "section": "Contravariance [-A]",
+    "text": "Contravariance [-A]\nÀ utiliser lorsque la classe générique consomme des A : Encodeurs\n\n\n\n\n\nclassDiagram\n    class Animal {\n    }\n    \n    class Dog {\n    }\n    \n    \n    Animal &lt;|-- Dog \n\n    class `F[-A]` {\n        consume(x: A)\n    }\n    \n    class `F[Animal]`\n    \n    `F[Animal]` --|&gt; `F[Dog]`\n\n\n\n\n\n\ntrait JsonEncoder[A]:\n  def encode(obj: A): String\n\nval animalEncoder: JsonEncoder[Animal] = ???\n// on peut assigner, car JsonEncoder[Animal] &lt;:&lt; JsonEncoder[Dog]\n// si je peux encoder un Animal en Json, je sais aussi encoder Dog, Cat, ...\nval dogEncoder: JsonEncoder[Dog] = animalEncoder\ndogEncoder.encode(Dog())"
+  },
+  {
+    "objectID": "cm4.html#méthodes-et-variance",
+    "href": "cm4.html#méthodes-et-variance",
+    "title": "CM4 - Paramètres de type",
+    "section": "Méthodes et variance",
+    "text": "Méthodes et variance\n\nLe type de retour est en position covariante.\nLes paramètres d’une méthode sont en position contravariante\n\nLorsqu’une classe est covariante [+A], A ne peut être utilisé que dans le type de retour.\ncase class Stack[+A](elements: List[A]):\n  // OK, A est en position covariante\n  def peek: Option[A] = ???\n\n  // ERREUR DE COMPILATION !! x: A est en position contravariante !\n  def push(x: A): Stack[A] = ???\nLorsqu’une classe est contravariante [-A], A ne peut être utilisé que dans les paramètres.\ntrait JsonDecoderEncoder[-A]:\n  // OK, A est en position contravariante\n  def encode(obj: A): String\n  \n  // ERREUR DE COMPILATION !! A est en position covariante !\n  def decode(json: String): A"
+  },
+  {
+    "objectID": "cm4.html#méthodes-et-variances-pourquoi",
+    "href": "cm4.html#méthodes-et-variances-pourquoi",
+    "title": "CM4 - Paramètres de type",
+    "section": "Méthodes et variances — pourquoi ?",
+    "text": "Méthodes et variances — pourquoi ?\nCes contraintes garantissent que le système de typage est cohérent. (the type system is sound)\n\nCovariance absurde\nProuvons que les paramètres sont contravariants par l’absurde. Imaginons que le compilateur autorise ceci :\ntrait Animal\ncase class Dog(woof: String) extends Animal\ncase class Cat(miaw: String) extends Animal\n\ntrait Encoder[+A]:\n  // ❌ Interdit : A est en position contravariante\n  def encode(a: A): String\n\nobject DogEncoder extends Encoder[Dog]\n  def encode(a: Dog): String =\n    a.woof\nAlors, on pourrait se retrouver dans la situation suivante :\n// on peut assigner. A est covariant, donc Encoder[Dog] &lt;:&lt; Encoder[Animal]\nval animalEncoder: Encoder[Animal] = DogEncoder\n// ❌ Absurde !! encode ne peut prendre en paramètre que Dog ou ses sous-classes\nanimalEncoder.encode(Cat(\"miaou\"))\n\n\nContravariance absurde\nProuvons que le type résultat est covariant. Imaginons que le compilateur autorise ceci :\ntrait Decoder[-A]:\n  // ❌ Interdit : A est en position covariante\n  def decode(s: String): A\n\nobject AnimalDecoder extends Decoder[Animal]\n  def decode(s: String): Animal =\n    if (s == \"miaou\") Cat(s) else Dog(s)\nAlors, on pourrait se retrouver dans la situation suivante :\n// on peut assigner. A est contravariant, donc Decoder[Animal] &lt;:&lt; Decoder[Dog]\nval dogDecoder: Decoder[Dog] = AnimalDecoder\n// ❌ Absurde !! decode renvoie une instance de Cat\nval dog: Dog = dogDecoder.decode(\"miaou\")"
+  },
+  {
+    "objectID": "cm4.html#collections-contravariantes-méthodes-dajout",
+    "href": "cm4.html#collections-contravariantes-méthodes-dajout",
+    "title": "CM4 - Paramètres de type",
+    "section": "Collections contravariantes — méthodes d’ajout",
+    "text": "Collections contravariantes — méthodes d’ajout\nÉtant donné les contraintes sur les paramètres, comment implémenter notre classe Stack ?\ncase class Stack[+A](elements: List[A]):\n  // ❌ Interdit : A est en position covariante\n  def push(x: A): Stack[A] =\n    Stack(x +: elements)\nL’astuce est d’utiliser une méthode polymorphique avec une borne inférieure :\ncase class Stack[+A](elements: List[A]):\n  // ✅ Compile : B est un paramètre de type\n  // Il peut être égal à A ou être une super-classe de A\n  def push[B &gt;: A](x: B): Stack[B] =\n    Stack(x +: elements)\nLe compilateur infère le type B lorsqu’on appelle push. Il cherche la super-classe la plus proche qui est commune à A et au type du paramètre passé.\nUtilisation :\ntrait Animal\ncase class Dog(name: String) extends Animal\ncase class Cat(name: String) extends Animal\n\nval dogStack = Stack(List(Dog(\"Winnie\"), Dog(\"Dolly\")))\n// val dogStack: Stack[Dog] = Stack(List(Dog(Winnie), Dog(Dolly)))\n\n// B est inféré, égal à Dog\nval dogStack2 = dogStack.push(Dog(\"Upi\"))\n// val dogStack2: Stack[Dog] = Stack(List(Dog(Upi), Dog(Winnie), Dog(Dolly)))\n\n// B est inféré, égal à Animal\nval animalStack = dogStack.push(Cat(\"Max\"))\n// val animalStack: Stack[Animal] = Stack(List(Cat(Max), Dog(Winnie), Dog(Dolly)))\n\n// B est inféré, égal à Animal | Int\nval objectStack = animalStack.push(1)\n// val objectStack: Stack[Animal | Int] = ..."
+  },
+  {
+    "objectID": "tp1.html",
+    "href": "tp1.html",
+    "title": "TD1 - Calcul Lambda",
+    "section": "",
+    "text": "Note\n\n\n\n\nUne variable liée est une variable qui est “capturée” par un λ dans l’expression. Elle fait référence au paramètre introduit par ce lambda.\nUne variable libre est une variable qui n’est pas liée par un λ dans l’expression courante. Elle fait référence à quelque chose défini ailleurs.\n\n\n\nPour chaque expression, identifiez les variables libres et liées :\nλx.x y\nλf.λx.f x y\n(λx.x)(λy.y z)"
+  },
+  {
+    "objectID": "tp1.html#effectuez-les-β-réductions",
+    "href": "tp1.html#effectuez-les-β-réductions",
+    "title": "TD1 - Calcul Lambda",
+    "section": "Effectuez les β-réductions :",
+    "text": "Effectuez les β-réductions :\n(λx.x) a\n(λx.λy.x) a b\n(λf.λx.f x) g y"
+  },
+  {
+    "objectID": "tp1.html#réduisez-complètement",
+    "href": "tp1.html#réduisez-complètement",
+    "title": "TD1 - Calcul Lambda",
+    "section": "Réduisez complètement :",
+    "text": "Réduisez complètement :\n(λx.x x)(λy.y)\n(λf.λx.f (f x))(λy.y + 1) 0"
+  },
+  {
+    "objectID": "tp1.html#testez",
+    "href": "tp1.html#testez",
+    "title": "TD1 - Calcul Lambda",
+    "section": "Testez :",
+    "text": "Testez :\nNOT TRUE\nAND TRUE FALSE\nAND TRUE TRUE"
+  },
+  {
+    "objectID": "tp1.html#proposez-une-définition-de-or",
+    "href": "tp1.html#proposez-une-définition-de-or",
+    "title": "TD1 - Calcul Lambda",
+    "section": "Proposez une définition de “OR”",
+    "text": "Proposez une définition de “OR”\nPensez à cette logique :\n\nSi le premier argument p est TRUE, que devrait retourner OR ?\nSi le premier argument p est FALSE, que devrait retourner OR ?\n\nUtilisez la propriété que p peut lui-même servir de sélecteur !\nOR = λp.λq. ???"
+  },
+  {
+    "objectID": "tp6.html",
+    "href": "tp6.html",
+    "title": "TP6 - Gestion des erreurs",
+    "section": "",
+    "text": "Vous travaillez sur un système de gestion d’utilisateurs. Créez une classe User et implémentez des fonctions utilisant Option.\n\n\n\ncase class User(id: Int, name: String, email: Option[String], age: Option[Int])\n\n// 1. Créer une fonction qui retourne l'email d'un utilisateur ou \"Pas d'email\"\ndef getEmailOrDefault(user: User): String = ???\n\n// 2. Créer une fonction qui retourne true si l'utilisateur est majeur (&gt;= 18)\n// Retourner false si l'âge n'est pas défini\ndef isAdult(user: User): Boolean = ???\n\n// 3. Créer une fonction qui transforme l'email en majuscules s'il existe\ndef uppercaseEmail(user: User): Option[String] = ???\n\n\n\nval user1 = User(1, \"Alice\", Some(\"alice@example.com\"), Some(25))\nval user2 = User(2, \"Bob\", None, Some(16))\nval user3 = User(3, \"Charlie\", Some(\"charlie@example.com\"), None)\n\n\n\n\n\n\n\nVous créez un système de configuration avec des valeurs optionnelles qui doivent être validées. On distingue la configuration brute (pouvant être invalide) de la configuration validée (garantie correcte).\n\n\n\n// Configuration brute issue d'un fichier ou de variables d'environnement\ncase class RawConfig(\n  host: Option[String],\n  port: Option[Int],\n  timeout: Option[Int]\n)\n\n// Configuration validée avec des valeurs garanties correctes\ncase class ValidatedConfig(\n  host: String,\n  port: Int,\n  timeout: Int\n)\n\n// 1. Créer une fonction qui valide le port (entre 1 et 65535)\ndef validatePort(port: Int): Option[Int] = ???\n\n// 2. Créer une fonction qui valide le host (non vide et non blanc)\ndef validateHost(host: String): Option[String] = ???\n\n// 3. Créer une fonction qui valide le timeout (&gt; 0)\ndef validateTimeout(timeout: Int): Option[Int] = ???\n\n// 4. Créer une fonction qui transforme une RawConfig en ValidatedConfig\n// Toutes les valeurs doivent être présentes et valides\ndef validateConfig(config: RawConfig): Option[ValidatedConfig] = ???\n\n// 5. Créer une fonction qui construit une URL depuis une ValidatedConfig\n// Format: \"http://host:port\"\ndef buildUrl(config: ValidatedConfig): String = ???\n\n// 6. BONUS : Créer une fonction qui valide avec des valeurs par défaut\n// Défauts : host = \"localhost\", port = 8080, timeout = 3000\ndef validateConfigWithDefaults(config: RawConfig): ValidatedConfig = ???\n\n\n\nval validRaw = RawConfig(Some(\"api.example.com\"), Some(443), Some(5000))\nval invalidHost = RawConfig(Some(\"\"), Some(443), Some(5000))\nval invalidPort = RawConfig(Some(\"api.example.com\"), Some(99999), Some(5000))\nval partialRaw = RawConfig(None, None, Some(1000))\nval completelyEmpty = RawConfig(None, None, None)\n\n\n\n\n\n\n\n\n\n\n\nTipMéthodes principales d’Option\n\n\n\n\nOption.map: transforme la valeur si elle existe\nOption.flatMap: transforme et aplatit\nOption.getOrElse: retourne la valeur ou un défaut\nOption.filter: filtre selon une condition\nOption.fold: fournit une valeur par défaut et une transformation\nOption.isDefined / Option.isEmpty: teste la présence de valeur"
+  },
+  {
+    "objectID": "tp6.html#exercice-manipulation-basique-doption",
+    "href": "tp6.html#exercice-manipulation-basique-doption",
+    "title": "TP6 - Gestion des erreurs",
+    "section": "",
+    "text": "Vous travaillez sur un système de gestion d’utilisateurs. Créez une classe User et implémentez des fonctions utilisant Option.\n\n\n\ncase class User(id: Int, name: String, email: Option[String], age: Option[Int])\n\n// 1. Créer une fonction qui retourne l'email d'un utilisateur ou \"Pas d'email\"\ndef getEmailOrDefault(user: User): String = ???\n\n// 2. Créer une fonction qui retourne true si l'utilisateur est majeur (&gt;= 18)\n// Retourner false si l'âge n'est pas défini\ndef isAdult(user: User): Boolean = ???\n\n// 3. Créer une fonction qui transforme l'email en majuscules s'il existe\ndef uppercaseEmail(user: User): Option[String] = ???\n\n\n\nval user1 = User(1, \"Alice\", Some(\"alice@example.com\"), Some(25))\nval user2 = User(2, \"Bob\", None, Some(16))\nval user3 = User(3, \"Charlie\", Some(\"charlie@example.com\"), None)"
+  },
+  {
+    "objectID": "tp6.html#exercice-configuration",
+    "href": "tp6.html#exercice-configuration",
+    "title": "TP6 - Gestion des erreurs",
+    "section": "",
+    "text": "Vous créez un système de configuration avec des valeurs optionnelles qui doivent être validées. On distingue la configuration brute (pouvant être invalide) de la configuration validée (garantie correcte).\n\n\n\n// Configuration brute issue d'un fichier ou de variables d'environnement\ncase class RawConfig(\n  host: Option[String],\n  port: Option[Int],\n  timeout: Option[Int]\n)\n\n// Configuration validée avec des valeurs garanties correctes\ncase class ValidatedConfig(\n  host: String,\n  port: Int,\n  timeout: Int\n)\n\n// 1. Créer une fonction qui valide le port (entre 1 et 65535)\ndef validatePort(port: Int): Option[Int] = ???\n\n// 2. Créer une fonction qui valide le host (non vide et non blanc)\ndef validateHost(host: String): Option[String] = ???\n\n// 3. Créer une fonction qui valide le timeout (&gt; 0)\ndef validateTimeout(timeout: Int): Option[Int] = ???\n\n// 4. Créer une fonction qui transforme une RawConfig en ValidatedConfig\n// Toutes les valeurs doivent être présentes et valides\ndef validateConfig(config: RawConfig): Option[ValidatedConfig] = ???\n\n// 5. Créer une fonction qui construit une URL depuis une ValidatedConfig\n// Format: \"http://host:port\"\ndef buildUrl(config: ValidatedConfig): String = ???\n\n// 6. BONUS : Créer une fonction qui valide avec des valeurs par défaut\n// Défauts : host = \"localhost\", port = 8080, timeout = 3000\ndef validateConfigWithDefaults(config: RawConfig): ValidatedConfig = ???\n\n\n\nval validRaw = RawConfig(Some(\"api.example.com\"), Some(443), Some(5000))\nval invalidHost = RawConfig(Some(\"\"), Some(443), Some(5000))\nval invalidPort = RawConfig(Some(\"api.example.com\"), Some(99999), Some(5000))\nval partialRaw = RawConfig(None, None, Some(1000))\nval completelyEmpty = RawConfig(None, None, None)"
+  },
+  {
+    "objectID": "tp6.html#méthodes-utiles-à-connaître",
+    "href": "tp6.html#méthodes-utiles-à-connaître",
+    "title": "TP6 - Gestion des erreurs",
+    "section": "",
+    "text": "TipMéthodes principales d’Option\n\n\n\n\nOption.map: transforme la valeur si elle existe\nOption.flatMap: transforme et aplatit\nOption.getOrElse: retourne la valeur ou un défaut\nOption.filter: filtre selon une condition\nOption.fold: fournit une valeur par défaut et une transformation\nOption.isDefined / Option.isEmpty: teste la présence de valeur"
+  },
+  {
+    "objectID": "tp6.html#exercice-configuration-1",
+    "href": "tp6.html#exercice-configuration-1",
+    "title": "TP6 - Gestion des erreurs",
+    "section": "Exercice : Configuration",
+    "text": "Exercice : Configuration\nReprenez l’exercice sur la configuration pour renvoyer une erreur explicite.\n\nCréez un sealed trait ConfigError\nPour chaque erreur possible, créez une classe implémentant ConfigError\nChangez les types de retour pour retourner un Either"
+  },
+  {
+    "objectID": "tp6.html#exercice-configuration-2",
+    "href": "tp6.html#exercice-configuration-2",
+    "title": "TP6 - Gestion des erreurs",
+    "section": "Exercice : Configuration",
+    "text": "Exercice : Configuration\n\nAjoutez la bibliothèque ZIO Prelude dans votre build.sbt :\nlibraryDependencies += \"dev.zio\" %% \"zio-prelude\" % \"1.0.0-RC42\"\nChangez les types Either en type zio.prelude.Validation\nTestez que validateConfig(completelyEmpty) contient bien 3 erreurs: pour le host, le port, et le timeout."
+  },
+  {
+    "objectID": "cm6.html",
+    "href": "cm6.html",
+    "title": "CM6 - Classes de Type",
+    "section": "",
+    "text": "Scala 3 Given and Using clauses - RockTheJVM\nContext Parameters - scala-lang.org\nExtension Methods - scala-lang.org\nMonad (FP) - Wikipedia"
+  },
+  {
+    "objectID": "cm6.html#effets-de-bords",
+    "href": "cm6.html#effets-de-bords",
+    "title": "CM6 - Classes de Type",
+    "section": "Effets de bords",
+    "text": "Effets de bords\nToute fonction qui a des effets de bord (side effect) est impure. Un effet de bord peut être :\n\nModifier une variable se trouvant en dehors de la fonction\nAfficher sur la console\nOuvrir une connection réseau\nLire/Écrire dans un fichier, une base de données\nDe manière générale, toute interaction avec le monde extérieur."
+  },
+  {
+    "objectID": "cm6.html#exceptions-et-transparence-référentielle",
+    "href": "cm6.html#exceptions-et-transparence-référentielle",
+    "title": "CM6 - Classes de Type",
+    "section": "Exceptions et transparence référentielle",
+    "text": "Exceptions et transparence référentielle\nEn programmation fonctionnelle, nous évitons d’utiliser les exceptions, car leur utilisation casse la transparence référentielle :\ndef area(width: Int, height: Int): Double =\n  if (width &gt; 5 || height &gt; 5)\n    throw new IllegalArgumentException(\"too big\")\n  else\n    width * height\nCe code :\nval total =\n  try\n    area(3, 2) + area(6, 2)\n  catch\n    case e: IllegalArgumentException =&gt; 0\n\nN’est pas équivalent à celui-ci :\nvar area1 = area(3, 2)\nval area2 = area(6, 2)\n\nval total2 =\n  try\n    area1 + area2\n  catch\n    case e: IllegalArgumentException =&gt; 0\nSi une fonction lance une exception, on ne peut pas toujours remplacer l’appel d’une fonction par son résultat. Nous n’avons pas ce problème lorsque nous utilisons des structures Either ou Validated."
+  },
+  {
+    "objectID": "cm6.html#avantages-des-fonctions-pures",
+    "href": "cm6.html#avantages-des-fonctions-pures",
+    "title": "CM6 - Classes de Type",
+    "section": "Avantages des fonctions pures",
+    "text": "Avantages des fonctions pures\nLa transparence référentielle est un concept clé en programmation fonctionnelle. Si la majorité du code de votre programme est composé de fonctions pures, il devient beaucoup plus facile de :\n\nComprendre ce que fait le programme. Si on voit un appel de fonction, on sait que la valeur de retour dépend uniquement des arguments. Pas besoin de tenir compte de l’état d’un attribut, ou de risquer d’avoir des modifications d’attributs dans les arguments.\nRefactoriser. On peut utiliser le refactoring “introduce variable” sans se soucier de la position de la variable dans le code.\nTester ses fonctions. On a juste à passer différents arguments et tester la valeur de retour.\nÉcrire des programmes multithreads. Plusieurs appels de fonctions pures peuvent être exécutés en parallèle. Pas de risque de modification concurrente de la même variable."
+  },
+  {
+    "objectID": "cm6.html#cas-dutilisation-tri",
+    "href": "cm6.html#cas-dutilisation-tri",
+    "title": "CM6 - Classes de Type",
+    "section": "Cas d’utilisation : Tri",
+    "text": "Cas d’utilisation : Tri\nNous souhaitons trier une liste d’objets Person en fonction d’un attribut surname. Dans notre programme, nous souhaitons offrir un tri “standard”, mais laisser la possibilité à l’appelant de passer un ordre de tri personnalisé.\ncase class Person(surname: String, name: String, age: Int)\nEn Java, nous aurions créé une classe qui implémente Comparator&lt;Person&gt;. En Scala, nous devons déclarer une instance de Ordering[Person] :\nobject Person:\n  val defaultPersonOrdering: Ordering[Person] = new Ordering[Person] {\n    override def compare(x: Person, y: Person): Int =\n      x.surname.compareTo(y.surname)\n  }\nL’inconvénient est qu’il faut passer cet objet Ordering partout où on a besoin de comparer des Person. :\ndef listPeople(persons: Seq[Person])\n              (ordering: Ordering[Person]) = persons.sorted(ordering)\n\ndef someOtherMethodRequiringOrdering(alice: Person, bob: Person)\n                                    (ordering: Ordering[Person]) = ???\n\ndef yetAnotherMethodRequiringOrdering(persons: List[Person])\n                                     (ordering: Ordering[Person]) = ???\nPour appeler ces méthodes, nous devons retrouver l’instance Ordering “standard” et la passer en argument, ce qui peut rapidement devenir répétitif.\nEn utilisant given et using, nous pouvons déléguer cette tâche ingrate au compilateur :\nobject Person: \n  given defaultPersonOrdering: Ordering[Person] = new Ordering[Person] {\n    override def compare(x: Person, y: Person): Int =\n      x.surname.compareTo(y.surname)\n  }\ndef listPeople(persons: Seq[Person])\n              (using ordering: Ordering[Person]) = persons.sorted(ordering)\nUtilisation :\nval people = List(Person(\"Weasley\", \"Ron\", 15), Person(\"Potter\", \"Harry\", 15)) \nlistPeople(people) // &lt;- le compilateur injecte l'ordering ici"
+  },
+  {
+    "objectID": "cm6.html#implicit-resolution",
+    "href": "cm6.html#implicit-resolution",
+    "title": "CM6 - Classes de Type",
+    "section": "Implicit resolution",
+    "text": "Implicit resolution\nLorsque le compilateur voit un appel de méthode où un paramètre using est manquant, comme dans listPeople(people), il va utiliser un algorithme pour rechercher les instances given correspondantes. C’est le mécanisme implicit resolution.\nPour un paramètre using t: T, le compilateur va rechercher un given de type T dans cet ordre :\n\nportée locale : dans le même bloc ou méthode\nimport explicite : import Person.defaultPersonOrdering\nimport avec joker : import Person.*\ncompanion object : l’objet companion de T et les companions de ses paramètres de type\n\npour Ordering[Person], recherche dans l’object Ordering ET dans Person.\n\nles super-classes de T et les classes englobant T (lorsque T est une classe interne).\n\n\n\n\n\n\n\nNote\n\n\n\nLes mots-clé given et using ont été introduits dans Scala 3. Vous pouvez parfois tomber sur des API écrites en Scala 2 qui utilisent le mot-clé implicit. Voici l’équivalence :\n\n\n\n\n\n\n\nScala 3.x\nScala 2.x\n\n\n\n\ngiven ord: Ordering[Person] = ???\nimplicit val ord: Ordering[Person] = ???\n\n\ndef tri[A](seq: Seq[A])(using ord: Ordering[A]) = ???\ndef tri[A](seq: Seq[A])(implicit ord: Ordering[A]) = ???"
+  },
+  {
+    "objectID": "cm6.html#dérivation-de-given",
+    "href": "cm6.html#dérivation-de-given",
+    "title": "CM6 - Classes de Type",
+    "section": "Dérivation de given",
+    "text": "Dérivation de given\nNous pouvons déclarer des méthodes avec given. Cela va permettre au compilateur de construire des instances à la volée.\nPar exemple, supposons que :\n\nnotre code métier a besoin de comparer des Option[Person], puis des Option[Product].\nnous avons défini un given Ordering[Person] et un given Ordering[Product].\n\nCela ne suffit pas ! Il faudrait aussi déclarer :\n\ngiven Ordering[Option[Person]] et\ngiven Ordering[Option[Product]].\n\nNous pouvons déclarer un seul given de la manière suivante :\ngiven optionOrdering[T](using ord: Ordering[T]): Ordering[Option[T]] with\n  def compare(optA: Option[T], optB: Option[T]): Int = \n    (optA, optB) match \n      case (None, None) =&gt; 0\n      case (None, _) =&gt; -1\n      case (_, None) =&gt; 1\n      case (Some(a), Some(b)) =&gt; ord.compare(a, b)\nCette définition indique au compilateur :\n\n“si tu as une instance given Ordering[T],\ntu peux automatiquement créer une instance given Ordering[Option[T]] en appelant la méthode optionOrdering.\n\nCe mécanisme est très puissant, car le compilateur peut enchaîner plusieurs appels en cascade. On peut ainsi obtenir un Ordering[Option[Option[T]] sans code supplémentaire. C’est particulièrement utile pour encoder/décoder des données dans un format.\nAutre exemple : nous souhaitons pouvoir afficher des Double, ou des List[Double], ou des List[List[Double]], ou des Option[List[Option[Double]]] dans un format particulier :\nDéfinitions :\ntrait Show[A]:\n  def show(a: A): String\n\nobject Show:\n  // Show avec 2 chiffres décimaux\n  given Show[Double] with\n    def show(a: Double): String = f\"$a%6.2f\"\n\n  // Si on connaît Show[A], on sait construire Show[List[A]]\n  given [A](using showA: Show[A]): Show[List[A]] with\n    def show(list: List[A]): String =\n      list.map(showA.show).mkString(\"[\", \", \", \"]\")\n\n  // Si on connaît Show[A], on sait construire Show[Option[A]]\n  given [A](using showA: Show[A]): Show[Option[A]] with\n    def show(opt: Option[A]): String = opt match\n      case Some(a) =&gt; showA.show(a)\n      case None =&gt; \"None\"\nUtilisation :\ndef display[A](value: A)(using s: Show[A]): Unit =\n  println(s.show(value))\n\ndisplay(List(1.234, 2000, 3))\n// [  1.23, 2000.00,   3.00]\ndisplay(List(List(1.234, 2), List(3, 4.1), List(5.0)))\n// [[  1.23,   2.00], [  3.00,   4.10], [  5.00]]\ndisplay(Option(List(Some(1.234), Some(3.3), None)))\n// [  1.23,   3.30, None]"
+  },
+  {
+    "objectID": "cm6.html#classe-de-type-jsonserializer",
+    "href": "cm6.html#classe-de-type-jsonserializer",
+    "title": "CM6 - Classes de Type",
+    "section": "Classe de type : JsonSerializer",
+    "text": "Classe de type : JsonSerializer\nVoici un exemple de classe de type qui permet de convertir un objet en Json :\n// 1. Type class definition\ntrait JsonSerializer[A]:\n  def toJson(value: A): String\n\n// 2. Instances for different types\nobject JsonSerializer:\n  \n  given JsonSerializer[Int] with\n    def toJson(value: Int): String = value.toString\n  \n  given JsonSerializer[String] with\n    def toJson(value: String): String = s\"\"\"\"$value\"\"\"\"\n  \n  given JsonSerializer[Boolean] with\n    def toJson(value: Boolean): String = value.toString\n  \n  given [A](using serializer: JsonSerializer[A]): JsonSerializer[List[A]] with\n    def toJson(values: List[A]): String =\n      values.map(serializer.toJson).mkString(\"[\", \", \", \"]\")\n\n// 3. Extension method\nextension [A](value: A)(using s: JsonSerializer[A])\n  def toJson: String = s.toJson(value)\nAvec ces définitions, lorsqu’on appelle .toJson sur un objet de type T, le compilateur va rechercher une instance given de type JsonSerializer[T] dans le scope.\n// Utilisation\n42.toJson             // 42\n\"hello\".toJson        // \"hello\"\ntrue.toJson           // true\nList(1, 2, 3).toJson  // [1, 2, 3]\nList(\"a\", \"b\").toJson // [\"a\", \"b\"]\nLa flexibilité de cette approche est remarquable. Une bibliothèque JSON peut proposer des instances pour les types standards, que vous pouvez étendre facilement pour vos propres types :\ncase class Person(name: String, age: Int)\n\ngiven JsonSerializer[Person] with\n  def toJson(p: Person): String =\n    s\"\"\"{\"name\": \"${p.name}\", \"age\": ${p.age}}\"\"\"\n\nList(Person(\"Alice\", 30), Person(\"Bob\", 20)).toJson  \n// [{\"name\": \"Alice\", \"age\": 30}, {\"name\": \"Bob\", \"age\": 20}]\nTout est validé à la compilation. L’appel à .toJson ne compilera pas si les instances de type class du bon type ne sont pas déclarées."
+  },
+  {
+    "objectID": "cm6.html#classes-de-types-dans-les-bibliothèques",
+    "href": "cm6.html#classes-de-types-dans-les-bibliothèques",
+    "title": "CM6 - Classes de Type",
+    "section": "Classes de types dans les bibliothèques",
+    "text": "Classes de types dans les bibliothèques\nLe SDK Scala propose quelques classes de type :\n\nscala.math.Ordering pour trier et comparer\nscala.math.Numeric pour les opérations arithmétiques +, -, *, …\nscala.CanEqual permet d’avoir une erreur de compilation lorsqu’on compare 2 types différents avec == (voir TP).\n\nLa bibliothèque Cats définit plusieurs classes de types provenant de la théorie des cagégories. Cette théorie mathématique étudie les structures et leurs relations, et a des connexions avec la programmation fonctionnelle. Il n’est heureusement pas nécéssaire de comprendre cette théorie pour utiliser les principales classes de types de Cats.\n\ncats.Functor\nUn Functor est un type sur lequel on a l’opération map :\ntrait Functor[F[_]] {\n  def map[A, B](fa: F[A])(f: A =&gt; B): F[B]\n}\nNous avons vu que plusieurs types du SDK implémentaient map, comme Option, Either, Seq, … L’avantage du type Functor est que nous pouvons définir des méthodes qui s’appliquent à tous ces types.\nCela permet de renforcer le principle of least power : si la seule chose dont j’ai besoin dans mon paramètre est la fonction map, je peux le déclarer comme Functor.\nimport cats._\nimport cats.syntax.all._\nimport cats.instances.all._\n\n// Méthode générique - fonctionne avec TOUT Functor\ndef applyDiscount[F[_]](prices: F[Double], \n                        discount: Double)(using Functor[F]): F[Double] =\n  prices.map(_ * (1 - discount))\n\n// Tous ces exemples fonctionnent sans définir d'instances !\nval optPrice: Option[Double] = Some(100.0)\nval opt = applyDiscount(optPrice, 0.2)\n// Some(80.0)\n\nval listPrices = List(100.0, 200.0, 300.0)\nval lst = applyDiscount(listPrices, 0.2)\n// List(80.0, 160.0, 240.0)\n\nval eitherPrice: Either[String, Double] = Right(100.0)\nval eith = applyDiscount(eitherPrice, 0.2)\n// Right(80.0)\n\nimport scala.concurrent.Future\nimport scala.concurrent.ExecutionContext.Implicits.global\n\nval futurePrice = Future { Thread.sleep(10); 100.0 }\nval fut = applyDiscount(futurePrice, 0.2)\n// Future(80.0)\n\n\n\n\n\n\nNote\n\n\n\nScala offre un sucre syntaxique pour les fonctions qui utilisent une classe de type. Au lieu de déclarer :\ndef applyDiscount[F[_]](prices: F[Double], \n                        discount: Double)(using Functor[F]): F[Double] = ???\nNous pouvons déclarer Functor derrière le paramètre de type :\ndef applyDiscount[F[_] : Functor](prices: F[Double], \n                                  discount: Double): F[Double] = ???\nCette syntaxe reflète bien l’analogie entre objets/classes et types/classes de types :\ndog: Dog      // objet dog, classe Dog\nF[_]: Functor // type F[_], classe de type Functor\n\n\n\n\ncats.Monad\nFrom A Brief, Incomplete, and Mostly Wrong History of Programming Languages “a monad is a monoid in the category of endofunctors, what’s the problem?”\nLa classe de type Monad a des “pouvoirs” en plus par rapport à Functor : elle permet d’aplatir (flatten) des structures, et de construire (pure) une structure à partir d’une valeur. Comme elle dérive de Functor, elle implémente également flatMap, qui est une combinaison de map et flatten.\nUne définition simplifiée de la classe de type Monad ressemblerait à ceci :\ntrait Monad[F[_]] extends Functor[F] {\n  // construit un F avec une valeur\n  def pure[A](x: A): F[A]\n\n  // la méthode clé qui caractérise une structure monadique \n  def flatMap[A, B](fa: F[A])(f: A =&gt; F[B]): F[B]\n\n  // flatten peut être implémenté avec flatMap\n  def flatten[A](ffa: F[F[A]]): F[A] =\n    flatMap(ffa)(fa =&gt; fa)\n}\nLa méthode flatMap est fondamentale : elle permet de chaîner des opérations qui produisent elles-mêmes des Monads. Cela permet d’enchaîner des traitements les uns à la suite des autres dans un contexte donné. Un Monad représente en quelque sorte un contexte de calcul avec des capacités spécifiques :\n\nOption =&gt; contexte “ce calcul peut ne pas renvoyer de valeur”\nEither =&gt; contexte “ce calcul peut échouer avec une erreur typée”\nFuture =&gt; contexte “ce calcul est asynchrone/effectue des effets de bord”\ncats.IO =&gt; contexte “ce calcul a des effets de bord”\nWriter =&gt; contexte “ce calcul produit des logs en plus de sa valeur”\nState =&gt; contexte “ce calcul peut lire/modifier un état”\n\nNous avions vu que for en Scala était du sucre syntaxique permettant d’enchaîner des flatMap et map. Cela signifie que nous pouvons utiliser for sur tous les types monadiques !\nCats fournit :\n\ndes instances de Monad pour les types courants du SDK comme Option, List, Either, …\nd’autres types monadiques, comme IO, State, NonEmptyList, Writer…\ndes “Monad transformers”, qui permettent de combiner plusieurs Monads\n\nExemple utilisant Writer[L, A], qui permet de logger des informations :\nimport cats.data.Writer\nimport cats.syntax.all._\n\n// type alias: évite de répéter Writer[...] partout\ntype Logged[A] = Writer[List[String], A]\n\ndef validateUser(name: String): Logged[Boolean] =\n  if name.isEmpty then\n    Writer(List(\"Validation: Name is empty\"), false)\n  else\n    Writer(List(s\"Validation: Name '$name' is valid\"), true)\n\ndef saveToDatabase(name: String): Logged[Int] =\n  Writer(List(s\"Database: Saved user '$name'\"), name.hashCode)\n\ndef sendEmail(userId: Int): Logged[Unit] =\n  Writer(List(s\"Email: Sent welcome email to user $userId\"), ())\n\n// For-comprehension avec Writer\ndef registerUser(name: String): Logged[Option[Int]] =\n  for {\n    isValid &lt;- validateUser(name)\n    result  &lt;- if isValid then\n                 for {\n                   userId &lt;- saveToDatabase(name)\n                   _      &lt;- sendEmail(userId)  // _ pour ignorer Unit\n                 } yield Some(userId)\n               else\n                 Writer(List[String](), None)\n  } yield result\n\nval (logs, result) = registerUser(\"Alice\").run\nlogs.foreach(println)\n// Validation: Name 'Alice' is valid\n// Database: Saved user 'Alice'\n// Email: Sent welcome email to user 63679911\n\nprintln(s\"Result: User ID = $result\")\n// Result: User ID = Some(63679911)"
+  },
+  {
+    "objectID": "projet_mapreduce.html#commandes-utiles",
+    "href": "projet_mapreduce.html#commandes-utiles",
+    "title": "Projet MapReduce",
+    "section": "Commandes utiles",
+    "text": "Commandes utiles\n# Compiler\nsbt compile\n\n# Lancer les tests\nsbt test\n\n# Lancer un test spécifique\nsbt \"testOnly mapreduce.LocalExecutionSpec\"\n\n# Exécution locale du WordCount\nsbt \"runMain mapreduce.examples.WordCountLocalApp data/input.txt\"\n\n# Exécution distribuée (1 JVM, plusieurs workers)\nsbt \"runMain mapreduce.examples.WordCountDistOneJvmApp data/input.txt 2\""
+  },
+  {
+    "objectID": "projet_mapreduce.html#structure-du-projet",
+    "href": "projet_mapreduce.html#structure-du-projet",
+    "title": "Projet MapReduce",
+    "section": "Structure du projet",
+    "text": "Structure du projet\nsrc/main/scala/mapreduce/\n├── api/\n│   └── Dataset.scala       # API utilisateur (comme Spark RDD)\n├── plan/\n│   ├── Op.scala            # AST des opérations (DAG)\n│   ├── Stage.scala         # Regroupement d'opérations\n│   └── Planner.scala       # Conversion Op -&gt; Stages\n├── execution/\n│   ├── Driver.scala        # Orchestrateur (master)\n│   ├── Worker.scala        # Exécuteur de tâches\n│   └── StageExecutor.scala # Exécution locale d'un stage\n├── protocol/\n│   └── Messages.scala      # Messages Driver &lt;-&gt; Worker\n├── serde/\n│   └── SocketUtils.scala   # Sérialisation réseau\n└── examples/               # Exemples : WordCount local et distribué"
+  },
+  {
+    "objectID": "projet_mapreduce.html#architecture-driver-worker",
+    "href": "projet_mapreduce.html#architecture-driver-worker",
+    "title": "Projet MapReduce",
+    "section": "Architecture Driver-Worker",
+    "text": "Architecture Driver-Worker\n                      ┌─────────────────┐\n                      │     Driver      │\n                      │  (orchestrateur)│\n                      └────────┬────────┘\n                               │\n              ┌────────────────┼────────────────┐\n              │                                 │\n              ▼                                 ▼\n    ┌───────────────────┐             ┌───────────────────┐\n    │     Worker 0      │             │     Worker 1      │\n    │ ┌─────┐ ┌─────┐   │             │ ┌─────┐ ┌─────┐   │\n    │ │ P0  │ │ P2  │   │             │ │ P1  │ │ P3  │   │\n    │ └─────┘ └─────┘   │             │ └─────┘ └─────┘   │\n    └───────────────────┘             └───────────────────┘\n\nDriver : Planifie l’exécution, distribue les tâches, coordonne le shuffle\nWorker : Exécute les tâches sur ses partitions de données\nPartitions : Le nombre de partitions (numPartitions) peut être supérieur au nombre de workers. Chaque worker traite les partitions où partitionId % numWorkers == workerId."
+  },
+  {
+    "objectID": "projet_mapreduce.html#cycle-de-vie-dun-job",
+    "href": "projet_mapreduce.html#cycle-de-vie-dun-job",
+    "title": "Projet MapReduce",
+    "section": "Cycle de vie d’un job",
+    "text": "Cycle de vie d’un job\n\n\n\n\n\nsequenceDiagram\n    participant D as Driver\n    participant W0 as Worker 0\n    participant W1 as Worker 1\n\n    rect rgb(230, 245, 255)\n        Note over D,W1: Registration\n        W0-&gt;&gt;D: Register\n        W1-&gt;&gt;D: Register\n        D-&gt;&gt;W0: AssignId(0)\n        D-&gt;&gt;W1: AssignId(1)\n    end\n\n    rect rgb(255, 245, 230)\n        Note over D,W1: Stage 1 (Map)\n        D-&gt;&gt;W0: RunTask\n        D-&gt;&gt;W1: RunTask\n        W0-&gt;&gt;D: TaskCompleted\n        W1-&gt;&gt;D: TaskCompleted\n    end\n\n    rect rgb(255, 230, 230)\n        Note over D,W1: Shuffle\n        D-&gt;&gt;W0: StartShuffle\n        D-&gt;&gt;W1: StartShuffle\n        W0-&gt;&gt;D: ShuffleData\n        W1-&gt;&gt;D: ShuffleData\n        Note over D: Merge by partition\n        D-&gt;&gt;W0: ShuffleData\n        D-&gt;&gt;W1: ShuffleData\n    end\n\n    rect rgb(230, 255, 230)\n        Note over D,W1: Stage 2 (Reduce)\n        D-&gt;&gt;W0: RunTask\n        D-&gt;&gt;W1: RunTask\n        W0-&gt;&gt;D: TaskCompleted\n        W1-&gt;&gt;D: TaskCompleted\n    end\n\n    rect rgb(245, 230, 255)\n        Note over D,W1: Collect\n        D-&gt;&gt;W0: CollectResults\n        D-&gt;&gt;W1: CollectResults\n        W0-&gt;&gt;D: Result\n        W1-&gt;&gt;D: Result\n        D-&gt;&gt;W0: Shutdown\n        D-&gt;&gt;W1: Shutdown\n    end"
+  },
+  {
+    "objectID": "projet_mapreduce.html#le-shuffle-reducebykey",
+    "href": "projet_mapreduce.html#le-shuffle-reducebykey",
+    "title": "Projet MapReduce",
+    "section": "Le Shuffle (reduceByKey)",
+    "text": "Le Shuffle (reduceByKey)\nLe shuffle est nécessaire quand on doit regrouper des données par clé. Exemple : compter les mots.\nAvant shuffle : Chaque worker a des mots arbitraires\nWorker 0: [(hello,1), (world,1), (hello,1)]\nWorker 1: [(foo,1), (hello,1), (bar,1)]\nAprès shuffle : Chaque worker a toutes les valeurs pour certaines clés\nWorker 0: [(hello,1), (hello,1), (hello,1)]  → (hello, 3)\nWorker 1: [(world,1), (foo,1), (bar,1)]      → (world,1), (foo,1), (bar,1)\n\nProtocole\n\nLe Driver envoie StartShuffle à tous les workers\nChaque worker partitionne ses données par hash(key) % numPartitions\nChaque worker envoie ses partitions au Driver (ShuffleData)\nLe Driver fusionne : toutes les données destinées au worker N\nLe Driver redistribue à chaque worker sa partition"
+  },
+  {
+    "objectID": "projet_mapreduce.html#déroulement-dune-séance",
+    "href": "projet_mapreduce.html#déroulement-dune-séance",
+    "title": "Projet MapReduce",
+    "section": "Déroulement d’une séance",
+    "text": "Déroulement d’une séance\n\nLecture du cahier des charges, questions à l’enseignant\nRépartition des tâches (vous pouvez travailler en pair programming)\nDéveloppement, tests, rédaction de la documentation\nAu cours de la séance, votre enseignant invitera votre groupe à un échange de 10-15 mn :\n\n\nIl vous posera des questions de compréhension de votre code\nIl répondra à vos questions et pourra vous donner des conseils\n\n\nVous devrez soumettre votre travail (commit & push) avant la fin de la séance.\n\n\npas de travail en dehors des heures de classe, pas de rush pour finir à la dernière minute.\n\nrespect du principe eXtreme Programming Sustainable Pace\n\nvous devez utiliser le temps disponible efficacement.\nles commits contenant beaucoup de modifications seront considérés comme suspects : fait avec IA ?\n\ncommittez souvent"
+  },
+  {
+    "objectID": "projet_mapreduce.html#phase-1-warm-up",
+    "href": "projet_mapreduce.html#phase-1-warm-up",
+    "title": "Projet MapReduce",
+    "section": "Phase 1 : Warm-up",
+    "text": "Phase 1 : Warm-up\nImplémenter les opérations de base dans Dataset.scala et StageExecutor.scala :\n\nmap : transformer chaque élément\nflatMap : transformer chaque élément en zéro ou plusieurs éléments\nfilter : garder les éléments satisfaisant un prédicat\nStageExecutor.executeLocal : exécute chaque stage localement\n\nTests : mapreduce.DatasetSpec et mapreduce.LocalExecutionSpec"
+  },
+  {
+    "objectID": "projet_mapreduce.html#phase-2-shuffle",
+    "href": "projet_mapreduce.html#phase-2-shuffle",
+    "title": "Projet MapReduce",
+    "section": "Phase 2 : Shuffle",
+    "text": "Phase 2 : Shuffle\nImplémenter l’opération :\n\nreduceByKey : réduire des couples clé-valeur avec une opération sur les valeurs.\n\nImplémenter le shuffle distribué (médié par le Driver) :\n\nWorker.handleWorkerMessage : gérer StartShuffle et ShuffleData\nDriver.coordinateShuffle : orchestrer le shuffle\n\nTests : mapreduce.ShuffleSpec et mapreduce.DistributedSpec.\nConseil : Ecrire un test pour la fusion de partitions.\n\nValidation sur un fichier public\nTélécharger un livre de Project Gutenberg pour tester WordCount sur un vrai fichier :\n# Download several large books and combine\ncurl -O https://www.gutenberg.org/files/100/100-0.txt  # Shakespeare (~5MB)\nfor i in {1..10}; do cat 100-0.txt &gt;&gt; large-test-file.txt; done\nLancer WordCount et vérifier les résultats attendus.\n\n\n\nMot\nOccurrences attendues\n\n\n\n\nthe\n~303000\n\n\nand\n~285000\n\n\nyou\n~146000\n\n\nthat\n~122000\n\n\nnot\n~90000\n\n\n\nDans le fichier README.md, notez les temps d’exécution pour :\n\nle mode local : WordCountLocalApp\nle mode distribué avec 2 puis 4 workers : WordCountDistributed\nBONUS : le mode distribué sur plusieurs machines\n\nchoisissez le nombre de workers en fonction du nombre de cores des CPUs\nPar exemple : PC_A a 8 cores, PC_B a 12 cores =&gt; lancer max 6 workers sur PC_A, max 11 workers sur PC_B (on laisse 1 core pour le système et 1 pour le Driver)\n\n\nVous pouvez utiliser les logs ou modifier le code pour mesurer le temps total entre \"All ... workers connected\" et \"Found ... unique words\"."
+  },
+  {
+    "objectID": "projet_mapreduce.html#phase-3-job-movielens",
+    "href": "projet_mapreduce.html#phase-3-job-movielens",
+    "title": "Projet MapReduce",
+    "section": "Phase 3 : Job MovieLens",
+    "text": "Phase 3 : Job MovieLens\nTélécharger le dataset MovieLens (ml-latest-small) :\n\nhttps://grouplens.org/datasets/movielens/\n\nFichiers utilisés :\n\nmovies.csv : movieId, title, genres (genres séparés par |)\nratings.csv : userId, movieId, rating, timestamp\n\nObjectif : Calculer la note moyenne par genre.\nVous avez deux possibilités pour implémenter le join enter les deux fichiers.\n\nSolution A : Broadcast join (plus simple)\nCharger le petit fichier (movies.csv) en mémoire dans une Map, puis enrichir le grand fichier :\n// Charger movies en mémoire (petit fichier)\nval moviesMap: Map[Int, String] = Source.fromFile(\"movies.csv\")\n  .getLines().drop(1)  // skip header\n  .map(line =&gt; /* parse to (movieId, genres) */)\n  .toMap\n\n// Utiliser map pour enrichir ratings avec les genres\nDataset.fromTextFile(\"ratings.csv\")\n  .map(line =&gt; /* parse to (movieId, rating), use moviesMap to get genres */)\n  // ...      \n\n\nSolution B : Distributed join (avancé)\nImplémenter une vraie opération join distribuée :\nÀ implémenter (Dataset.scala, Op.scala, Planner.scala) :\n\nOp.Join[K, V, W] avec deux upstreams (le DAG devient un arbre)\nMise à jour du Planner pour gérer les branches multiples\njoin dans l’API : Dataset[(K, V)].join(other: Dataset[(K, W)]): Dataset[(K, (V, W))]\n\nAstuce : Shuffler les deux datasets par clé, puis combiner les partitions localement.\n\n\nBonus\nQuels sont les 10 films les mieux notés (avec au moins 50 notes) ?"
+  },
+  {
+    "objectID": "projet_mapreduce.html#phase-4-questions-de-réflexion",
+    "href": "projet_mapreduce.html#phase-4-questions-de-réflexion",
+    "title": "Projet MapReduce",
+    "section": "Phase 4 : Questions de réflexion",
+    "text": "Phase 4 : Questions de réflexion\n\nChargement des sources : Regardez Worker.getInput. Chaque worker charge le fichier entier puis filtre sa partition. Pourquoi est-ce inefficace ? Comment un système réel comme Spark gère-t-il cela ?\nShuffle peer-to-peer : Notre shuffle passe par le Driver (goulot d’étranglement). Comment implémenter un shuffle direct entre Workers ?\nOptimisation de count() : Regardez Dataset.count(). L’implémentation actuelle appelle collect().map(_.size), ce qui rapatrie toutes les données avant de compter. Comment optimiser cette action pour ne transférer que les comptages partiels ?\n\n\nécrivez vos réponses dans README.md\nimplémentez l’une des 3 optimisations\ncomparez les performances avant/après optimisation"
+  },
+  {
+    "objectID": "projet_mapreduce.html#ressources",
+    "href": "projet_mapreduce.html#ressources",
+    "title": "Projet MapReduce",
+    "section": "Ressources",
+    "text": "Ressources\n\nZIO Cheat Sheet.md : Patterns ZIO utilisés dans ce projet\nSpark RDD Programming Guide : Documentation Spark pour référence"
+  },
+  {
+    "objectID": "cm1.html",
+    "href": "cm1.html",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "",
+    "text": "graph TD\n    A[Programming Paradigms] --&gt; B[Imperative]\n    A --&gt; C[Declarative]\n    A --&gt; D[Multi-Paradigm]\n    \n    B --&gt; B1[Procedural]\n    B --&gt; B2[Object-Oriented]\n    \n    C --&gt; C1[Functional]\n    C --&gt; C2[Logic]\n    C --&gt; C3[Constraint]\n    C --&gt; C4[Query]\n    \n    style A fill:#e1f5fe\n    style B fill:#f3e5f5\n    style C fill:#e8f5e8\n    style D fill:#fff3e0\n\n\n\n\n\n\n\nUn paradigme de programmation est une approche fondamentale ou une façon de concevoir et d’organiser un programme informatique. C’est essentiellement un style de programmation qui définit comment structurer le code, comment représenter les données, et comment résoudre les problèmes.\nCertains langages ont des fonctionnalités qui permettent les 2 styles, comme Python, Java, Scala. Mais chaque langage a un style par défaut qui va encourager plutôt le style impératif ou fonctionnel.\n\nImpératif sans être turing-complet: Terraform\nLogic: Prolog\nSQL 92 n’est pas turing-complet. SQL99+ l’est.\n\n\n\n\n\n\n1936 - Alonzo Church: calcul lambda =&gt; programmation fonctionnelle\n1936 - Alan Turing: machine de turing =&gt; programmation impérative\nLe lambda calcul est turing-complet\n\n\n\nMachine de turing : modèle abstrait du fonctionnement des ordinateurs. Une fonction est calculable si et seulement si elle peut être calculée par une telle machine.\nTuring-complet : système formel qui possède un pouvoir expressif au moins équivalent à des machines de turing. Les langages de programmation sont turing-complet.\nfun fact: Church était le directeur de thèse de Turing."
+  },
+  {
+    "objectID": "cm1.html#paradigmes-de-programmation",
+    "href": "cm1.html#paradigmes-de-programmation",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "",
+    "text": "graph TD\n    A[Programming Paradigms] --&gt; B[Imperative]\n    A --&gt; C[Declarative]\n    A --&gt; D[Multi-Paradigm]\n    \n    B --&gt; B1[Procedural]\n    B --&gt; B2[Object-Oriented]\n    \n    C --&gt; C1[Functional]\n    C --&gt; C2[Logic]\n    C --&gt; C3[Constraint]\n    C --&gt; C4[Query]\n    \n    style A fill:#e1f5fe\n    style B fill:#f3e5f5\n    style C fill:#e8f5e8\n    style D fill:#fff3e0\n\n\n\n\n\n\n\nUn paradigme de programmation est une approche fondamentale ou une façon de concevoir et d’organiser un programme informatique. C’est essentiellement un style de programmation qui définit comment structurer le code, comment représenter les données, et comment résoudre les problèmes.\nCertains langages ont des fonctionnalités qui permettent les 2 styles, comme Python, Java, Scala. Mais chaque langage a un style par défaut qui va encourager plutôt le style impératif ou fonctionnel.\n\nImpératif sans être turing-complet: Terraform\nLogic: Prolog\nSQL 92 n’est pas turing-complet. SQL99+ l’est."
+  },
+  {
+    "objectID": "cm1.html#historique",
+    "href": "cm1.html#historique",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "",
+    "text": "1936 - Alonzo Church: calcul lambda =&gt; programmation fonctionnelle\n1936 - Alan Turing: machine de turing =&gt; programmation impérative\nLe lambda calcul est turing-complet\n\n\n\nMachine de turing : modèle abstrait du fonctionnement des ordinateurs. Une fonction est calculable si et seulement si elle peut être calculée par une telle machine.\nTuring-complet : système formel qui possède un pouvoir expressif au moins équivalent à des machines de turing. Les langages de programmation sont turing-complet.\nfun fact: Church était le directeur de thèse de Turing."
+  },
+  {
+    "objectID": "cm1.html#opération-α-renommage",
+    "href": "cm1.html#opération-α-renommage",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "Opération : α-renommage",
+    "text": "Opération : α-renommage\nRenommage de variable pour éviter les collisions\nλx.x + 1   →α   λy.y + 1"
+  },
+  {
+    "objectID": "cm1.html#opération-β-reduction",
+    "href": "cm1.html#opération-β-reduction",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "Opération : β-reduction",
+    "text": "Opération : β-reduction\nSubstitution : Dans une application, remplace la variable par l’argument.\n(λx.x+1) 3  →β   3 + 1\n\n(λx.M) N    →β   M[N/x]"
+  },
+  {
+    "objectID": "cm1.html#fonction-dordre-supérieur",
+    "href": "cm1.html#fonction-dordre-supérieur",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "Fonction d’ordre supérieur",
+    "text": "Fonction d’ordre supérieur\n\n(en) Higher-Order function\nUne fonction peut être passée comme argument d’une autre fonction.\nUne fonction peut renvoyer une fonction"
+  },
+  {
+    "objectID": "cm1.html#currying",
+    "href": "cm1.html#currying",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "Currying",
+    "text": "Currying\nComment définir une fonction prenant plusieurs paramètres ?\n\nDéfinir une fonction qui renvoie une fonction\nApplications successives à 1 paramètre\n\n(λx.λy.x + y) 1 2   →β   (λy.1 + y) 2   →β   1 + 2\n\n(λx.λy.L) M N       →β   (λy.L[M/x]) N  →β   L[M/x][N/y]\nScala :\n((x: Int) =&gt; (y: Int) =&gt; x + y)(1)(2)\n\nD’après le nom du mathématicien Haskell Curry.\n(λx.λy.x + y) est une fonction qui prend un paramètre x et qui renvoie une autre fonction prenant un paramètre y."
+  },
+  {
+    "objectID": "cm1.html#church-encoding---booléens",
+    "href": "cm1.html#church-encoding---booléens",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "Church encoding - booléens",
+    "text": "Church encoding - booléens\nComment construire des boucles, instructions conditionnelles, booléens, entiers, … ?\nTrue   = λx.λy.x \nFalse  = λx.λy.y \nifthen = λb.λx.λy.b x y \n(λb.λx.λy.b x y) True  M N = M\n(λb.λx.λy.b x y) False M N = N\n\nnot    = λb. ifthen False True\n\nSi le booléen est true, ifthen True M N renvoie le premier argument (définition de True). Cela paraît compliqué, mais une fois que l’on a défini ces éléments, on peut les réutiliser dans d’autres constructions comme le not."
+  },
+  {
+    "objectID": "cm1.html#church-encoding---entiers-naturels",
+    "href": "cm1.html#church-encoding---entiers-naturels",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "Church encoding - entiers naturels",
+    "text": "Church encoding - entiers naturels\nentier n = fonction qui prend une fonction f et l’applique n fois.\n0 = λf.λx.x\n1 = λf.λx.f x\n2 = λf.λx.f (f x)\n3 = λf.λx.f (f (f x))\n...\n\nplus = λm.λn.λf.λx.m f (n f x)\nsucc = plus 1 \n     =    λn.λf.λx.f (n f x)\n\nplus 1 2 = (λm.λn.λf.λx.m f (n f x)) 1 2  \n         →β       λf.λx.1 f (2 f x)\n         →β       λf.λx.1 f (f (f x))\n         →β       λf.λx.f (f (f x)) \n         =        3\n\n(2 f x) = (λf.λx.f (f x)) f x  \n       →β        f (f x)\n       \n1 f (f (f x))  =  (λf.λx.f x) f (f (f x))  \n              →β              f (f (f x))"
+  },
+  {
+    "objectID": "cm1.html#récursion",
+    "href": "cm1.html#récursion",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "Récursion",
+    "text": "Récursion\n\ncomment faire une boucle ? Utiliser la récursion !\n\nFACT = λn. ifthen (zero? n) 1 (mult n (FACT (pred n)))\n\n⚠️ on ne peut pas utiliser FACT dans la définition de FACT !\nsolution : utiliser un combinateur de point fixe"
+  },
+  {
+    "objectID": "cm1.html#combinateur-de-point-fixe",
+    "href": "cm1.html#combinateur-de-point-fixe",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "Combinateur de point fixe",
+    "text": "Combinateur de point fixe\n\ncombinateur de point fixe = fonction FIX qui a la propriété\n\nFIX f = f (FIX f)\n\ncela permet de résoudre notre problème d’auto-référence\n\nfact_maker = λf.λn. ifthen (zero? n) 1 (mult n (f (pred n)))\nFACT = FIX fact_maker \n     = fact_maker (FIX fact_maker)\n     = fact_maker FACT\n\nfact_maker est une fonction qui serait la fonction factorielle si elle recevait en argument la fonction factorielle.\nFACT = (λf. λn. ifthen (zero? n) 1 (mult n (f (pred n)))) FACT\nFACT = λn. if (zero? n) 1 (mult n (FACT (pred n)))\nOn retrouve notre définition initiale !"
+  },
+  {
+    "objectID": "cm1.html#combinateur-y",
+    "href": "cm1.html#combinateur-y",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "Combinateur Y",
+    "text": "Combinateur Y\n\nIl existe plusieurs implémentations de combinateurs de point fixe\nLe plus connu est le Y combinator\nen pratique, les langages permettent les auto-références\n\n\n\nLe combinateur de point fixe est une construction théorique qui permet de démontrer certaines propriétés, comme le fait que le lambda-calcul est turing-complet.\nDes implémentations de compilateurs utilisent des techniques de point fixe.\nCela permet également d’évaluer ou de transformer des structures récursives, voir Matryoshka\n\nFun fact : “Y combinator” est une compagnie américaine de Venture Capital. Elle maintient Hacker News, un des meilleurs sites pour se tenir au courant des nouveautés technologiques."
+  },
+  {
+    "objectID": "cm1.html#lambda-calcul-simplement-typé",
+    "href": "cm1.html#lambda-calcul-simplement-typé",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "Lambda-calcul simplement typé",
+    "text": "Lambda-calcul simplement typé\n\nProblème : on pourrait utiliser plus avec des booléens, ou not avec des entiers.\nSolution : ajouter des types\n1940 Alonzo Church : Lambda calcul simplement typé\nOn associe un type à chaque terme\n\nTrue: Bool\n1: Num\nλx.M : A → B\n\nOn indique le type d’entrée pour les fonctions :\n\n\\((\\lambda x^A \\cdot M) \\, N\\)\n\nl’application est interdite si N n’est pas de type A\n\n\nCela commence à ressembler beaucoup aux langages de programmation modernes, et sert de base théorique pour des langages fonctionnels comme Haskell, OCaml, F#. Et cela a été inventé en 1940, 30 ans avant les premiers microprocesseurs !"
+  },
+  {
+    "objectID": "cm1.html#chronologie",
+    "href": "cm1.html#chronologie",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "Chronologie",
+    "text": "Chronologie\n\n\n\nChronologie des langages fonctionnels\n\n\n\nLes langages sont sur un spectre :\nPure FP: Haskell, Elm (tout est fonctionnel par défaut) FP-first: Scala, Clojure, F#, OCaml (fonctionnel mais pragmatique) Multi-paradigm: Rust, Kotlin (bon support FP) FP-capable: Java, C#, Python, Javascript (peut faire du FP mais pas conçu pour)"
+  },
+  {
+    "objectID": "cm1.html#fp-languages-features",
+    "href": "cm1.html#fp-languages-features",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "FP Languages Features",
+    "text": "FP Languages Features\n\nFirst class functions\n\nles fonctions sont des valeurs qui peuvent être stockées dans des variables.\n\nHigher-order function\n\nles fonctions peuvent prendre d’autres fonctions en paramètre ou retourner des fonctions.\n\nImmutability\n\nles opérations ne modifient pas les données. Une nouvelle donnée est renvoyée. Exemple: ajouter un élément à une liste.\n\nPure functions\n\nune fonction qui renvoie toujours la même chose si on lui passe les mêmes données. Elle n’a pas d’effets de bords, comme imprimer sur la console ou modifier une variable globale.\n\nAlgebraic Data Types\n\npermet de construire des types “produit” (ET), et “somme” (OU). Par exemple Personne est un type produit qui contient nom ET age. Couleur est un type somme : c’est un Red OU un Green OU un Blue. En Java 17: sealed class + record.\n\nPattern matching\n\npermet de déconstruire un type en ses constituants.\n\nPrefer expressions over statements\n\nExemple : Java ternary operator over if/else. Permet de composer les expressions et de les refactorer."
+  },
+  {
+    "objectID": "cm1.html#avantages",
+    "href": "cm1.html#avantages",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "Avantages",
+    "text": "Avantages\n\nplus facile à tester et à débugger\nplus facile à raisonner\nprogrammes plus courts, plus lisibles\nparallélisation facilitée\nmodularité\nsécurité : validation à la compilation, moins de bugs"
+  },
+  {
+    "objectID": "cm1.html#lisp",
+    "href": "cm1.html#lisp",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "LISP",
+    "text": "LISP\n\nlangage interprété, typage dynamique\nil existe plusieurs dialectes. Common Lisp est le standard\ndialecte moderne sur la JVM : Clojure\nnotation préfixée : opérateur en premier, suivi des opérandes\n\n(+ 2 3 4)\n(* 5 6)\n\nfonctions et fonctions anonymes :\n\n(defun filter-positive (lst)\n    (remove-if (lambda (x) (&lt;= x 0)) lst)  \n    \n; test the function\n(setq numbers '(-5 -2 0 1 3 -8 7 9 -1))\n(filter-positive numbers)  ; Returns (1 3 7 9)\n\ncode is data, data is code\n\ntout est une liste\nil est aisé d’écrire des macros\n\n\n\nLISP killer apps : Emacs, AutoCAD+AutoLISP, Grammarly"
+  },
+  {
+    "objectID": "cm1.html#haskell",
+    "href": "cm1.html#haskell",
+    "title": "CM1 - Introduction à la programmation fonctionnelle",
+    "section": "Haskell",
+    "text": "Haskell\n\nlangage compilé, typage statique, purement fonctionnel\ninférence de types\névaluation “lazy” par défaut\n\nexpensiveComputation = error \"This would crash!\"\n-- Only evaluates what's needed\nresult1 = if True then 42 else expensiveComputation  -- 42\n\n-- Infinite list of Fibonacci numbers\nfibs = 0 : 1 : zipWith (+) fibs (tail fibs)\n-- Take first 10 Fibonacci numbers\ntake 10 fibs  -- [0,1,1,2,3,5,8,13,21,34]\n\ntrès puissant, poussé par la recherche académique\ninfluence les autres langages\n\nquickSort :: Ord a =&gt; [a] -&gt; [a]\n\nquickSort []     = []\nquickSort (x:xs) = quickSort (filter (&lt;x) xs)\n                   ++ [x] ++\n                   quickSort (filter (&gt;=x) xs)\n\nLangages dérivés: PureScript, Unison\n\n\n\ninverse de “lazy” evaluation: strict ou eager\nles langages stricts peuvent proposer des construction lazy (Python generators, Scala call-by-name parameters)\nPowered by Haskell : Cardano blockchain, Standard Chartered derivatives trading, Facebook antispam, Pandoc\nUn langage à explorer si Scala vous plaît !\nnotation préfixée pour l’application des fonctions, infixée pour les opérateurs arithmétiques"
+  }
+]

@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>CM4 - Paramètres de type</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">CM4 - Paramètres de type</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="références" class="level1">
+<h1>Références</h1>
+<ul>
+<li><a href="https://docs.scala-lang.org/tour/generic-classes.html">Generic Classes</a></li>
+<li><a href="https://docs.scala-lang.org/tour/variances.html">Variance</a></li>
+<li><a href="https://docs.scala-lang.org/tour/upper-type-bounds.html">Upper Type Bounds</a></li>
+<li><a href="https://docs.scala-lang.org/tour/polymorphic-methods.html">Polymorphic Methods</a></li>
+<li><a href="https://dev.to/nestedsoftware/generics-and-variance-with-java-27a2">Generics and Variance with Java</a></li>
+</ul>
+</section>
+<section id="classes-génériques" class="level1">
+<h1>Classes génériques</h1>
+<ul>
+<li>Elles prennent un ou plusieurs paramètres de type, déclarés entre <code>[...]</code></li>
+<li>La convention est d’utiliser une seule lettre <code>A</code>, <code>B</code>, ou <code>T</code> pour nommer ces paramètres</li>
+<li>Le paramètre de type peut ensuite être utilisé dans le corps de la classe</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Pile FIFO First In First Out</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="ex">Stack</span><span class="op">[</span>A<span class="op">](</span>elements<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>A<span class="op">]):</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">push</span><span class="op">(</span>x<span class="op">:</span> A<span class="op">):</span> <span class="ex">Stack</span><span class="op">[</span>A<span class="op">]</span> <span class="op">=</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Stack</span><span class="op">(</span>x <span class="op">+:</span> elements<span class="op">)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> peek<span class="op">:</span> <span class="ex">Option</span><span class="op">[</span>A<span class="op">]</span> <span class="op">=</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    elements<span class="op">.</span>headOption</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> pop<span class="op">:</span> <span class="op">(</span><span class="ex">Option</span><span class="op">[</span>A<span class="op">],</span> <span class="ex">Stack</span><span class="op">[</span>A<span class="op">])</span> <span class="op">=</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    elements <span class="cf">match</span> </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      <span class="cf">case</span> Nil <span class="op">=&gt;</span> <span class="op">(</span><span class="bu">None</span><span class="op">,</span> <span class="kw">this</span><span class="op">)</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      <span class="cf">case</span> head <span class="op">::</span> tail <span class="op">=&gt;</span> <span class="op">(</span><span class="bu">Some</span><span class="op">(</span>head<span class="op">),</span> <span class="ex">Stack</span><span class="op">(</span>tail<span class="op">))</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> stack      <span class="op">=</span> <span class="ex">Stack</span><span class="op">[</span><span class="bu">Int</span><span class="op">](</span><span class="ex">List</span><span class="op">(</span><span class="dv">2</span><span class="op">,</span> <span class="dv">1</span><span class="op">))</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> stackInfer <span class="op">=</span> <span class="ex">Stack</span><span class="op">(</span><span class="ex">List</span><span class="op">(</span><span class="dv">2</span><span class="op">,</span> <span class="dv">1</span><span class="op">))</span> <span class="co">// 'A' est inféré</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">// val stackInfer: Stack[Int] = Stack(List(2, 1))</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>stack<span class="op">.</span><span class="fu">push</span><span class="op">(</span><span class="dv">3</span><span class="op">)</span> <span class="co">// Stack(List(3,2,1))</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>stack<span class="op">.</span>pop <span class="co">// (Some(2), Stack(List(1))</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">// le paramètre de type ne peut pas être inféré</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> emptyStack<span class="op">:</span> <span class="ex">Stack</span><span class="op">[</span><span class="ex">String</span><span class="op">]</span> <span class="op">=</span> <span class="ex">Stack</span><span class="op">(</span><span class="ex">List</span><span class="op">())</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Une sous-classe doit spécifier le type réel</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> JsonEncoder<span class="op">[</span>A<span class="op">]:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">encode</span><span class="op">(</span>obj<span class="op">:</span> A<span class="op">):</span> <span class="ex">String</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">object</span> JsonMapEncoder <span class="kw">extends</span> JsonEncoder<span class="op">[</span><span class="ex">Map</span><span class="op">[</span><span class="ex">String</span><span class="op">,</span> <span class="ex">String</span><span class="op">]]:</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">override</span> <span class="kw">def</span> <span class="fu">encode</span><span class="op">(</span>obj<span class="op">:</span> <span class="ex">Map</span><span class="op">[</span><span class="ex">String</span><span class="op">,</span> <span class="ex">String</span><span class="op">]):</span> <span class="ex">String</span> <span class="op">=</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"{"</span> <span class="op">+</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    obj<span class="op">.</span><span class="fu">map</span><span class="op">((</span>key<span class="op">,</span> value<span class="op">)</span> <span class="op">=&gt;</span> <span class="ss">s"""</span><span class="st"> "</span><span class="ss">$key</span><span class="st">":"</span><span class="ss">$value</span><span class="st">" </span><span class="ss">"""</span><span class="op">)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">mkString</span><span class="op">(</span><span class="st">","</span><span class="op">)</span> <span class="op">+</span> </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"}"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>JsonMapEncoder<span class="op">.</span><span class="fu">encode</span><span class="op">(</span><span class="ex">Map</span><span class="op">(</span><span class="st">"name"</span> <span class="op">-&gt;</span> <span class="st">"Dupont"</span><span class="op">,</span> <span class="st">"firstName"</span> <span class="op">-&gt;</span> <span class="st">"Martin"</span><span class="op">))</span>  </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">// val res0: String = { "name":"Dupont"  , "firstName":"Martin"  }</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="classes-génériques---type-bounds" class="level2">
+<h2 class="anchored" data-anchor-id="classes-génériques---type-bounds">Classes génériques - Type bounds</h2>
+<p>On peut spécifier des <strong>contraintes</strong> sur un paramètre de type :</p>
+<ul>
+<li><code>A &lt;: Upper</code> : borne supérieure (upper type bound). <code>A</code> doit être une sous-classe de <code>Upper</code>.</li>
+<li><code>A &gt;: Lower</code> : borne inférieure (lower type bound). <code>A</code> doit être une super-classe de <code>Lower</code>.
+<ul>
+<li>utilisé dans les définitions de méthodes polymorphiques (voir ci-dessous)</li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Pile qui accepte uniquement des éléments Comparable</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SortedStack<span class="op">[</span>T <span class="op">&lt;:</span> <span class="ex">Comparable</span><span class="op">[</span>T<span class="op">]]:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="méthodes-polymorphiques" class="level2">
+<h2 class="anchored" data-anchor-id="méthodes-polymorphiques">Méthodes polymorphiques</h2>
+<p>Des paramètres de types peuvent être déclarés dans les méthodes.</p>
+<p>Cela permet de définir des méthodes qui s’appliquent de manière très générale, sans contraindre fortement le type des paramètres.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">object</span> Utils<span class="op">:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> isSorted<span class="op">[</span>A<span class="op">](</span>as<span class="op">:</span> <span class="bu">Seq</span><span class="op">[</span>A<span class="op">],</span> gt<span class="op">:</span> <span class="op">(</span>A<span class="op">,</span>A<span class="op">)</span> <span class="op">=&gt;</span> <span class="ex">Boolean</span><span class="op">):</span> <span class="ex">Boolean</span> <span class="op">=</span> <span class="op">???</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> pair<span class="op">[</span>A<span class="op">,</span> B<span class="op">](</span>first<span class="op">:</span> A<span class="op">,</span> second<span class="op">:</span> B<span class="op">):</span> <span class="op">(</span>A<span class="op">,</span> B<span class="op">)</span> <span class="op">=</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">(</span>first<span class="op">,</span> second<span class="op">)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">// T has an upper type bound</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> max<span class="op">[</span>T <span class="op">&lt;:</span> <span class="ex">Comparable</span><span class="op">[</span>T<span class="op">]](</span>a<span class="op">:</span> T<span class="op">,</span> b<span class="op">:</span> T<span class="op">):</span> T <span class="op">=</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> a<span class="op">.</span><span class="fu">compareTo</span><span class="op">(</span>b<span class="op">)</span> <span class="op">&gt;</span> <span class="dv">0</span> then a <span class="cf">else</span> b  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="classes-génériques---variance" class="level1">
+<h1>Classes génériques - Variance</h1>
+<p>Considérons ces classes :</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="ex">Stack</span><span class="op">[</span>A<span class="op">](</span>elements<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>A<span class="op">])</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> Animal</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Cat <span class="kw">extends</span> Animal</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Dog <span class="kw">extends</span> Animal</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>On peut préciser la <strong>variance</strong> du paramètre <code>A</code> dans <code>Stack[A]</code>. Le paramètre de type peut être :</p>
+<ul>
+<li><strong>Invariant</strong> : <code>[A]</code>
+<ul>
+<li>par défaut. <code>Stack[Animal]</code> n’a pas de relation de sous-typage avec <code>Stack[Dog]</code>.</li>
+</ul></li>
+<li><strong>Covariant</strong> : <code>[+A]</code>
+<ul>
+<li>implique que <code>Stack[Animal]</code> sera considérée comme une super-classe de <code>Stack[Dog]</code></li>
+</ul></li>
+<li><strong>Contravariant</strong> : <code>[-A]</code>
+<ul>
+<li>implique que <code>JsonEncoder[Dog]</code> sera considérée comme une super-classe de <code>JsonEncoder[Animal]</code></li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>La variance ne peut pas être spécifiée dans les méthodes polymorphiques. Elle s’exprime uniquement pour les classes et traits.</li>
+<li>Les classes <strong>mutables</strong> doivent être <strong>invariantes</strong>.</li>
+</ul>
+</div>
+</div>
+<section id="covariance-a" class="level2">
+<h2 class="anchored" data-anchor-id="covariance-a">Covariance <code>[+A]</code></h2>
+<p>À utiliser lorsque la classe générique <strong>produit</strong> des <code>A</code> : Collections, Décodeurs, Cache</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">classDiagram
+    class Animal {
+    }
+    
+    class Dog {
+    }
+    
+    
+    Animal &lt;|-- Dog 
+
+    class `F[+A]` {
+        produce(): A
+    }
+    
+    class `F[Animal]`
+    `F[Animal]` &lt;|-- `F[Dog]`
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> dogs<span class="op">:</span> <span class="ex">Stack</span><span class="op">[</span>Dog<span class="op">]</span> <span class="op">=</span> <span class="ex">Stack</span><span class="op">(</span><span class="ex">List</span><span class="op">(</span><span class="fu">Dog</span><span class="op">()))</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">// on peut assigner car Stack[Dog] &lt;:&lt; Stack[Animal]</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> animals<span class="op">:</span> <span class="ex">Stack</span><span class="op">[</span>Animal<span class="op">]</span> <span class="op">=</span> dogs</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> catsAndDogs <span class="op">=</span> animals<span class="op">.</span><span class="fu">push</span><span class="op">(</span><span class="fu">Cat</span><span class="op">())</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">// val catsAndDogs: Stack[Animal] = ...</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Ne fonctionnerait pas si Stack était mutable</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="contravariance--a" class="level2">
+<h2 class="anchored" data-anchor-id="contravariance--a">Contravariance <code>[-A]</code></h2>
+<p>À utiliser lorsque la classe générique <strong>consomme</strong> des <code>A</code> : Encodeurs</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">classDiagram
+    class Animal {
+    }
+    
+    class Dog {
+    }
+    
+    
+    Animal &lt;|-- Dog 
+
+    class `F[-A]` {
+        consume(x: A)
+    }
+    
+    class `F[Animal]`
+    
+    `F[Animal]` --|&gt; `F[Dog]`
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> JsonEncoder<span class="op">[</span>A<span class="op">]:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">encode</span><span class="op">(</span>obj<span class="op">:</span> A<span class="op">):</span> <span class="ex">String</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> animalEncoder<span class="op">:</span> JsonEncoder<span class="op">[</span>Animal<span class="op">]</span> <span class="op">=</span> <span class="op">???</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">// on peut assigner, car JsonEncoder[Animal] &lt;:&lt; JsonEncoder[Dog]</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">// si je peux encoder un Animal en Json, je sais aussi encoder Dog, Cat, ...</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> dogEncoder<span class="op">:</span> JsonEncoder<span class="op">[</span>Dog<span class="op">]</span> <span class="op">=</span> animalEncoder</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>dogEncoder<span class="op">.</span><span class="fu">encode</span><span class="op">(</span><span class="fu">Dog</span><span class="op">())</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="méthodes-et-variance" class="level2">
+<h2 class="anchored" data-anchor-id="méthodes-et-variance">Méthodes et variance</h2>
+<ul>
+<li>Le <strong>type de retour</strong> est en position <strong>covariante</strong>.</li>
+<li>Les <strong>paramètres</strong> d’une méthode sont en position <strong>contravariante</strong></li>
+</ul>
+<p>Lorsqu’une classe est covariante <code>[+A]</code>, <code>A</code> ne peut être utilisé <strong>que dans le type de retour</strong>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="ex">Stack</span><span class="op">[+</span>A<span class="op">](</span>elements<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>A<span class="op">]):</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// OK, A est en position covariante</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> peek<span class="op">:</span> <span class="ex">Option</span><span class="op">[</span>A<span class="op">]</span> <span class="op">=</span> <span class="op">???</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ERREUR DE COMPILATION !! x: A est en position contravariante !</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">push</span><span class="op">(</span>x<span class="op">:</span> A<span class="op">):</span> <span class="ex">Stack</span><span class="op">[</span>A<span class="op">]</span> <span class="op">=</span> <span class="op">???</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Lorsqu’une classe est contravariante <code>[-A]</code>, <code>A</code> ne peut être utilisé <strong>que dans les paramètres</strong>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> JsonDecoderEncoder<span class="op">[-</span>A<span class="op">]:</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// OK, A est en position contravariante</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">encode</span><span class="op">(</span>obj<span class="op">:</span> A<span class="op">):</span> <span class="ex">String</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ERREUR DE COMPILATION !! A est en position covariante !</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">decode</span><span class="op">(</span>json<span class="op">:</span> <span class="ex">String</span><span class="op">):</span> A</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="méthodes-et-variances-pourquoi" class="level2">
+<h2 class="anchored" data-anchor-id="méthodes-et-variances-pourquoi">Méthodes et variances — pourquoi ?</h2>
+<p>Ces contraintes garantissent que le système de typage est <strong>cohérent</strong>. (<a href="https://langdev.stackexchange.com/questions/3372/what-does-it-mean-for-a-type-system-or-language-to-be-sound">the type system is <strong>sound</strong></a>)</p>
+<section id="covariance-absurde" class="level3">
+<h3 class="anchored" data-anchor-id="covariance-absurde">Covariance absurde</h3>
+<p>Prouvons que les paramètres sont contravariants par l’absurde. Imaginons que le compilateur autorise ceci :</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> Animal</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Dog</span><span class="op">(</span>woof<span class="op">:</span> <span class="ex">String</span><span class="op">)</span> <span class="kw">extends</span> Animal</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Cat</span><span class="op">(</span>miaw<span class="op">:</span> <span class="ex">String</span><span class="op">)</span> <span class="kw">extends</span> Animal</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> <span class="ex">Encoder</span><span class="op">[+</span>A<span class="op">]:</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ❌ Interdit : A est en position contravariante</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">encode</span><span class="op">(</span>a<span class="op">:</span> A<span class="op">):</span> <span class="ex">String</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="kw">object</span> DogEncoder <span class="kw">extends</span> <span class="ex">Encoder</span><span class="op">[</span>Dog<span class="op">]</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">encode</span><span class="op">(</span>a<span class="op">:</span> Dog<span class="op">):</span> <span class="ex">String</span> <span class="op">=</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    a<span class="op">.</span>woof</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Alors, on pourrait se retrouver dans la situation suivante :</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">// on peut assigner. A est covariant, donc Encoder[Dog] &lt;:&lt; Encoder[Animal]</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> animalEncoder<span class="op">:</span> <span class="ex">Encoder</span><span class="op">[</span>Animal<span class="op">]</span> <span class="op">=</span> DogEncoder</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">// ❌ Absurde !! encode ne peut prendre en paramètre que Dog ou ses sous-classes</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>animalEncoder<span class="op">.</span><span class="fu">encode</span><span class="op">(</span><span class="fu">Cat</span><span class="op">(</span><span class="st">"miaou"</span><span class="op">))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="contravariance-absurde" class="level3">
+<h3 class="anchored" data-anchor-id="contravariance-absurde">Contravariance absurde</h3>
+<p>Prouvons que le type résultat est covariant. Imaginons que le compilateur autorise ceci :</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> Decoder<span class="op">[-</span>A<span class="op">]:</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ❌ Interdit : A est en position covariante</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">decode</span><span class="op">(</span>s<span class="op">:</span> <span class="ex">String</span><span class="op">):</span> A</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">object</span> AnimalDecoder <span class="kw">extends</span> Decoder<span class="op">[</span>Animal<span class="op">]</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">decode</span><span class="op">(</span>s<span class="op">:</span> <span class="ex">String</span><span class="op">):</span> Animal <span class="op">=</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>s <span class="op">==</span> <span class="st">"miaou"</span><span class="op">)</span> <span class="fu">Cat</span><span class="op">(</span>s<span class="op">)</span> <span class="cf">else</span> <span class="fu">Dog</span><span class="op">(</span>s<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Alors, on pourrait se retrouver dans la situation suivante :</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">// on peut assigner. A est contravariant, donc Decoder[Animal] &lt;:&lt; Decoder[Dog]</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> dogDecoder<span class="op">:</span> Decoder<span class="op">[</span>Dog<span class="op">]</span> <span class="op">=</span> AnimalDecoder</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">// ❌ Absurde !! decode renvoie une instance de Cat</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> dog<span class="op">:</span> Dog <span class="op">=</span> dogDecoder<span class="op">.</span><span class="fu">decode</span><span class="op">(</span><span class="st">"miaou"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="collections-contravariantes-méthodes-dajout" class="level2">
+<h2 class="anchored" data-anchor-id="collections-contravariantes-méthodes-dajout">Collections contravariantes — méthodes d’ajout</h2>
+<p>Étant donné les contraintes sur les paramètres, comment implémenter notre classe <code>Stack</code> ?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="ex">Stack</span><span class="op">[+</span>A<span class="op">](</span>elements<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>A<span class="op">]):</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ❌ Interdit : A est en position covariante</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">push</span><span class="op">(</span>x<span class="op">:</span> A<span class="op">):</span> <span class="ex">Stack</span><span class="op">[</span>A<span class="op">]</span> <span class="op">=</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Stack</span><span class="op">(</span>x <span class="op">+:</span> elements<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>L’astuce est d’utiliser une méthode polymorphique avec une borne inférieure :</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="ex">Stack</span><span class="op">[+</span>A<span class="op">](</span>elements<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>A<span class="op">]):</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ✅ Compile : B est un paramètre de type</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Il peut être égal à A ou être une super-classe de A</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> push<span class="op">[</span>B <span class="op">&gt;:</span> A<span class="op">](</span>x<span class="op">:</span> B<span class="op">):</span> <span class="ex">Stack</span><span class="op">[</span>B<span class="op">]</span> <span class="op">=</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Stack</span><span class="op">(</span>x <span class="op">+:</span> elements<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Le compilateur infère le type <code>B</code> lorsqu’on appelle <code>push</code>. Il cherche la super-classe la plus proche qui est commune à <code>A</code> et au type du paramètre passé.</p>
+<p>Utilisation :</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> Animal</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Dog</span><span class="op">(</span>name<span class="op">:</span> <span class="ex">String</span><span class="op">)</span> <span class="kw">extends</span> Animal</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Cat</span><span class="op">(</span>name<span class="op">:</span> <span class="ex">String</span><span class="op">)</span> <span class="kw">extends</span> Animal</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> dogStack <span class="op">=</span> <span class="ex">Stack</span><span class="op">(</span><span class="ex">List</span><span class="op">(</span><span class="fu">Dog</span><span class="op">(</span><span class="st">"Winnie"</span><span class="op">),</span> <span class="fu">Dog</span><span class="op">(</span><span class="st">"Dolly"</span><span class="op">)))</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">// val dogStack: Stack[Dog] = Stack(List(Dog(Winnie), Dog(Dolly)))</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">// B est inféré, égal à Dog</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> dogStack2 <span class="op">=</span> dogStack<span class="op">.</span><span class="fu">push</span><span class="op">(</span><span class="fu">Dog</span><span class="op">(</span><span class="st">"Upi"</span><span class="op">))</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">// val dogStack2: Stack[Dog] = Stack(List(Dog(Upi), Dog(Winnie), Dog(Dolly)))</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">// B est inféré, égal à Animal</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> animalStack <span class="op">=</span> dogStack<span class="op">.</span><span class="fu">push</span><span class="op">(</span><span class="fu">Cat</span><span class="op">(</span><span class="st">"Max"</span><span class="op">))</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">// val animalStack: Stack[Animal] = Stack(List(Cat(Max), Dog(Winnie), Dog(Dolly)))</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">// B est inféré, égal à Animal | Int</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> objectStack <span class="op">=</span> animalStack<span class="op">.</span><span class="fu">push</span><span class="op">(</span><span class="dv">1</span><span class="op">)</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">// val objectStack: Stack[Animal | Int] = ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<!--
+ conclusion. Quizz oral, avec Wooclap ?
+
+
+
+
+
+
+
+CM4: gestion des erreurs ?
+CM5: Type classes, Given using ?
+-->
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

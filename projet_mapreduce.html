@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Projet MapReduce</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Projet MapReduce</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><img src="figures/projet_mapreduce.png" class="img-fluid"></p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Un framework MapReduce distribué simplifié, inspiré de Apache Spark.</p>
+<p>Le pattern MapReduce permet de traiter de grandes quantités de données en parallèle sur plusieurs machines. Idées clés :</p>
+<ol type="1">
+<li><strong>Map</strong> : Appliquer une transformation à chaque élément indépendamment (parallélisable)</li>
+<li><strong>Shuffle</strong> : Redistribuer les données par clé entre les machines</li>
+<li><strong>Reduce</strong> : Agréger les valeurs ayant la même clé</li>
+</ol>
+<p>Ce projet implémente une API de type “Dataset” (similaire aux RDD de Spark) avec évaluation paresseuse.</p>
+<ul>
+<li>les données du Dataset sont distribuées sur plusieurs machines. Le Dataset peut potentiellement être plus volumineux que la RAM disponible sur chaque machine.</li>
+<li>les transformations construisent un graphe d’opérations (DAG) qui n’est exécuté que lors d’une action (<code>collect</code>, <code>count</code>).</li>
+</ul>
+</section>
+<section id="objectifs-pédagogiques" class="level1">
+<h1>Objectifs pédagogiques</h1>
+<ul>
+<li>Implémenter le pattern MapReduce et le concept de shuffle</li>
+<li>Identifier la pertinence de l’immutabilité pour les calculs massivement distribués</li>
+<li>Maîtriser les bases de ZIO (système d’effets fonctionnel)</li>
+</ul>
+</section>
+<section id="installation" class="level1">
+<h1>Installation</h1>
+<p>Créez ou rejoignez votre équipe avec ce lien <a href="https://classroom.github.com/a/RmaR7Vwo">GitHub Classroom</a>, puis clonez le projet.</p>
+<section id="commandes-utiles" class="level2">
+<h2 class="anchored" data-anchor-id="commandes-utiles">Commandes utiles</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compiler</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sbt</span> compile</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Lancer les tests</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">sbt</span> test</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lancer un test spécifique</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">sbt</span> <span class="st">"testOnly mapreduce.LocalExecutionSpec"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécution locale du WordCount</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">sbt</span> <span class="st">"runMain mapreduce.examples.WordCountLocalApp data/input.txt"</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécution distribuée (1 JVM, plusieurs workers)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">sbt</span> <span class="st">"runMain mapreduce.examples.WordCountDistOneJvmApp data/input.txt 2"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="architecture" class="level1">
+<h1>Architecture</h1>
+<section id="structure-du-projet" class="level2">
+<h2 class="anchored" data-anchor-id="structure-du-projet">Structure du projet</h2>
+<pre><code>src/main/scala/mapreduce/
+├── api/
+│   └── Dataset.scala       # API utilisateur (comme Spark RDD)
+├── plan/
+│   ├── Op.scala            # AST des opérations (DAG)
+│   ├── Stage.scala         # Regroupement d'opérations
+│   └── Planner.scala       # Conversion Op -&gt; Stages
+├── execution/
+│   ├── Driver.scala        # Orchestrateur (master)
+│   ├── Worker.scala        # Exécuteur de tâches
+│   └── StageExecutor.scala # Exécution locale d'un stage
+├── protocol/
+│   └── Messages.scala      # Messages Driver &lt;-&gt; Worker
+├── serde/
+│   └── SocketUtils.scala   # Sérialisation réseau
+└── examples/               # Exemples : WordCount local et distribué</code></pre>
+</section>
+<section id="architecture-driver-worker" class="level2">
+<h2 class="anchored" data-anchor-id="architecture-driver-worker">Architecture Driver-Worker</h2>
+<pre><code>                      ┌─────────────────┐
+                      │     Driver      │
+                      │  (orchestrateur)│
+                      └────────┬────────┘
+                               │
+              ┌────────────────┼────────────────┐
+              │                                 │
+              ▼                                 ▼
+    ┌───────────────────┐             ┌───────────────────┐
+    │     Worker 0      │             │     Worker 1      │
+    │ ┌─────┐ ┌─────┐   │             │ ┌─────┐ ┌─────┐   │
+    │ │ P0  │ │ P2  │   │             │ │ P1  │ │ P3  │   │
+    │ └─────┘ └─────┘   │             │ └─────┘ └─────┘   │
+    └───────────────────┘             └───────────────────┘</code></pre>
+<ul>
+<li><strong>Driver</strong> : Planifie l’exécution, distribue les tâches, coordonne le shuffle</li>
+<li><strong>Worker</strong> : Exécute les tâches sur ses partitions de données</li>
+<li><strong>Partitions</strong> : Le nombre de partitions (<code>numPartitions</code>) peut être supérieur au nombre de workers. Chaque worker traite les partitions où <code>partitionId % numWorkers == workerId</code>.</li>
+</ul>
+</section>
+<section id="cycle-de-vie-dun-job" class="level2">
+<h2 class="anchored" data-anchor-id="cycle-de-vie-dun-job">Cycle de vie d’un job</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    participant D as Driver
+    participant W0 as Worker 0
+    participant W1 as Worker 1
+
+    rect rgb(230, 245, 255)
+        Note over D,W1: Registration
+        W0-&gt;&gt;D: Register
+        W1-&gt;&gt;D: Register
+        D-&gt;&gt;W0: AssignId(0)
+        D-&gt;&gt;W1: AssignId(1)
+    end
+
+    rect rgb(255, 245, 230)
+        Note over D,W1: Stage 1 (Map)
+        D-&gt;&gt;W0: RunTask
+        D-&gt;&gt;W1: RunTask
+        W0-&gt;&gt;D: TaskCompleted
+        W1-&gt;&gt;D: TaskCompleted
+    end
+
+    rect rgb(255, 230, 230)
+        Note over D,W1: Shuffle
+        D-&gt;&gt;W0: StartShuffle
+        D-&gt;&gt;W1: StartShuffle
+        W0-&gt;&gt;D: ShuffleData
+        W1-&gt;&gt;D: ShuffleData
+        Note over D: Merge by partition
+        D-&gt;&gt;W0: ShuffleData
+        D-&gt;&gt;W1: ShuffleData
+    end
+
+    rect rgb(230, 255, 230)
+        Note over D,W1: Stage 2 (Reduce)
+        D-&gt;&gt;W0: RunTask
+        D-&gt;&gt;W1: RunTask
+        W0-&gt;&gt;D: TaskCompleted
+        W1-&gt;&gt;D: TaskCompleted
+    end
+
+    rect rgb(245, 230, 255)
+        Note over D,W1: Collect
+        D-&gt;&gt;W0: CollectResults
+        D-&gt;&gt;W1: CollectResults
+        W0-&gt;&gt;D: Result
+        W1-&gt;&gt;D: Result
+        D-&gt;&gt;W0: Shutdown
+        D-&gt;&gt;W1: Shutdown
+    end
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="le-shuffle-reducebykey" class="level2">
+<h2 class="anchored" data-anchor-id="le-shuffle-reducebykey">Le Shuffle (reduceByKey)</h2>
+<p>Le shuffle est nécessaire quand on doit regrouper des données par clé. Exemple : compter les mots.</p>
+<p><strong>Avant shuffle</strong> : Chaque worker a des mots arbitraires</p>
+<pre><code>Worker 0: [(hello,1), (world,1), (hello,1)]
+Worker 1: [(foo,1), (hello,1), (bar,1)]</code></pre>
+<p><strong>Après shuffle</strong> : Chaque worker a toutes les valeurs pour certaines clés</p>
+<pre><code>Worker 0: [(hello,1), (hello,1), (hello,1)]  → (hello, 3)
+Worker 1: [(world,1), (foo,1), (bar,1)]      → (world,1), (foo,1), (bar,1)</code></pre>
+<section id="protocole" class="level3">
+<h3 class="anchored" data-anchor-id="protocole">Protocole</h3>
+<ol type="1">
+<li>Le Driver envoie <code>StartShuffle</code> à tous les workers</li>
+<li>Chaque worker partitionne ses données par <code>hash(key) % numPartitions</code></li>
+<li>Chaque worker envoie ses partitions au Driver (<code>ShuffleData</code>)</li>
+<li>Le Driver fusionne : toutes les données destinées au worker N</li>
+<li>Le Driver redistribue à chaque worker sa partition</li>
+</ol>
+</section>
+</section>
+</section>
+<section id="déroulement-du-projet" class="level1">
+<h1>Déroulement du projet</h1>
+<ul>
+<li>Groupes de 2 ou 3 personnes</li>
+<li></li>
+</ul>
+<section id="déroulement-dune-séance" class="level2">
+<h2 class="anchored" data-anchor-id="déroulement-dune-séance">Déroulement d’une séance</h2>
+<ol type="1">
+<li>Lecture du cahier des charges, questions à l’enseignant</li>
+<li>Répartition des tâches (vous pouvez travailler en pair programming)</li>
+<li>Développement, tests, rédaction de la documentation</li>
+<li>Au cours de la séance, votre enseignant invitera votre groupe à un échange de 10-15 mn :</li>
+</ol>
+<ul>
+<li>Il vous posera des questions de compréhension de votre code</li>
+<li>Il répondra à vos questions et pourra vous donner des conseils</li>
+</ul>
+<ol start="5" type="1">
+<li>Vous devrez soumettre votre travail (commit &amp; push) <strong>avant la fin de la séance</strong>.</li>
+</ol>
+<ul>
+<li>pas de travail en dehors des heures de classe, pas de rush pour finir à la dernière minute.
+<ul>
+<li>respect du principe eXtreme Programming <a href="https://en.wikipedia.org/wiki/Extreme_programming_practices#Sustainable_pace">Sustainable Pace</a></li>
+</ul></li>
+<li>vous devez utiliser le temps disponible efficacement.</li>
+<li>les commits contenant beaucoup de modifications seront considérés comme <strong>suspects</strong> : fait avec IA ?
+<ul>
+<li>committez souvent</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="critères-dévaluation" class="level1">
+<h1>Critères d’évaluation</h1>
+<ul>
+<li><strong>50 % - Fonctionnalités implémentées</strong>
+<ul>
+<li>est-ce que toutes les fonctionnalités de base sont implémentées ? 25 %</li>
+<li>est-ce que des fonctionnalités bonus sont implémentées ? 25 %</li>
+</ul></li>
+<li><strong>20 % - Suivi</strong>
+<ul>
+<li>réponses aux questions</li>
+<li>avancement régulier</li>
+</ul></li>
+<li><strong>20 % - Qualité du code et organisation</strong>
+<ul>
+<li>bugs présents ?</li>
+<li>style fonctionnel</li>
+<li>lisibilité, modularité</li>
+<li>qualité de la documentation (README)</li>
+</ul></li>
+<li><strong>10 % - Tests unitaires</strong>
+<ul>
+<li>Structure, lisibilité et pertinence des tests,</li>
+<li>couverture avec l’outil de code coverage (cible 80%).</li>
+</ul></li>
+</ul>
+<p><strong>Il est préférable de terminer peu de fonctionnalités, mais avoir un code propre qui fonctionne.</strong></p>
+</section>
+<section id="travail-à-réaliser" class="level1">
+<h1>Travail à réaliser</h1>
+<section id="phase-1-warm-up" class="level2">
+<h2 class="anchored" data-anchor-id="phase-1-warm-up">Phase 1 : Warm-up</h2>
+<p>Implémenter les opérations de base dans <code>Dataset.scala</code> et <code>StageExecutor.scala</code> :</p>
+<ul>
+<li><code>map</code> : transformer chaque élément</li>
+<li><code>flatMap</code> : transformer chaque élément en zéro ou plusieurs éléments</li>
+<li><code>filter</code> : garder les éléments satisfaisant un prédicat</li>
+<li><code>StageExecutor.executeLocal</code> : exécute chaque stage localement</li>
+</ul>
+<p><strong>Tests :</strong> <code>mapreduce.DatasetSpec</code> et <code>mapreduce.LocalExecutionSpec</code></p>
+</section>
+<section id="phase-2-shuffle" class="level2">
+<h2 class="anchored" data-anchor-id="phase-2-shuffle">Phase 2 : Shuffle</h2>
+<p>Implémenter l’opération :</p>
+<ul>
+<li><code>reduceByKey</code> : réduire des couples clé-valeur avec une opération sur les valeurs.</li>
+</ul>
+<p>Implémenter le shuffle distribué (médié par le Driver) :</p>
+<ul>
+<li><code>Worker.handleWorkerMessage</code> : gérer <code>StartShuffle</code> et <code>ShuffleData</code></li>
+<li><code>Driver.coordinateShuffle</code> : orchestrer le shuffle</li>
+</ul>
+<p><strong>Tests :</strong> <code>mapreduce.ShuffleSpec</code> et <code>mapreduce.DistributedSpec</code>.</p>
+<p><strong>Conseil :</strong> Ecrire un test pour la fusion de partitions.</p>
+<section id="validation-sur-un-fichier-public" class="level3">
+<h3 class="anchored" data-anchor-id="validation-sur-un-fichier-public">Validation sur un fichier public</h3>
+<p>Télécharger un livre de Project Gutenberg pour tester WordCount sur un vrai fichier :</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download several large books and combine</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://www.gutenberg.org/files/100/100-0.txt  <span class="co"># Shakespeare (~5MB)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="dt">{</span><span class="dv">1</span><span class="dt">..</span><span class="dv">10</span><span class="dt">}</span><span class="kw">;</span> <span class="cf">do</span> <span class="fu">cat</span> 100-0.txt <span class="op">&gt;&gt;</span> large-test-file.txt<span class="kw">;</span> <span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Lancer WordCount et vérifier les résultats attendus.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Mot</th>
+<th>Occurrences attendues</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>the</td>
+<td>~303000</td>
+</tr>
+<tr class="even">
+<td>and</td>
+<td>~285000</td>
+</tr>
+<tr class="odd">
+<td>you</td>
+<td>~146000</td>
+</tr>
+<tr class="even">
+<td>that</td>
+<td>~122000</td>
+</tr>
+<tr class="odd">
+<td>not</td>
+<td>~90000</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dans le fichier README.md, notez les temps d’exécution pour :</strong></p>
+<ul>
+<li>le mode local : <code>WordCountLocalApp</code></li>
+<li>le mode distribué avec 2 puis 4 workers : <code>WordCountDistributed</code></li>
+<li>BONUS : le mode distribué sur plusieurs machines
+<ul>
+<li>choisissez le nombre de workers en fonction du nombre de cores des CPUs</li>
+<li>Par exemple : PC_A a 8 cores, PC_B a 12 cores =&gt; lancer max 6 workers sur PC_A, max 11 workers sur PC_B (on laisse 1 core pour le système et 1 pour le Driver)</li>
+</ul></li>
+</ul>
+<p>Vous pouvez utiliser les logs ou modifier le code pour mesurer le temps total entre <code>"All ... workers connected"</code> et <code>"Found ... unique words"</code>.</p>
+</section>
+</section>
+<section id="phase-3-job-movielens" class="level2">
+<h2 class="anchored" data-anchor-id="phase-3-job-movielens">Phase 3 : Job MovieLens</h2>
+<p>Télécharger le dataset MovieLens (ml-latest-small) :</p>
+<ul>
+<li><a href="https://grouplens.org/datasets/movielens/">https://grouplens.org/datasets/movielens/</a></li>
+</ul>
+<p>Fichiers utilisés :</p>
+<ul>
+<li><code>movies.csv</code> : movieId, title, genres (genres séparés par <code>|</code>)</li>
+<li><code>ratings.csv</code> : userId, movieId, rating, timestamp</li>
+</ul>
+<p><strong>Objectif</strong> : Calculer la note moyenne par genre.</p>
+<p>Vous avez deux possibilités pour implémenter le join enter les deux fichiers.</p>
+<section id="solution-a-broadcast-join-plus-simple" class="level3">
+<h3 class="anchored" data-anchor-id="solution-a-broadcast-join-plus-simple">Solution A : Broadcast join (plus simple)</h3>
+<p>Charger le petit fichier (<code>movies.csv</code>) en mémoire dans une <code>Map</code>, puis enrichir le grand fichier :</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Charger movies en mémoire (petit fichier)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> moviesMap<span class="op">:</span> <span class="ex">Map</span><span class="op">[</span><span class="bu">Int</span><span class="op">,</span> <span class="ex">String</span><span class="op">]</span> <span class="op">=</span> <span class="ex">Source</span><span class="op">.</span><span class="fu">fromFile</span><span class="op">(</span><span class="st">"movies.csv"</span><span class="op">)</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">getLines</span><span class="op">().</span><span class="fu">drop</span><span class="op">(</span><span class="dv">1</span><span class="op">)</span>  <span class="co">// skip header</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span><span class="op">(</span>line <span class="op">=&gt;</span> <span class="co">/* parse to (movieId, genres) */</span><span class="op">)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span>toMap</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Utiliser map pour enrichir ratings avec les genres</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>Dataset<span class="op">.</span><span class="fu">fromTextFile</span><span class="op">(</span><span class="st">"ratings.csv"</span><span class="op">)</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span><span class="op">(</span>line <span class="op">=&gt;</span> <span class="co">/* parse to (movieId, rating), use moviesMap to get genres */</span><span class="op">)</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ...      </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="solution-b-distributed-join-avancé" class="level3">
+<h3 class="anchored" data-anchor-id="solution-b-distributed-join-avancé">Solution B : Distributed join (avancé)</h3>
+<p>Implémenter une vraie opération <code>join</code> distribuée :</p>
+<p><strong>À implémenter</strong> (<code>Dataset.scala</code>, <code>Op.scala</code>, <code>Planner.scala</code>) :</p>
+<ul>
+<li><code>Op.Join[K, V, W]</code> avec deux upstreams (le DAG devient un arbre)</li>
+<li>Mise à jour du Planner pour gérer les branches multiples</li>
+<li><code>join</code> dans l’API : <code>Dataset[(K, V)].join(other: Dataset[(K, W)]): Dataset[(K, (V, W))]</code></li>
+</ul>
+<p><strong>Astuce</strong> : Shuffler les deux datasets par clé, puis combiner les partitions localement.</p>
+</section>
+<section id="bonus" class="level3">
+<h3 class="anchored" data-anchor-id="bonus">Bonus</h3>
+<p>Quels sont les 10 films les mieux notés (avec au moins 50 notes) ?</p>
+</section>
+</section>
+<section id="phase-4-questions-de-réflexion" class="level2">
+<h2 class="anchored" data-anchor-id="phase-4-questions-de-réflexion">Phase 4 : Questions de réflexion</h2>
+<ol type="1">
+<li><p><strong>Chargement des sources</strong> : Regardez <code>Worker.getInput</code>. Chaque worker charge le fichier entier puis filtre sa partition. Pourquoi est-ce inefficace ? Comment un système réel comme Spark gère-t-il cela ?</p></li>
+<li><p><strong>Shuffle peer-to-peer</strong> : Notre shuffle passe par le Driver (goulot d’étranglement). Comment implémenter un shuffle direct entre Workers ?</p></li>
+<li><p><strong>Optimisation de count()</strong> : Regardez <code>Dataset.count()</code>. L’implémentation actuelle appelle <code>collect().map(_.size)</code>, ce qui rapatrie toutes les données avant de compter. Comment optimiser cette action pour ne transférer que les comptages partiels ?</p></li>
+</ol>
+<ul>
+<li><strong>écrivez vos réponses</strong> dans README.md</li>
+<li><strong>implémentez</strong> l’une des 3 optimisations</li>
+<li><strong>comparez</strong> les performances avant/après optimisation</li>
+</ul>
+</section>
+<section id="ressources" class="level2">
+<h2 class="anchored" data-anchor-id="ressources">Ressources</h2>
+<ul>
+<li><a href="./zio_cheatsheet.html">ZIO Cheat Sheet.md</a> : Patterns ZIO utilisés dans ce projet</li>
+<li><a href="https://spark.apache.org/docs/latest/rdd-programming-guide.html">Spark RDD Programming Guide</a> : Documentation Spark pour référence</li>
+</ul>
+<!--
+TODO
+
+
+- visualisation
+- donner des exemples avec données larges
+- utiliser un autre type de source: JSON, CSV ?
+- coder map/reduce, faire implémenter filter / flatMap
+- config file
+- refactoring: SocketUtils.broadcast, awaitAll, collectAll
+
+/**
+* IMPORTANT SERIALIZATION RULES:
+*
+* 1. Don't capture non-serializable objects in task closures
+* 2. Extract values to local variables before using in map/filter
+* 3. Use mapPartitions for resources (connections, etc.)
+* 4. Make case classes Serializable
+* 5. Test serialization explicitly in unit tests
+*
+* These are the SAME limitations as Apache Spark!
+  */
+
+
+discours: traiter des fichiers de taille > mem 
+-->
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

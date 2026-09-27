@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>CM2 - Introduction à Scala</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">CM2 - Introduction à Scala</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/scala-spiral.png" class="img-fluid figure-img"></p>
+<figcaption>Scala staircase</figcaption>
+</figure>
+</div>
+<section id="présentation" class="level2">
+<h2 class="anchored" data-anchor-id="présentation">Présentation</h2>
+<ul>
+<li>Créateur : 2003 Martin Odersky (EPFL). A été impliqué dans le développement des types génériques en Java 5.</li>
+<li>SCA(lable) LA(nguage)
+<ul>
+<li>on peut écrire des petits scripts jusqu’à des systèmes très larges avec des millions d’utilisateurs.-</li>
+</ul></li>
+<li>orienté objet</li>
+<li>fonctionnel</li>
+<li>typage statique</li>
+<li>compilable vers :
+<ul>
+<li>JVM byte-code
+<ul>
+<li>Scala peut appeler des bibliothèques Java,</li>
+<li>Java peut appeler des bibliothèques Scala.</li>
+</ul></li>
+<li>Javascript</li>
+<li>Code Natif avec LLVM</li>
+</ul></li>
+<li>Killer apps : Spark (Big Data), Akka/Pekko (Actor model), Kafka (distributed pub/sub)</li>
+<li>Utilisé dans la finance, chez Netflix, Twitter, LinkedIn, …</li>
+<li>Permet d’écrire du code très puissant très rapidement. On lit du code 10x plus qu’on ne l’écrit. Un langage concis permet de garder plus de contexte en tête et de naviguer facilement dans des programmes volumineux. Typage fort : si ça compile, ça marche !</li>
+</ul>
+</section>
+<section id="références" class="level2">
+<h2 class="anchored" data-anchor-id="références">Références</h2>
+<ul>
+<li><p><a href="https://docs.scala-lang.org/tour/tour-of-scala.html">Tour of Scala</a></p></li>
+<li><p><a href="https://www.manning.com/books/functional-programming-in-scala-second-edition">Functional Programming In Scala</a></p></li>
+<li><p><a href="https://www.packtpub.com/en-us/product/scala-programming-projects-9781788395342">Scala Programming Projects</a></p></li>
+<li><p><a href="https://www.linkedin.com/posts/ryanlpeterman_boris-cherny-creator-of-claude-code-the-activity-7450166320874196992-Oicd">Boris Cherny (Creator of Claude code)</a></p>
+<ul>
+<li><em>“The one technical book I would recommend to everyone that has had the greatest impact on me as an engineer is functional programming in Scala.”</em></li>
+</ul></li>
+<li><p><a href="https://www.youtube.com/watch?v=_l2qD0rJlFo">Martin Odersky (Creator of Scala)</a></p>
+<ul>
+<li>Martin Odersky explique comment le code généré par IA nécéssite des systèmes de type plus puissants pour éviter les vulnérabilités.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="syntaxe-de-base" class="level1">
+<h1>Syntaxe de base</h1>
+<section id="hello-world" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="hello-world">Hello World</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// object = singleton, une seule instance possible</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">object</span> HelloScala<span class="op">:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Definition d'une méthode</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">greet</span><span class="op">(</span>person<span class="op">:</span> <span class="ex">String</span><span class="op">):</span> <span class="ex">String</span> <span class="op">=</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="ss">s"</span><span class="st">Hello, </span><span class="ss">$person</span><span class="st">! Welcome to Scala.</span><span class="ss">"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">// méthode @main: le programme commence ici</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  @main <span class="kw">def</span> <span class="fu">hello</span><span class="op">():</span> <span class="bu">Unit</span> <span class="op">=</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> firstName<span class="op">:</span> <span class="ex">String</span> <span class="op">=</span> <span class="st">"Scala"</span>    <span class="co">// variable immutable (final en Java)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> name <span class="op">=</span> firstName <span class="op">+</span> <span class="st">" Beginner"</span> <span class="co">// le type est inféré</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> count <span class="op">=</span> <span class="dv">1</span>                      <span class="co">// variable mutable (modifiable)</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span><span class="op">(</span><span class="fu">greet</span><span class="op">(</span>name<span class="op">))</span> <span class="co">// scala.Predef.println est importé par défaut</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span><span class="op">(</span><span class="ss">s"</span><span class="st">This is your </span><span class="ss">$count</span><span class="st"> attempt at Scala.</span><span class="ss">"</span><span class="op">)</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span><span class="op">(</span><span class="ss">s"</span><span class="st">Now your attempt count is </span><span class="ss">$count</span><span class="st">.</span><span class="ss">"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="notes">
+<ul>
+<li>Les ; sont optionnels.</li>
+<li>Scala 2 utilisait une syntaxe avec des {}</li>
+<li>Scala 3 supporte également la “braceless syntax” à la Python. C’est maintenant le style par défaut.</li>
+<li>Les types sont inférés (devinés par le compilateur). Il n’est généralement pas nécéssaire de les préciser, sauf pour les paramètres de fonctions. Pour les méthodes publiques, c’est une bonne pratique de préciser le type de retour.</li>
+</ul>
+</div>
+</section>
+<section id="val-vs-var" class="level2">
+<h2 class="anchored" data-anchor-id="val-vs-var">val vs var</h2>
+<ul>
+<li>utiliser <code>val</code> par défaut</li>
+<li>en programmation fonctionnelle, tout doit être immutable</li>
+<li><code>var</code> est un “code smell”. Si vous l’utilisez, documentez pourquoi</li>
+</ul>
+<div class="notes">
+<p>Vous pouvez utiliser <code>var</code> pour écrire un algorithme optimisé. Si la variable mutable n’est pas visible de l’extérieur, la fonction reste une fonction “pure” du point de vue de l’appelant.</p>
+</div>
+</section>
+<section id="classes" class="level2">
+<h2 class="anchored" data-anchor-id="classes">Classes</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// width et height sont à la fois des paramètres du constructeur </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">// et des attributs privés immutables</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="ex">Rectangle</span><span class="op">(</span>width<span class="op">:</span> <span class="ex">Float</span><span class="op">,</span> height<span class="op">:</span> <span class="ex">Float</span><span class="op">):</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> area<span class="op">:</span> <span class="ex">Float</span> <span class="op">=</span> width <span class="op">*</span> height <span class="co">// membre public</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Les attributs sont immutables =&gt; on doit renvoyer un nouveau Rectangle</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">scale</span><span class="op">(</span>mult<span class="op">:</span> <span class="ex">Float</span><span class="op">):</span> <span class="ex">Rectangle</span> <span class="op">=</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">new</span> <span class="ex">Rectangle</span><span class="op">(</span>width <span class="op">*</span> mult<span class="op">,</span> height <span class="op">*</span> mult<span class="op">)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> rect <span class="op">=</span> <span class="ex">Rectangle</span><span class="op">(</span><span class="dv">10</span><span class="op">,</span> <span class="dv">3</span><span class="op">)</span> <span class="co">// new n'est pas obligatoire</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span>rect<span class="op">.</span>area<span class="op">)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span>rect<span class="op">.</span>width<span class="op">)</span> <span class="co">// erreur ! pas accessible</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span>rect<span class="op">.</span><span class="fu">scale</span><span class="op">(</span><span class="dv">2</span><span class="op">))</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span>rect<span class="op">.</span><span class="fu">scale</span><span class="op">(</span>mult <span class="op">=</span> <span class="dv">2</span><span class="op">))</span> <span class="co">// les arguments peuvent être nommés</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="case-class" class="level2">
+<h2 class="anchored" data-anchor-id="case-class">Case Class</h2>
+<ul>
+<li>Notre classe <code>Rectangle</code> aurait besoin :
+<ul>
+<li>de méthodes accesseurs publiques (getters en Java)</li>
+<li>de <code>equals</code>, <code>hashCode</code>, <code>toString</code></li>
+<li>d’un constructeur par copie</li>
+<li>d’implémenter <code>Serializable</code></li>
+<li>… boilerplate !!</li>
+</ul></li>
+<li><code>case class</code> indique au compilateur qu’il doit générer tout cela.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="ex">Rectangle</span><span class="op">(</span>width<span class="op">:</span> <span class="ex">Float</span><span class="op">,</span> height<span class="op">:</span> <span class="ex">Float</span><span class="op">)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> rect <span class="op">=</span> <span class="ex">Rectangle</span><span class="op">(</span><span class="dv">10</span><span class="op">,</span> <span class="dv">3</span><span class="op">)</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span>rect<span class="op">.</span>width<span class="op">)</span> <span class="co">// accesseur</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>rect <span class="op">==</span> <span class="ex">Rectangle</span><span class="op">(</span><span class="dv">10</span><span class="op">,</span><span class="dv">3</span><span class="op">)</span> <span class="co">// true. En Scala, == appelle .equals</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span>rect<span class="op">)</span> <span class="co">// toString est appelé. Sortie: Rectangle(10.0,3.0)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> rect2 <span class="op">=</span> rect<span class="op">.</span><span class="fu">copy</span><span class="op">(</span>width <span class="op">=</span> <span class="dv">5</span><span class="op">,</span> height <span class="op">=</span> <span class="dv">2</span><span class="op">)</span> <span class="co">// constructeur par copie</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="héritage" class="level2">
+<h2 class="anchored" data-anchor-id="héritage">Héritage</h2>
+<ul>
+<li><code>extends</code> pour définir une relation d’héritage entre 2 classes</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// paramètres déclarés avec val =&gt; accesseurs public</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="ex">Shape</span><span class="op">(</span><span class="kw">val</span> x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> <span class="kw">val</span> y<span class="op">:</span> <span class="bu">Int</span><span class="op">):</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> isAtOrigin<span class="op">:</span> <span class="ex">Boolean</span> <span class="op">=</span> x <span class="op">==</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> y <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="ex">Rectangle</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                <span class="kw">val</span> width<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> <span class="kw">val</span> height<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span> <span class="kw">extends</span> <span class="ex">Shape</span><span class="op">(</span>x<span class="op">,</span> y<span class="op">)</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="fu">Circle</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>             <span class="kw">val</span> radius<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span> <span class="kw">extends</span> <span class="ex">Shape</span><span class="op">(</span>x<span class="op">,</span> y<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>problème : <code>x</code> et <code>y</code> sont des attributs dans la classe mère <strong>ET</strong> dans la classe fille</li>
+<li>il faudrait implémenter <code>equals</code>, <code>toString</code>, …</li>
+</ul>
+</section>
+<section id="héritage---classe-abstraite" class="level2">
+<h2 class="anchored" data-anchor-id="héritage---classe-abstraite">Héritage - classe abstraite</h2>
+<ul>
+<li>solution : <code>Shape</code> doit être abstraite</li>
+<li>remarque : on ne peut pas hériter d’une <code>case class</code></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">abstract</span> <span class="kw">class</span> <span class="ex">Shape</span><span class="op">:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> x<span class="op">:</span> <span class="bu">Int</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> y<span class="op">:</span> <span class="bu">Int</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> isAtOrigin<span class="op">:</span> <span class="ex">Boolean</span> <span class="op">=</span> x <span class="op">==</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> y <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="ex">Rectangle</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                     width<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> height<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span> <span class="kw">extends</span> <span class="ex">Shape</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Circle</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> <span class="kw">val</span> radius<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span> <span class="kw">extends</span> <span class="ex">Shape</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> shape<span class="op">:</span> <span class="ex">Shape</span> <span class="op">=</span> <span class="fu">Circle</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">10</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="héritage---overriding" class="level2">
+<h2 class="anchored" data-anchor-id="héritage---overriding">Héritage - overriding</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">abstract</span> <span class="kw">class</span> <span class="ex">Shape</span><span class="op">:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> x<span class="op">:</span> <span class="bu">Int</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> y<span class="op">:</span> <span class="bu">Int</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">// area is abstract (le mot-clé abstract est facultatif)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> area<span class="op">:</span> <span class="ex">Double</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">// s"...$myvar... " : String interpolation</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> description<span class="op">:</span> <span class="ex">String</span> <span class="op">=</span> <span class="ss">s"</span><span class="st">Shape at (</span><span class="ss">$x</span><span class="st">, </span><span class="ss">$y</span><span class="st">)</span><span class="ss">"</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="ex">Rectangle</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>                     width<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> <span class="kw">val</span> height<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span> <span class="kw">extends</span> <span class="ex">Shape</span><span class="op">:</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">// val ou def fonctionnent. area est abstract =&gt; override est facultatif    </span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> area<span class="op">:</span> <span class="ex">Double</span> <span class="op">=</span> width <span class="op">*</span> height</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">// le mot-clé "override" est obligatoire</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">override</span> <span class="kw">def</span> description<span class="op">:</span> <span class="ex">String</span> <span class="op">=</span> </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">super</span><span class="op">.</span>description <span class="op">+</span> <span class="ss">s"</span><span class="st"> - Rectangle </span><span class="ss">$width</span><span class="st"> * </span><span class="ss">$height"</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> rect <span class="op">=</span> <span class="ex">Rectangle</span><span class="op">(</span>x <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> y <span class="op">=</span> <span class="dv">3</span><span class="op">,</span> width <span class="op">=</span> <span class="dv">3</span><span class="op">,</span> height <span class="op">=</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>rect<span class="op">.</span>description</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>rect<span class="op">.</span>area</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="notes">
+<ul>
+<li><code>val</code> pour garder le calcul (plus de mémoire, moins de CPU)</li>
+<li><code>def</code> pour le refaire à chaque fois (moins de mémoire, plus de CPU)</li>
+</ul>
+</div>
+</section>
+<section id="trait" class="level2">
+<h2 class="anchored" data-anchor-id="trait">Trait</h2>
+<ul>
+<li>En Scala, les interfaces sont des <code>trait</code></li>
+<li>ils peuvent contenir des implémentations</li>
+<li><code>extends</code> pour le premier trait ou classe étendue</li>
+<li><code>with</code> pour les suivants</li>
+<li>une classe ou trait qui implémente plusieurs traits est un <strong>mixin</strong></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> Description<span class="op">:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> description<span class="op">:</span> <span class="ex">String</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> Coordinates <span class="kw">extends</span> Description<span class="op">:</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> x<span class="op">:</span> <span class="bu">Int</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> y<span class="op">:</span> <span class="bu">Int</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> description<span class="op">:</span> <span class="ex">String</span> <span class="op">=</span> <span class="ss">s"</span><span class="st">Coordinates (</span><span class="ss">$x</span><span class="st">, </span><span class="ss">$y</span><span class="st">)</span><span class="ss">"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> <span class="ex">Area</span><span class="op">:</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> area<span class="op">:</span> <span class="ex">Double</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="ex">Rectangle</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> width<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> height<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span> </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="kw">extends</span> Coordinates <span class="kw">with</span> Description <span class="kw">with</span> <span class="ex">Area</span><span class="op">:</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> area<span class="op">:</span> <span class="ex">Double</span> <span class="op">=</span> width <span class="op">*</span> height</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">override</span> <span class="kw">def</span> description<span class="op">:</span> <span class="ex">String</span> <span class="op">=</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">super</span><span class="op">.</span>description <span class="op">+</span> <span class="ss">s"</span><span class="st"> - Rectangle </span><span class="ss">$width</span><span class="st"> * </span><span class="ss">$height"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="traits---conflits" class="level2">
+<h2 class="anchored" data-anchor-id="traits---conflits">Traits - conflits</h2>
+<p>Si plusieurs traits redéfinissent la même méthode, le trait le plus à droite a la priorité. Scala implémente un algorithme appelé <strong>linéarisation</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> A<span class="op">:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> methode <span class="op">=</span> <span class="st">"a"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> B<span class="op">:</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> methode <span class="op">=</span> <span class="st">"b"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> C<span class="op">:</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> methode <span class="op">=</span> <span class="st">"c"</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ABC <span class="kw">extends</span> A <span class="kw">with</span> B <span class="kw">with</span> C<span class="op">:</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">override</span> <span class="kw">def</span> methode <span class="op">=</span> <span class="kw">super</span><span class="op">.</span>methode</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> methodeA <span class="op">=</span> <span class="kw">super</span><span class="op">[</span>A<span class="op">].</span>methode</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CAB <span class="kw">extends</span> C <span class="kw">with</span> A <span class="kw">with</span> B<span class="op">:</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">override</span> <span class="kw">def</span> methode <span class="op">=</span> <span class="kw">super</span><span class="op">.</span>methode</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ABC</span><span class="op">().</span>methode <span class="co">// c</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ABC</span><span class="op">().</span>methodeA <span class="co">// a</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="fu">CAB</span><span class="op">().</span>methode <span class="co">// b</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="companion-object" class="level2">
+<h2 class="anchored" data-anchor-id="companion-object">Companion object</h2>
+<ul>
+<li>Toute classe peut avoir un objet “compagnon”.</li>
+<li>il va typiquement contenir des méthodes qui seraient statiques en Java :
+<ul>
+<li>constructeurs alternatifs</li>
+<li>calculs qui ne dépendent pas des attributs</li>
+<li>traitements sur des collections de la classe</li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> java<span class="op">.</span>time<span class="op">.</span>LocalDate</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Person</span><span class="op">(</span>name<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> dob<span class="op">:</span> LocalDate<span class="op">)</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">object</span> Person<span class="op">:</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Les constructeurs ont le nom réservé apply</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">apply</span><span class="op">(</span>nom<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> age<span class="op">:</span> <span class="bu">Int</span><span class="op">):</span> Person <span class="op">=</span> <span class="op">???</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">computeAge</span><span class="op">(</span>today<span class="op">:</span> LocalDate<span class="op">,</span> dob<span class="op">:</span> LocalDate<span class="op">):</span> <span class="bu">Int</span> <span class="op">=</span> <span class="op">???</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">averageAge</span><span class="op">(</span>personnes<span class="op">:</span> <span class="ex">Array</span><span class="op">[</span>Person<span class="op">]):</span> <span class="ex">Float</span> <span class="op">=</span> <span class="op">???</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> p <span class="op">=</span> <span class="fu">Person</span><span class="op">(</span><span class="st">"John"</span><span class="op">,</span> <span class="dv">25</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="notes">
+<p>??? est utile lorsqu’on veut coder une signature de fonction, mais que l’on souhaite implémenter plus tard.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="op">???</span> <span class="op">:</span> Nothing <span class="op">=</span> <span class="cf">throw</span> <span class="kw">new</span> NotImplementedError</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="instructions-conditionelles-ifelse" class="level2">
+<h2 class="anchored" data-anchor-id="instructions-conditionelles-ifelse">Instructions conditionelles : if/else</h2>
+<ul>
+<li><code>if (condition) exprTrue else exprFalse</code></li>
+<li>c’est une expression, et a son propre type</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">agePeriod</span><span class="op">(</span>age<span class="op">:</span> <span class="bu">Int</span><span class="op">):</span> <span class="ex">String</span> <span class="op">=</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>age <span class="op">&gt;=</span> <span class="dv">18</span><span class="op">)</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"adult"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"child"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="notes">
+<p>Pas besoin de <code>return</code>, le <code>if</code> renvoie une <code>String</code>.</p>
+</div>
+</section>
+<section id="instructions-conditionelles-pattern-matching" class="level2">
+<h2 class="anchored" data-anchor-id="instructions-conditionelles-pattern-matching">Instructions conditionelles : pattern matching</h2>
+<p>Utilisation basique : remplace switch/case</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">daysInMonthByNumber</span><span class="op">(</span>monthNumber<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> isLeapYear<span class="op">:</span> <span class="ex">Boolean</span> <span class="op">=</span> <span class="kw">false</span><span class="op">):</span> <span class="bu">Int</span> <span class="op">=</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  monthNumber <span class="cf">match</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="dv">1</span> <span class="op">|</span> <span class="dv">3</span> <span class="op">|</span> <span class="dv">5</span> <span class="op">|</span> <span class="dv">7</span> <span class="op">|</span> <span class="dv">8</span> <span class="op">|</span> <span class="dv">10</span> <span class="op">|</span> <span class="dv">12</span> <span class="op">=&gt;</span> <span class="dv">31</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="dv">4</span> <span class="op">|</span> <span class="dv">6</span> <span class="op">|</span> <span class="dv">9</span> <span class="op">|</span> <span class="dv">11</span> <span class="op">=&gt;</span> <span class="dv">30</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="dv">2</span> <span class="op">=&gt;</span> <span class="cf">if</span> isLeapYear then <span class="dv">29</span> <span class="cf">else</span> <span class="dv">28</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// _ signifie "n'importe quelle valeur"</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> _ <span class="op">=&gt;</span> <span class="cf">throw</span> <span class="ex">IllegalArgumentException</span><span class="op">(</span><span class="ss">s"</span><span class="st">Invalid month: </span><span class="ss">$monthNumber"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="instructions-conditionelles-pattern-matching-1" class="level2">
+<h2 class="anchored" data-anchor-id="instructions-conditionelles-pattern-matching-1">Instructions conditionelles : pattern matching</h2>
+<ul>
+<li>Utilisation avancée : déstructure les types</li>
+<li><code>sealed</code> permet de garantir que toutes les implémentations du trait sont définies</li>
+<li><code>Shape</code> est un “Union Type” (OU). <code>Rectangle</code> est un “Product Type” (ET).</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">sealed</span> <span class="kw">trait</span> <span class="ex">Shape</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Square</span><span class="op">(</span>side<span class="op">:</span> <span class="ex">Double</span><span class="op">)</span> <span class="kw">extends</span> <span class="ex">Shape</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="ex">Rectangle</span><span class="op">(</span>width<span class="op">:</span> <span class="ex">Double</span><span class="op">,</span> height<span class="op">:</span> <span class="ex">Double</span><span class="op">)</span> <span class="kw">extends</span> <span class="ex">Shape</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Circle</span><span class="op">(</span>radius<span class="op">:</span> <span class="ex">Double</span><span class="op">)</span> <span class="kw">extends</span> <span class="ex">Shape</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">calculateArea</span><span class="op">(</span>shape<span class="op">:</span> <span class="ex">Shape</span><span class="op">):</span> <span class="ex">Double</span> <span class="op">=</span> shape <span class="cf">match</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> <span class="fu">Square</span><span class="op">(</span>side<span class="op">)</span> <span class="op">=&gt;</span> side <span class="op">*</span> side</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> <span class="ex">Rectangle</span><span class="op">(</span>width<span class="op">,</span> height<span class="op">)</span> <span class="op">=&gt;</span> width <span class="op">*</span> height</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">// avec affectation de variable</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> c @ <span class="fu">Circle</span><span class="op">(</span>_<span class="op">)</span> <span class="op">=&gt;</span> math<span class="op">.</span>Pi <span class="op">*</span> c<span class="op">.</span>radius <span class="op">*</span> c<span class="op">.</span>radius</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">// case _ =&gt; // pas nécéssaire, pas d'autres Shape possible</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="hiérarchie-des-types-scala" class="level2">
+<h2 class="anchored" data-anchor-id="hiérarchie-des-types-scala">Hiérarchie des types Scala</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/unified-types-diagram.svg" class="img-fluid figure-img"></p>
+<figcaption>Scala Type Hierarchy</figcaption>
+</figure>
+</div>
+<div class="notes">
+<ul>
+<li>Vos propres classes héritent de <code>AnyRef</code>, qui hérite de <code>java.lang.Object</code>. Ces objets sont passés par référence (adresse) en argument de méthodes.</li>
+<li><code>Any</code> est la super-classe de toutes les classes</li>
+<li><code>AnyVal</code> est la super-classe des <strong>valeurs</strong>. Les objets ayant ce type sont copiés lorsqu’ils sont passés en argument.</li>
+<li>Il n’y a pas de types primitifs comme en Java. Tout est objet.</li>
+<li><code>null</code> existe mais n’est jamais utilisé, sauf pour utiliser des bibliothèques Java.</li>
+<li><code>Nothing</code> est le <strong>bottom type</strong>. Aucune valeur ne peut avoir ce type. Il peut être utilisé comme type de retour pour des fonctions non implémentées.</li>
+</ul>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
