@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mikaël Valot">
 
-<title>TP6 - Gestion des erreurs</title>
+<title>TP6 - Gestion des erreurs – ALTN73 Programmation fonctionnelle avec Scala</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -62,25 +63,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./figures/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-35673c1328022ec05f8a1bab69fe76b7.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -112,14 +115,120 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">TP6 - Gestion des erreurs</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ALTN73 Programmation Fonctionnelle avec Scala</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Cours</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM1 - Introduction à la programmation fonctionnelle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM2 - Introduction à Scala</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">TPs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TD1 - Calcul Lambda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP2 - Calculateur d’Impôt sur le Revenu</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#option" id="toc-option" class="nav-link active" data-scroll-target="#option"><span class="header-section-number">1</span> Option</a>
+  <ul class="collapse">
+  <li><a href="#exercice-manipulation-basique-doption" id="toc-exercice-manipulation-basique-doption" class="nav-link" data-scroll-target="#exercice-manipulation-basique-doption"><span class="header-section-number">1.1</span> Exercice : Manipulation basique d’Option</a></li>
+  <li><a href="#exercice-configuration" id="toc-exercice-configuration" class="nav-link" data-scroll-target="#exercice-configuration"><span class="header-section-number">1.2</span> Exercice : Configuration</a></li>
+  <li><a href="#méthodes-utiles-à-connaître" id="toc-méthodes-utiles-à-connaître" class="nav-link" data-scroll-target="#méthodes-utiles-à-connaître"><span class="header-section-number">1.3</span> Méthodes utiles à connaître</a></li>
+  </ul></li>
+  <li><a href="#either" id="toc-either" class="nav-link" data-scroll-target="#either"><span class="header-section-number">2</span> Either</a>
+  <ul class="collapse">
+  <li><a href="#exercice-configuration-1" id="toc-exercice-configuration-1" class="nav-link" data-scroll-target="#exercice-configuration-1"><span class="header-section-number">2.1</span> Exercice : Configuration</a></li>
+  </ul></li>
+  <li><a href="#validated" id="toc-validated" class="nav-link" data-scroll-target="#validated"><span class="header-section-number">3</span> Validated</a>
+  <ul class="collapse">
+  <li><a href="#exercice-configuration-2" id="toc-exercice-configuration-2" class="nav-link" data-scroll-target="#exercice-configuration-2"><span class="header-section-number">3.1</span> Exercice : Configuration</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -132,6 +241,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mikaël Valot </p>
+          </div>
+  </div>
     
   
     
@@ -142,16 +257,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="option" class="level1">
-<h1>Option</h1>
-<section id="exercice-manipulation-basique-doption" class="level2">
-<h2 class="anchored" data-anchor-id="exercice-manipulation-basique-doption">Exercice : Manipulation basique d’Option</h2>
-<section id="contexte" class="level3">
-<h3 class="anchored" data-anchor-id="contexte">Contexte</h3>
+<section id="option" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Option</h1>
+<section id="exercice-manipulation-basique-doption" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="exercice-manipulation-basique-doption"><span class="header-section-number">1.1</span> Exercice : Manipulation basique d’Option</h2>
+<section id="contexte" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="contexte"><span class="header-section-number">1.1.1</span> Contexte</h3>
 <p>Vous travaillez sur un système de gestion d’utilisateurs. Créez une classe <code>User</code> et implémentez des fonctions utilisant <code>Option</code>.</p>
 </section>
-<section id="tâches" class="level3">
-<h3 class="anchored" data-anchor-id="tâches">Tâches</h3>
+<section id="tâches" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="tâches"><span class="header-section-number">1.1.2</span> Tâches</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">User</span><span class="op">(</span>id<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> name<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> email<span class="op">:</span> <span class="ex">Option</span><span class="op">[</span><span class="ex">String</span><span class="op">],</span> age<span class="op">:</span> <span class="ex">Option</span><span class="op">[</span><span class="bu">Int</span><span class="op">])</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">// 1. Créer une fonction qui retourne l'email d'un utilisateur ou "Pas d'email"</span></span>
@@ -164,22 +279,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">// 3. Créer une fonction qui transforme l'email en majuscules s'il existe</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">uppercaseEmail</span><span class="op">(</span>user<span class="op">:</span> User<span class="op">):</span> <span class="ex">Option</span><span class="op">[</span><span class="ex">String</span><span class="op">]</span> <span class="op">=</span> <span class="op">???</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="testez-avec" class="level3">
-<h3 class="anchored" data-anchor-id="testez-avec">Testez avec</h3>
+<section id="testez-avec" class="level3" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="testez-avec"><span class="header-section-number">1.1.3</span> Testez avec</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> user1 <span class="op">=</span> <span class="fu">User</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="st">"Alice"</span><span class="op">,</span> <span class="bu">Some</span><span class="op">(</span><span class="st">"alice@example.com"</span><span class="op">),</span> <span class="bu">Some</span><span class="op">(</span><span class="dv">25</span><span class="op">))</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> user2 <span class="op">=</span> <span class="fu">User</span><span class="op">(</span><span class="dv">2</span><span class="op">,</span> <span class="st">"Bob"</span><span class="op">,</span> <span class="bu">None</span><span class="op">,</span> <span class="bu">Some</span><span class="op">(</span><span class="dv">16</span><span class="op">))</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> user3 <span class="op">=</span> <span class="fu">User</span><span class="op">(</span><span class="dv">3</span><span class="op">,</span> <span class="st">"Charlie"</span><span class="op">,</span> <span class="bu">Some</span><span class="op">(</span><span class="st">"charlie@example.com"</span><span class="op">),</span> <span class="bu">None</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
 </section>
-<section id="exercice-configuration" class="level2">
-<h2 class="anchored" data-anchor-id="exercice-configuration">Exercice : Configuration</h2>
-<section id="contexte-1" class="level3">
-<h3 class="anchored" data-anchor-id="contexte-1">Contexte</h3>
+<section id="exercice-configuration" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="exercice-configuration"><span class="header-section-number">1.2</span> Exercice : Configuration</h2>
+<section id="contexte-1" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="contexte-1"><span class="header-section-number">1.2.1</span> Contexte</h3>
 <p>Vous créez un système de configuration avec des valeurs optionnelles qui doivent être validées. On distingue la configuration brute (pouvant être invalide) de la configuration validée (garantie correcte).</p>
 </section>
-<section id="tâches-1" class="level3">
-<h3 class="anchored" data-anchor-id="tâches-1">Tâches</h3>
+<section id="tâches-1" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="tâches-1"><span class="header-section-number">1.2.2</span> Tâches</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Configuration brute issue d'un fichier ou de variables d'environnement</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">RawConfig</span><span class="op">(</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  host<span class="op">:</span> <span class="ex">Option</span><span class="op">[</span><span class="ex">String</span><span class="op">],</span></span>
@@ -215,8 +330,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co">// Défauts : host = "localhost", port = 8080, timeout = 3000</span></span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">validateConfigWithDefaults</span><span class="op">(</span>config<span class="op">:</span> RawConfig<span class="op">):</span> ValidatedConfig <span class="op">=</span> <span class="op">???</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="testez-avec-1" class="level3">
-<h3 class="anchored" data-anchor-id="testez-avec-1">Testez avec</h3>
+<section id="testez-avec-1" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="testez-avec-1"><span class="header-section-number">1.2.3</span> Testez avec</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> validRaw <span class="op">=</span> <span class="fu">RawConfig</span><span class="op">(</span><span class="bu">Some</span><span class="op">(</span><span class="st">"api.example.com"</span><span class="op">),</span> <span class="bu">Some</span><span class="op">(</span><span class="dv">443</span><span class="op">),</span> <span class="bu">Some</span><span class="op">(</span><span class="dv">5000</span><span class="op">))</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> invalidHost <span class="op">=</span> <span class="fu">RawConfig</span><span class="op">(</span><span class="bu">Some</span><span class="op">(</span><span class="st">""</span><span class="op">),</span> <span class="bu">Some</span><span class="op">(</span><span class="dv">443</span><span class="op">),</span> <span class="bu">Some</span><span class="op">(</span><span class="dv">5000</span><span class="op">))</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> invalidPort <span class="op">=</span> <span class="fu">RawConfig</span><span class="op">(</span><span class="bu">Some</span><span class="op">(</span><span class="st">"api.example.com"</span><span class="op">),</span> <span class="bu">Some</span><span class="op">(</span><span class="dv">99999</span><span class="op">),</span> <span class="bu">Some</span><span class="op">(</span><span class="dv">5000</span><span class="op">))</span></span>
@@ -225,8 +340,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 </section>
-<section id="méthodes-utiles-à-connaître" class="level2">
-<h2 class="anchored" data-anchor-id="méthodes-utiles-à-connaître">Méthodes utiles à connaître</h2>
+<section id="méthodes-utiles-à-connaître" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="méthodes-utiles-à-connaître"><span class="header-section-number">1.3</span> Méthodes utiles à connaître</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -249,10 +364,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="either" class="level1">
-<h1>Either</h1>
-<section id="exercice-configuration-1" class="level2">
-<h2 class="anchored" data-anchor-id="exercice-configuration-1">Exercice : Configuration</h2>
+<section id="either" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Either</h1>
+<section id="exercice-configuration-1" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="exercice-configuration-1"><span class="header-section-number">2.1</span> Exercice : Configuration</h2>
 <p>Reprenez l’exercice sur la configuration pour renvoyer une erreur explicite.</p>
 <ol type="1">
 <li>Créez un <code>sealed trait ConfigError</code></li>
@@ -261,10 +376,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section>
 </section>
-<section id="validated" class="level1">
-<h1>Validated</h1>
-<section id="exercice-configuration-2" class="level2">
-<h2 class="anchored" data-anchor-id="exercice-configuration-2">Exercice : Configuration</h2>
+<section id="validated" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Validated</h1>
+<section id="exercice-configuration-2" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="exercice-configuration-2"><span class="header-section-number">3.1</span> Exercice : Configuration</h2>
 <ol type="1">
 <li><p>Ajoutez la bibliothèque ZIO Prelude dans votre <code>build.sbt</code> :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>libraryDependencies <span class="op">+=</span> <span class="st">"dev.zio"</span> <span class="op">%%</span> <span class="st">"zio-prelude"</span> <span class="op">%</span> <span class="st">"1.0.0-RC42"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>

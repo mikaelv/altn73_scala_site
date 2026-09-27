@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mikaël Valot">
 
-<title>TP7 - Classes de type</title>
+<title>TP7 - Classes de type – ALTN73 Programmation fonctionnelle avec Scala</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -62,25 +63,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./figures/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-35673c1328022ec05f8a1bab69fe76b7.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -112,14 +115,126 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">TP7 - Classes de type</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ALTN73 Programmation Fonctionnelle avec Scala</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Cours</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM1 - Introduction à la programmation fonctionnelle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM2 - Introduction à Scala</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">TPs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TD1 - Calcul Lambda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP2 - Calculateur d’Impôt sur le Revenu</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#exercice-injection-de-configuration-avec-givenusing" id="toc-exercice-injection-de-configuration-avec-givenusing" class="nav-link active" data-scroll-target="#exercice-injection-de-configuration-avec-givenusing"><span class="header-section-number">1</span> Exercice : Injection de Configuration avec given/using</a>
+  <ul class="collapse">
+  <li><a href="#objectif" id="toc-objectif" class="nav-link" data-scroll-target="#objectif"><span class="header-section-number">1.1</span> Objectif</a></li>
+  <li><a href="#contexte" id="toc-contexte" class="nav-link" data-scroll-target="#contexte"><span class="header-section-number">1.2</span> Contexte</a></li>
+  <li><a href="#définir-les-structures" id="toc-définir-les-structures" class="nav-link" data-scroll-target="#définir-les-structures"><span class="header-section-number">1.3</span> Définir les structures</a></li>
+  <li><a href="#créer-les-configurations-given" id="toc-créer-les-configurations-given" class="nav-link" data-scroll-target="#créer-les-configurations-given"><span class="header-section-number">1.4</span> Créer les configurations given</a></li>
+  <li><a href="#implémenter-notificationservice" id="toc-implémenter-notificationservice" class="nav-link" data-scroll-target="#implémenter-notificationservice"><span class="header-section-number">1.5</span> Implémenter NotificationService</a></li>
+  <li><a href="#tester-le-système" id="toc-tester-le-système" class="nav-link" data-scroll-target="#tester-le-système"><span class="header-section-number">1.6</span> Tester le système</a></li>
+  <li><a href="#points-clés-à-retenir" id="toc-points-clés-à-retenir" class="nav-link" data-scroll-target="#points-clés-à-retenir"><span class="header-section-number">1.7</span> Points clés à retenir</a></li>
+  </ul></li>
+  <li><a href="#exercice-méthode-dextension" id="toc-exercice-méthode-dextension" class="nav-link" data-scroll-target="#exercice-méthode-dextension"><span class="header-section-number">2</span> Exercice : méthode d’extension</a></li>
+  <li><a href="#exercice-encodeur-yaml" id="toc-exercice-encodeur-yaml" class="nav-link" data-scroll-target="#exercice-encodeur-yaml"><span class="header-section-number">3</span> Exercice : Encodeur YAML</a>
+  <ul class="collapse">
+  <li><a href="#code-fourni" id="toc-code-fourni" class="nav-link" data-scroll-target="#code-fourni"><span class="header-section-number">3.1</span> Code fourni</a></li>
+  <li><a href="#travail-à-réaliser" id="toc-travail-à-réaliser" class="nav-link" data-scroll-target="#travail-à-réaliser"><span class="header-section-number">3.2</span> Travail à réaliser</a></li>
+  <li><a href="#résultat-attendu" id="toc-résultat-attendu" class="nav-link" data-scroll-target="#résultat-attendu"><span class="header-section-number">3.3</span> Résultat attendu</a></li>
+  <li><a href="#bonus-support-pour-mapstring-a" id="toc-bonus-support-pour-mapstring-a" class="nav-link" data-scroll-target="#bonus-support-pour-mapstring-a"><span class="header-section-number">3.4</span> (Bonus) Support pour <code>Map[String, A]</code></a></li>
+  <li><a href="#bonus-dérivation-automatique-pour-case-classes" id="toc-bonus-dérivation-automatique-pour-case-classes" class="nav-link" data-scroll-target="#bonus-dérivation-automatique-pour-case-classes"><span class="header-section-number">3.5</span> (Bonus) Dérivation automatique pour case classes</a></li>
+  <li><a href="#bonus---difficile-dérivation-automatique-pour-case-classes-avec-macros" id="toc-bonus---difficile-dérivation-automatique-pour-case-classes-avec-macros" class="nav-link" data-scroll-target="#bonus---difficile-dérivation-automatique-pour-case-classes-avec-macros"><span class="header-section-number">3.6</span> (Bonus - Difficile) Dérivation automatique pour case classes avec macros</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -132,6 +247,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mikaël Valot </p>
+          </div>
+  </div>
     
   
     
@@ -143,14 +264,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><strong>Avant de démarrer, cliquez sur le lien GitHub Classroom pour créer votre repository.</strong></p>
-<section id="exercice-injection-de-configuration-avec-givenusing" class="level1">
-<h1>Exercice : Injection de Configuration avec given/using</h1>
-<section id="objectif" class="level2">
-<h2 class="anchored" data-anchor-id="objectif">Objectif</h2>
+<section id="exercice-injection-de-configuration-avec-givenusing" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Exercice : Injection de Configuration avec given/using</h1>
+<section id="objectif" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="objectif"><span class="header-section-number">1.1</span> Objectif</h2>
 <p>Créer un système de gestion de notifications qui utilise <code>given</code>/<code>using</code> pour injecter la configuration de différents environnements (dev, staging, prod).</p>
 </section>
-<section id="contexte" class="level2">
-<h2 class="anchored" data-anchor-id="contexte">Contexte</h2>
+<section id="contexte" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="contexte"><span class="header-section-number">1.2</span> Contexte</h2>
 <p>Vous développez un système de notifications pour une application. Selon l’environnement, les notifications doivent se comporter différemment :</p>
 <ul>
 <li><strong>Dev</strong> : logs en console uniquement</li>
@@ -158,8 +279,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Production</strong> : email réel + SMS</li>
 </ul>
 </section>
-<section id="définir-les-structures" class="level2">
-<h2 class="anchored" data-anchor-id="définir-les-structures">Définir les structures</h2>
+<section id="définir-les-structures" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="définir-les-structures"><span class="header-section-number">1.3</span> Définir les structures</h2>
 <p>Les structures suivantes sont fournies dans un package <code>exo1_notification</code> :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 1. Configuration d'environnement</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">AppConfig</span><span class="op">(</span></span>
@@ -187,8 +308,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">println</span><span class="op">(</span><span class="ss">s"</span><span class="st">[</span><span class="ss">${</span>config<span class="op">.</span>environment<span class="ss">}</span><span class="st">] SMS désactivé</span><span class="ss">"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="créer-les-configurations-given" class="level2">
-<h2 class="anchored" data-anchor-id="créer-les-configurations-given">Créer les configurations given</h2>
+<section id="créer-les-configurations-given" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="créer-les-configurations-given"><span class="header-section-number">1.4</span> Créer les configurations given</h2>
 <p>Définissez trois configurations implicites différentes :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">object</span> Environments<span class="op">:</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// </span><span class="al">TODO</span><span class="co">: Créer given devConfig: AppConfig pour dev</span></span>
@@ -200,8 +321,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">// </span><span class="al">TODO</span><span class="co">: Créer given prodConfig: AppConfig pour production</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">// environment = "PROD", email + SMS activés, debugMode = false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="implémenter-notificationservice" class="level2">
-<h2 class="anchored" data-anchor-id="implémenter-notificationservice">Implémenter NotificationService</h2>
+<section id="implémenter-notificationservice" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="implémenter-notificationservice"><span class="header-section-number">1.5</span> Implémenter NotificationService</h2>
 <p>Créez un <code>object NotificationManager</code> avec une méthode <code>send</code> qui :</p>
 <ol type="1">
 <li>Accepte une configuration implicite via <code>using</code></li>
@@ -214,8 +335,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ol>
 </section>
-<section id="tester-le-système" class="level2">
-<h2 class="anchored" data-anchor-id="tester-le-système">Tester le système</h2>
+<section id="tester-le-système" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="tester-le-système"><span class="header-section-number">1.6</span> Tester le système</h2>
 <p>Créez un <code>object Main</code> qui teste les trois environnements :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">object</span> Main<span class="op">:</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  @main <span class="kw">def</span> <span class="fu">testNotifications</span><span class="op">():</span> <span class="bu">Unit</span> <span class="op">=</span></span>
@@ -243,8 +364,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [PROD] SMS envoyé à user@example.com via api.sms.com: Alerte importante</code></pre>
 <p><strong>Remarque</strong> : Dans vrai système, il serait préférable de charger la configuration depuis un fichier. Mais le principe d’injecter <code>AppConfig</code> avec <code>using</code> serait conservé.</p>
 </section>
-<section id="points-clés-à-retenir" class="level2">
-<h2 class="anchored" data-anchor-id="points-clés-à-retenir">Points clés à retenir</h2>
+<section id="points-clés-à-retenir" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="points-clés-à-retenir"><span class="header-section-number">1.7</span> Points clés à retenir</h2>
 <ul>
 <li><code>given</code> déclare des valeurs implicites disponibles dans un scope</li>
 <li><code>using</code> demande l’injection d’une valeur implicite</li>
@@ -254,8 +375,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="exercice-méthode-dextension" class="level1">
-<h1>Exercice : méthode d’extension</h1>
+<section id="exercice-méthode-dextension" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Exercice : méthode d’extension</h1>
 <p>Implémentez une <strong>méthode d’extension</strong> <code>median</code> sur <code>Seq</code>, qui calcule la médiane d’une séquence de nombres. Elle doit pouvoir fonctionner avec <code>Seq[Int]</code> ou <code>Seq[Double]</code>.</p>
 <p>Indices :</p>
 <ul>
@@ -271,14 +392,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> numbers3 <span class="op">=</span> <span class="bu">Seq</span><span class="op">(</span><span class="fl">10.5</span><span class="op">,</span> <span class="fl">2.3</span><span class="op">,</span> <span class="fl">7.8</span><span class="op">,</span> <span class="fl">5.1</span><span class="op">,</span> <span class="fl">9.2</span><span class="op">)</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span>numbers3<span class="op">.</span>median<span class="op">)</span>  <span class="co">// 7.8</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="exercice-encodeur-yaml" class="level1">
-<h1>Exercice : Encodeur YAML</h1>
+<section id="exercice-encodeur-yaml" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Exercice : Encodeur YAML</h1>
 <p>Dans cet exercice, vous allez implémenter un encodeur YAML en utilisant les classes de type (typeclasses) de Scala 3. Le code de structure et de rendu vous est fourni.</p>
 <p>Vous devez implémenter les instances de la classe de type <code>YamlEncoder</code> pour différents types.</p>
-<section id="code-fourni" class="level2">
-<h2 class="anchored" data-anchor-id="code-fourni">Code fourni</h2>
-<section id="structure-yamlvalue" class="level3">
-<h3 class="anchored" data-anchor-id="structure-yamlvalue">Structure YamlValue</h3>
+<section id="code-fourni" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="code-fourni"><span class="header-section-number">3.1</span> Code fourni</h2>
+<section id="structure-yamlvalue" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="structure-yamlvalue"><span class="header-section-number">3.1.1</span> Structure YamlValue</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>enum YamlValue<span class="op">:</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> <span class="fu">YString</span><span class="op">(</span>value<span class="op">:</span> <span class="ex">String</span><span class="op">)</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> <span class="fu">YNumber</span><span class="op">(</span>value<span class="op">:</span> <span class="ex">Double</span><span class="op">)</span></span>
@@ -287,13 +408,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> <span class="fu">YArray</span><span class="op">(</span>values<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>YamlValue<span class="op">])</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> <span class="fu">YObject</span><span class="op">(</span>fields<span class="op">:</span> <span class="ex">Map</span><span class="op">[</span><span class="ex">String</span><span class="op">,</span> YamlValue<span class="op">])</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="classe-de-type-yamlencoder" class="level3">
-<h3 class="anchored" data-anchor-id="classe-de-type-yamlencoder">Classe de type YamlEncoder</h3>
+<section id="classe-de-type-yamlencoder" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="classe-de-type-yamlencoder"><span class="header-section-number">3.1.2</span> Classe de type YamlEncoder</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> YamlEncoder<span class="op">[</span>A<span class="op">]:</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">encode</span><span class="op">(</span>value<span class="op">:</span> A<span class="op">):</span> YamlValue</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="renderer-yaml" class="level3">
-<h3 class="anchored" data-anchor-id="renderer-yaml">Renderer YAML</h3>
+<section id="renderer-yaml" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="renderer-yaml"><span class="header-section-number">3.1.3</span> Renderer YAML</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">object</span> YamlRenderer<span class="op">:</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">render</span><span class="op">(</span>yaml<span class="op">:</span> YamlValue<span class="op">,</span> indent<span class="op">:</span> <span class="bu">Int</span> <span class="op">=</span> <span class="dv">0</span><span class="op">):</span> <span class="ex">String</span> <span class="op">=</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> spaces <span class="op">=</span> <span class="st">"  "</span> <span class="op">*</span> indent</span>
@@ -328,15 +449,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>              <span class="ss">s"</span><span class="ch">\n</span><span class="ss">$spaces$key</span><span class="st">: </span><span class="ss">${</span><span class="fu">render</span><span class="op">(</span>value<span class="op">,</span> indent <span class="op">+</span> <span class="dv">1</span><span class="op">)</span><span class="ss">}"</span></span>
 <span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>        <span class="op">}.</span><span class="fu">mkString</span><span class="op">(</span><span class="st">""</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="code-de-test" class="level3">
-<h3 class="anchored" data-anchor-id="code-de-test">Code de test</h3>
+<section id="code-de-test" class="level3" data-number="3.1.4">
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="code-de-test"><span class="header-section-number">3.1.4</span> Code de test</h3>
 <p>Voir <code>YamlEncoderSpec</code> dans le code fourni.</p>
 </section>
 </section>
-<section id="travail-à-réaliser" class="level2">
-<h2 class="anchored" data-anchor-id="travail-à-réaliser">Travail à réaliser</h2>
-<section id="instances-pour-les-types-primitifs" class="level3">
-<h3 class="anchored" data-anchor-id="instances-pour-les-types-primitifs">Instances pour les types primitifs</h3>
+<section id="travail-à-réaliser" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="travail-à-réaliser"><span class="header-section-number">3.2</span> Travail à réaliser</h2>
+<section id="instances-pour-les-types-primitifs" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="instances-pour-les-types-primitifs"><span class="header-section-number">3.2.1</span> Instances pour les types primitifs</h3>
 <p>Implémentez les instances <code>given</code> de <code>YamlEncoder</code> pour les types suivants : - <code>String</code> - <code>Int</code> - <code>Double</code> - <code>Boolean</code> - <code>Long</code></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">// </span><span class="al">TODO</span><span class="co">: Implémentez les instances ici</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>given YamlEncoder<span class="op">[</span><span class="ex">String</span><span class="op">]</span> <span class="op">=</span> <span class="op">???</span></span>
@@ -345,11 +466,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>given YamlEncoder<span class="op">[</span><span class="ex">Boolean</span><span class="op">]</span> <span class="op">=</span> <span class="op">???</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>given YamlEncoder<span class="op">[</span><span class="ex">Long</span><span class="op">]</span> <span class="op">=</span> <span class="op">???</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="instances-pour-les-classes-person-address-employee" class="level3">
-<h3 class="anchored" data-anchor-id="instances-pour-les-classes-person-address-employee">Instances pour les classes Person, Address, Employee</h3>
+<section id="instances-pour-les-classes-person-address-employee" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="instances-pour-les-classes-person-address-employee"><span class="header-section-number">3.2.2</span> Instances pour les classes Person, Address, Employee</h3>
 </section>
-<section id="combinateurs-pour-collections" class="level3">
-<h3 class="anchored" data-anchor-id="combinateurs-pour-collections">Combinateurs pour collections</h3>
+<section id="combinateurs-pour-collections" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="combinateurs-pour-collections"><span class="header-section-number">3.2.3</span> Combinateurs pour collections</h3>
 <p>Implémentez les instances pour les types génériques :</p>
 <ul>
 <li><code>List[A]</code> (si A a un encoder)</li>
@@ -361,20 +482,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>given <span class="op">[</span>A<span class="op">](</span>using enc<span class="op">:</span> YamlEncoder<span class="op">[</span>A<span class="op">]):</span> YamlEncoder<span class="op">[</span><span class="ex">Option</span><span class="op">[</span>A<span class="op">]]</span> <span class="op">=</span> <span class="op">???</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="extension-method" class="level3">
-<h3 class="anchored" data-anchor-id="extension-method">Extension method</h3>
+<section id="extension-method" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="extension-method"><span class="header-section-number">3.2.4</span> Extension method</h3>
 <p>Créez une extension method <code>toYaml</code> qui permet d’appeler <code>.toYaml</code> sur n’importe quelle valeur ayant un <code>YamlEncoder</code>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">// </span><span class="al">TODO</span><span class="co">: Implémentez l'extension method</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>extension <span class="op">[</span>A<span class="op">](</span>value<span class="op">:</span> A<span class="op">)</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">toYaml</span><span class="op">(</span>using enc<span class="op">:</span> YamlEncoder<span class="op">[</span>A<span class="op">]):</span> YamlValue <span class="op">=</span> <span class="op">???</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="résultat-attendu" class="level2">
-<h2 class="anchored" data-anchor-id="résultat-attendu">Résultat attendu</h2>
+<section id="résultat-attendu" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="résultat-attendu"><span class="header-section-number">3.3</span> Résultat attendu</h2>
 <p>Exécutez les tests <code>YamlEncoderSpec</code>, tous les tests doivent passer.</p>
 </section>
-<section id="bonus-support-pour-mapstring-a" class="level2">
-<h2 class="anchored" data-anchor-id="bonus-support-pour-mapstring-a">(Bonus) Support pour <code>Map[String, A]</code></h2>
+<section id="bonus-support-pour-mapstring-a" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="bonus-support-pour-mapstring-a"><span class="header-section-number">3.4</span> (Bonus) Support pour <code>Map[String, A]</code></h2>
 <p>Implémentez le support pour <code>Map[String, A]</code> :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>given <span class="op">[</span>A<span class="op">](</span>using enc<span class="op">:</span> YamlEncoder<span class="op">[</span>A<span class="op">]):</span> YamlEncoder<span class="op">[</span><span class="ex">Map</span><span class="op">[</span><span class="ex">String</span><span class="op">,</span> A<span class="op">]]</span> <span class="op">=</span> <span class="op">???</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Puis testez avec :</p>
@@ -399,8 +520,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="st">  ssl: false"""</span><span class="op">.</span>trim</span>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="bonus-dérivation-automatique-pour-case-classes" class="level2">
-<h2 class="anchored" data-anchor-id="bonus-dérivation-automatique-pour-case-classes">(Bonus) Dérivation automatique pour case classes</h2>
+<section id="bonus-dérivation-automatique-pour-case-classes" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="bonus-dérivation-automatique-pour-case-classes"><span class="header-section-number">3.5</span> (Bonus) Dérivation automatique pour case classes</h2>
 <p>Implémentez la dérivation automatique en utilisant les méthodes de <code>Product</code>. Ce trait est implémenté par toutes les case classes.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> scala<span class="op">.</span>deriving<span class="op">.*</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -410,8 +531,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">// </span><span class="al">TODO</span><span class="co">: Instance dérivée automatiquement</span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>given derivedProduct<span class="op">[</span>T <span class="op">&lt;:</span> Product<span class="op">]:</span> YamlEncoder<span class="op">[</span>T<span class="op">]</span> <span class="op">=</span> <span class="op">???</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="bonus---difficile-dérivation-automatique-pour-case-classes-avec-macros" class="level2">
-<h2 class="anchored" data-anchor-id="bonus---difficile-dérivation-automatique-pour-case-classes-avec-macros">(Bonus - Difficile) Dérivation automatique pour case classes avec macros</h2>
+<section id="bonus---difficile-dérivation-automatique-pour-case-classes-avec-macros" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="bonus---difficile-dérivation-automatique-pour-case-classes-avec-macros"><span class="header-section-number">3.6</span> (Bonus - Difficile) Dérivation automatique pour case classes avec macros</h2>
 <p>L’approche précédente avec <code>Product</code> n’est pas satisfaisante. En effet, si notre case class possède des attributs d’un type que nous ne savons pas encoder, le programme compilera quand même.</p>
 <p>Il serait préférable de tout valider à la compilation. Scala 3 offre un mécanisme permettant de séparer les composants d’un ADT avec la classe <code>Mirror</code>. Lisez cet article et implémentez la dérivation automatique de case class pour <code>YamlEncoder</code> :</p>
 <p><a href="https://medium.com/riskified-technology/type-class-derivation-in-scala-3-ba3c7c41d3ef">Type Class Derivation in Scala 3</a></p>

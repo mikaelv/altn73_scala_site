@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mikaël Valot">
 
-<title>ZIO Cheat Sheet</title>
+<title>ZIO Cheat Sheet – ALTN73 Programmation fonctionnelle avec Scala</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -62,25 +63,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./figures/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-35673c1328022ec05f8a1bab69fe76b7.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -112,14 +115,116 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">ZIO Cheat Sheet</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ALTN73 Programmation Fonctionnelle avec Scala</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Cours</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM1 - Introduction à la programmation fonctionnelle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM2 - Introduction à Scala</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">TPs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TD1 - Calcul Lambda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP2 - Calculateur d’Impôt sur le Revenu</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#concept-principal" id="toc-concept-principal" class="nav-link active" data-scroll-target="#concept-principal"><span class="header-section-number">1</span> Concept principal</a></li>
+  <li><a href="#séquencement-avec-for-comprehension" id="toc-séquencement-avec-for-comprehension" class="nav-link" data-scroll-target="#séquencement-avec-for-comprehension"><span class="header-section-number">2</span> 1. Séquencement avec for-comprehension</a></li>
+  <li><a href="#wrapper-du-code-bloquant" id="toc-wrapper-du-code-bloquant" class="nav-link" data-scroll-target="#wrapper-du-code-bloquant"><span class="header-section-number">3</span> 2. Wrapper du code bloquant</a></li>
+  <li><a href="#logging" id="toc-logging" class="nav-link" data-scroll-target="#logging"><span class="header-section-number">4</span> 3. Logging</a></li>
+  <li><a href="#itération-avec-effets" id="toc-itération-avec-effets" class="nav-link" data-scroll-target="#itération-avec-effets"><span class="header-section-number">5</span> 4. Itération avec effets</a></li>
+  <li><a href="#créer-des-effets-simples" id="toc-créer-des-effets-simples" class="nav-link" data-scroll-target="#créer-des-effets-simples"><span class="header-section-number">6</span> 5. Créer des effets simples</a></li>
+  <li><a href="#état-mutable-avec-ref" id="toc-état-mutable-avec-ref" class="nav-link" data-scroll-target="#état-mutable-avec-ref"><span class="header-section-number">7</span> 6. État mutable avec Ref</a></li>
+  <li><a href="#combiner-des-effets" id="toc-combiner-des-effets" class="nav-link" data-scroll-target="#combiner-des-effets"><span class="header-section-number">8</span> 7. Combiner des effets</a></li>
+  <li><a href="#pattern-matching-dans-les-for-comprehensions" id="toc-pattern-matching-dans-les-for-comprehensions" class="nav-link" data-scroll-target="#pattern-matching-dans-les-for-comprehensions"><span class="header-section-number">9</span> 8. Pattern matching dans les for-comprehensions</a></li>
+  <li><a href="#exemples-de-ce-projet" id="toc-exemples-de-ce-projet" class="nav-link" data-scroll-target="#exemples-de-ce-projet"><span class="header-section-number">10</span> Exemples de ce projet</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -132,6 +237,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mikaël Valot </p>
+          </div>
+  </div>
     
   
     
@@ -143,8 +254,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>ZIO est un système d’effets fonctionnel pour Scala. Ce document couvre les patterns dont vous aurez besoin pour ce projet.</p>
-<section id="concept-principal" class="level2">
-<h2 class="anchored" data-anchor-id="concept-principal">Concept principal</h2>
+<section id="concept-principal" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="concept-principal"><span class="header-section-number">1</span> Concept principal</h2>
 <p><code>ZIO[R, E, A]</code> représente un programme qui :</p>
 <ul>
 <li>Nécessite un environnement <code>R</code></li>
@@ -153,8 +264,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Dans ce projet, nous utilisons <code>ZIO[Any, Throwable, A]</code> (pas d’environnement, peut lever des exceptions).</p>
 </section>
-<section id="séquencement-avec-for-comprehension" class="level2">
-<h2 class="anchored" data-anchor-id="séquencement-avec-for-comprehension">1. Séquencement avec for-comprehension</h2>
+<section id="séquencement-avec-for-comprehension" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="séquencement-avec-for-comprehension"><span class="header-section-number">2</span> 1. Séquencement avec for-comprehension</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  a <span class="op">&lt;-</span> <span class="fu">doSomething</span><span class="op">()</span>        <span class="co">// Execute first effect, bind result to 'a'</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  b <span class="op">&lt;-</span> <span class="fu">doSomethingElse</span><span class="op">(</span>a<span class="op">)</span>   <span class="co">// Execute second effect using 'a'</span></span>
@@ -162,22 +273,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="cf">yield</span> <span class="op">(</span>a<span class="op">,</span> b<span class="op">,</span> c<span class="op">)</span>             <span class="co">// Return tuple of results</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>C’est similaire à <code>async/await</code> dans d’autres langages.</p>
 </section>
-<section id="wrapper-du-code-bloquant" class="level2">
-<h2 class="anchored" data-anchor-id="wrapper-du-code-bloquant">2. Wrapper du code bloquant</h2>
+<section id="wrapper-du-code-bloquant" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="wrapper-du-code-bloquant"><span class="header-section-number">3</span> 2. Wrapper du code bloquant</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ZIO<span class="op">.</span>attemptBlocking <span class="op">{</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Code that blocks (e.g., socket I/O, file reads)</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  socket<span class="op">.</span>getInputStream<span class="op">.</span><span class="fu">read</span><span class="op">()</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Utilisez ceci pour tout code qui bloque le thread (I/O réseau, lecture de fichiers, etc.).</p>
 </section>
-<section id="logging" class="level2">
-<h2 class="anchored" data-anchor-id="logging">3. Logging</h2>
+<section id="logging" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="logging"><span class="header-section-number">4</span> 3. Logging</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ZIO<span class="op">.</span><span class="fu">logInfo</span><span class="op">(</span><span class="ss">s"</span><span class="st">Processing </span><span class="ss">${</span>items<span class="op">.</span>size<span class="ss">}</span><span class="st"> items</span><span class="ss">"</span><span class="op">)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ZIO<span class="op">.</span><span class="fu">logWarning</span><span class="op">(</span><span class="st">"Something unexpected happened"</span><span class="op">)</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ZIO<span class="op">.</span><span class="fu">logError</span><span class="op">(</span><span class="st">"Failed to connect"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="itération-avec-effets" class="level2">
-<h2 class="anchored" data-anchor-id="itération-avec-effets">4. Itération avec effets</h2>
+<section id="itération-avec-effets" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="itération-avec-effets"><span class="header-section-number">5</span> 4. Itération avec effets</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Séquentiel : un après l'autre</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ZIO<span class="op">.</span><span class="fu">foreach</span><span class="op">(</span>workers<span class="op">)</span> <span class="op">{</span> worker <span class="op">=&gt;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sendMessage</span><span class="op">(</span>worker<span class="op">)</span></span>
@@ -193,14 +304,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sendMessage</span><span class="op">(</span>worker<span class="op">)</span></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="créer-des-effets-simples" class="level2">
-<h2 class="anchored" data-anchor-id="créer-des-effets-simples">5. Créer des effets simples</h2>
+<section id="créer-des-effets-simples" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="créer-des-effets-simples"><span class="header-section-number">6</span> 5. Créer des effets simples</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ZIO<span class="op">.</span><span class="fu">succeed</span><span class="op">(</span><span class="dv">42</span><span class="op">)</span>              <span class="co">// Always succeeds with 42</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ZIO<span class="op">.</span><span class="fu">fail</span><span class="op">(</span><span class="kw">new</span> <span class="ex">Exception</span><span class="op">(...))</span> <span class="co">// Always fails</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ZIO<span class="op">.</span><span class="dt">unit</span>                     <span class="co">// Succeeds with ()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="état-mutable-avec-ref" class="level2">
-<h2 class="anchored" data-anchor-id="état-mutable-avec-ref">6. État mutable avec Ref</h2>
+<section id="état-mutable-avec-ref" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="état-mutable-avec-ref"><span class="header-section-number">7</span> 6. État mutable avec Ref</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  ref <span class="op">&lt;-</span> <span class="ex">Ref</span><span class="op">.</span><span class="fu">make</span><span class="op">(</span><span class="dv">0</span><span class="op">)</span>         <span class="co">// Create a Ref holding 0</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  _   <span class="op">&lt;-</span> ref<span class="op">.</span><span class="fu">set</span><span class="op">(</span><span class="dv">42</span><span class="op">)</span>         <span class="co">// Set value to 42</span></span>
@@ -209,14 +320,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">yield</span> v</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>Ref</code> est une référence thread-safe. Utilisez-la pour stocker l’état du worker.</p>
 </section>
-<section id="combiner-des-effets" class="level2">
-<h2 class="anchored" data-anchor-id="combiner-des-effets">7. Combiner des effets</h2>
+<section id="combiner-des-effets" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="combiner-des-effets"><span class="header-section-number">8</span> 7. Combiner des effets</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>effect1 <span class="op">*&gt;</span> effect2    <span class="co">// Run effect1, discard result, run effect2</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>effect1 <span class="op">&lt;*</span> effect2    <span class="co">// Run both, keep result of effect1</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>effect1<span class="op">.</span><span class="fu">zip</span><span class="op">(</span>effect2<span class="op">)</span>  <span class="co">// Run both, return tuple of results</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="pattern-matching-dans-les-for-comprehensions" class="level2">
-<h2 class="anchored" data-anchor-id="pattern-matching-dans-les-for-comprehensions">8. Pattern matching dans les for-comprehensions</h2>
+<section id="pattern-matching-dans-les-for-comprehensions" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="pattern-matching-dans-les-for-comprehensions"><span class="header-section-number">9</span> 8. Pattern matching dans les for-comprehensions</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  msg <span class="op">&lt;-</span> SocketUtils<span class="op">.</span>read<span class="op">[</span>Message<span class="op">](</span>socket<span class="op">)</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  _ <span class="op">&lt;-</span> msg <span class="cf">match</span></span>
@@ -224,22 +335,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> Message<span class="op">.</span>Goodbye     <span class="op">=&gt;</span> ZIO<span class="op">.</span><span class="fu">logInfo</span><span class="op">(</span><span class="st">"Goodbye"</span><span class="op">)</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="cf">yield</span> <span class="op">()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="exemples-de-ce-projet" class="level2">
-<h2 class="anchored" data-anchor-id="exemples-de-ce-projet">Exemples de ce projet</h2>
-<section id="lire-depuis-un-socket" class="level3">
-<h3 class="anchored" data-anchor-id="lire-depuis-un-socket">Lire depuis un socket</h3>
+<section id="exemples-de-ce-projet" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="exemples-de-ce-projet"><span class="header-section-number">10</span> Exemples de ce projet</h2>
+<section id="lire-depuis-un-socket" class="level3" data-number="10.1">
+<h3 data-number="10.1" class="anchored" data-anchor-id="lire-depuis-un-socket"><span class="header-section-number">10.1</span> Lire depuis un socket</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  msg <span class="op">&lt;-</span> SocketUtils<span class="op">.</span>read<span class="op">[</span>WorkerMessage<span class="op">](</span>driverSocket<span class="op">)</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  _ <span class="op">&lt;-</span> ZIO<span class="op">.</span><span class="fu">logInfo</span><span class="op">(</span><span class="ss">s"</span><span class="st">Received: </span><span class="ss">$msg"</span><span class="op">)</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">yield</span> <span class="op">()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="diffuser-à-plusieurs-sockets" class="level3">
-<h3 class="anchored" data-anchor-id="diffuser-à-plusieurs-sockets">Diffuser à plusieurs sockets</h3>
+<section id="diffuser-à-plusieurs-sockets" class="level3" data-number="10.2">
+<h3 data-number="10.2" class="anchored" data-anchor-id="diffuser-à-plusieurs-sockets"><span class="header-section-number">10.2</span> Diffuser à plusieurs sockets</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> sockets <span class="op">=</span> workers<span class="op">.</span><span class="fu">map</span><span class="op">(</span>_<span class="op">.</span>socket<span class="op">)</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>SocketUtils<span class="op">.</span><span class="fu">broadcast</span><span class="op">(</span>WorkerMessage<span class="op">.</span><span class="fu">StartShuffle</span><span class="op">(</span>stageId<span class="op">,</span> n<span class="op">),</span> sockets<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="collecter-les-réponses-de-tous-les-workers" class="level3">
-<h3 class="anchored" data-anchor-id="collecter-les-réponses-de-tous-les-workers">Collecter les réponses de tous les workers</h3>
+<section id="collecter-les-réponses-de-tous-les-workers" class="level3" data-number="10.3">
+<h3 data-number="10.3" class="anchored" data-anchor-id="collecter-les-réponses-de-tous-les-workers"><span class="header-section-number">10.3</span> Collecter les réponses de tous les workers</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>SocketUtils<span class="op">.</span>readAll<span class="op">[</span>DriverMessage<span class="op">,</span> <span class="ex">Map</span><span class="op">[</span><span class="bu">Int</span><span class="op">,</span> <span class="ex">List</span><span class="op">[</span><span class="ex">Any</span><span class="op">]]](</span>sockets<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> DriverMessage<span class="op">.</span><span class="fu">ShuffleData</span><span class="op">(</span>_<span class="op">,</span> _<span class="op">,</span> partitions<span class="op">)</span> <span class="op">=&gt;</span> ZIO<span class="op">.</span><span class="fu">succeed</span><span class="op">(</span>partitions<span class="op">)</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mikaël Valot">
 
-<title>TP4 - Collections</title>
+<title>TP4 - Collections – ALTN73 Programmation fonctionnelle avec Scala</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -62,25 +63,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./figures/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-35673c1328022ec05f8a1bab69fe76b7.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -112,14 +115,110 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">TP4 - Collections</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ALTN73 Programmation Fonctionnelle avec Scala</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Cours</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM1 - Introduction à la programmation fonctionnelle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM2 - Introduction à Scala</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">TPs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TD1 - Calcul Lambda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP2 - Calculateur d’Impôt sur le Revenu</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation"><span class="header-section-number">1</span> Installation</a></li>
+  <li><a href="#salesanalysis" id="toc-salesanalysis" class="nav-link" data-scroll-target="#salesanalysis"><span class="header-section-number">2</span> SalesAnalysis</a></li>
+  <li><a href="#issorted" id="toc-issorted" class="nav-link" data-scroll-target="#issorted"><span class="header-section-number">3</span> isSorted</a></li>
+  <li><a href="#curry" id="toc-curry" class="nav-link" data-scroll-target="#curry"><span class="header-section-number">4</span> curry</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -132,6 +231,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mikaël Valot </p>
+          </div>
+  </div>
     
   
     
@@ -142,8 +247,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<section id="installation" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="installation"><span class="header-section-number">1</span> Installation</h2>
 <p>Utilisez l’invitation GitHub Classroom pour créer un dépôt, puis clonez-le.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -159,12 +264,12 @@ Note
 </div>
 </div>
 </section>
-<section id="salesanalysis" class="level2">
-<h2 class="anchored" data-anchor-id="salesanalysis">SalesAnalysis</h2>
+<section id="salesanalysis" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="salesanalysis"><span class="header-section-number">2</span> SalesAnalysis</h2>
 <p>Complétez la classe <code>SalesAnalysis</code> dans le repository. Lancez les tests <code>SalesAnalysisSpec</code> après chaque exercice pour vérifier votre implémentation.</p>
 </section>
-<section id="issorted" class="level2">
-<h2 class="anchored" data-anchor-id="issorted">isSorted</h2>
+<section id="issorted" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="issorted"><span class="header-section-number">3</span> isSorted</h2>
 <p>Implémenter <code>isSorted</code>, qui vérifie si une <code>Seq[Int]</code> est triée selon une fonction de comparaison <code>gt</code>. <code>gt</code> renvoie <code>true</code> si le premier paramètre est supérieur au second paramètre.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">isSorted</span><span class="op">(</span>as<span class="op">:</span> <span class="bu">Seq</span><span class="op">[</span><span class="bu">Int</span><span class="op">],</span> gt<span class="op">:</span> <span class="op">(</span><span class="bu">Int</span><span class="op">,</span> <span class="bu">Int</span><span class="op">)</span> <span class="op">=&gt;</span> <span class="ex">Boolean</span><span class="op">):</span> <span class="ex">Boolean</span> <span class="op">=</span> <span class="op">???</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Votre implémentation doit renvoyer les résultats suivants :</p>
@@ -175,8 +280,8 @@ Note
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span><span class="op">(</span><span class="fu">isSorted</span><span class="op">(</span><span class="bu">Seq</span><span class="op">(</span><span class="dv">3</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">1</span><span class="op">),</span> _ <span class="op">&lt;</span> _<span class="op">))</span> <span class="co">// true</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span><span class="op">(</span><span class="fu">isSorted</span><span class="op">(</span><span class="bu">Seq</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">),</span> _ <span class="op">&lt;</span> _<span class="op">))</span> <span class="co">// false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="curry" class="level2">
-<h2 class="anchored" data-anchor-id="curry">curry</h2>
+<section id="curry" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="curry"><span class="header-section-number">4</span> curry</h2>
 <p>Écrire une fonction <code>curry</code>, qui convertit une fonction <code>f</code> prenant deux arguments en une fonction prenant un seul argument. Il n’y a qu’une seule solution possible.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">curry</span><span class="op">(</span>f<span class="op">:</span> <span class="op">(</span><span class="bu">Int</span><span class="op">,</span> <span class="bu">Int</span><span class="op">)</span> <span class="op">=&gt;</span> <span class="bu">Int</span><span class="op">):</span> <span class="bu">Int</span> <span class="op">=&gt;</span> <span class="bu">Int</span> <span class="op">=&gt;</span> <span class="bu">Int</span> <span class="op">=</span> <span class="op">???</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Votre implémentation doit pouvoir être utilisée de la manière suivante :</p>

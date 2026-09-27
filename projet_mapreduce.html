@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mikaël Valot">
 
-<title>Projet MapReduce</title>
+<title>Projet MapReduce – ALTN73 Programmation fonctionnelle avec Scala</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -62,25 +63,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./figures/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-35673c1328022ec05f8a1bab69fe76b7.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -115,14 +118,132 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Projet MapReduce</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ALTN73 Programmation Fonctionnelle avec Scala</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Cours</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM1 - Introduction à la programmation fonctionnelle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM2 - Introduction à Scala</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">TPs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TD1 - Calcul Lambda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP2 - Calculateur d’Impôt sur le Revenu</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#objectifs-pédagogiques" id="toc-objectifs-pédagogiques" class="nav-link" data-scroll-target="#objectifs-pédagogiques"><span class="header-section-number">2</span> Objectifs pédagogiques</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">3</span> Installation</a>
+  <ul class="collapse">
+  <li><a href="#commandes-utiles" id="toc-commandes-utiles" class="nav-link" data-scroll-target="#commandes-utiles"><span class="header-section-number">3.1</span> Commandes utiles</a></li>
+  </ul></li>
+  <li><a href="#architecture" id="toc-architecture" class="nav-link" data-scroll-target="#architecture"><span class="header-section-number">4</span> Architecture</a>
+  <ul class="collapse">
+  <li><a href="#structure-du-projet" id="toc-structure-du-projet" class="nav-link" data-scroll-target="#structure-du-projet"><span class="header-section-number">4.1</span> Structure du projet</a></li>
+  <li><a href="#architecture-driver-worker" id="toc-architecture-driver-worker" class="nav-link" data-scroll-target="#architecture-driver-worker"><span class="header-section-number">4.2</span> Architecture Driver-Worker</a></li>
+  <li><a href="#cycle-de-vie-dun-job" id="toc-cycle-de-vie-dun-job" class="nav-link" data-scroll-target="#cycle-de-vie-dun-job"><span class="header-section-number">4.3</span> Cycle de vie d’un job</a></li>
+  <li><a href="#le-shuffle-reducebykey" id="toc-le-shuffle-reducebykey" class="nav-link" data-scroll-target="#le-shuffle-reducebykey"><span class="header-section-number">4.4</span> Le Shuffle (reduceByKey)</a></li>
+  </ul></li>
+  <li><a href="#déroulement-du-projet" id="toc-déroulement-du-projet" class="nav-link" data-scroll-target="#déroulement-du-projet"><span class="header-section-number">5</span> Déroulement du projet</a>
+  <ul class="collapse">
+  <li><a href="#déroulement-dune-séance" id="toc-déroulement-dune-séance" class="nav-link" data-scroll-target="#déroulement-dune-séance"><span class="header-section-number">5.1</span> Déroulement d’une séance</a></li>
+  </ul></li>
+  <li><a href="#critères-dévaluation" id="toc-critères-dévaluation" class="nav-link" data-scroll-target="#critères-dévaluation"><span class="header-section-number">6</span> Critères d’évaluation</a></li>
+  <li><a href="#travail-à-réaliser" id="toc-travail-à-réaliser" class="nav-link" data-scroll-target="#travail-à-réaliser"><span class="header-section-number">7</span> Travail à réaliser</a>
+  <ul class="collapse">
+  <li><a href="#phase-1-warm-up" id="toc-phase-1-warm-up" class="nav-link" data-scroll-target="#phase-1-warm-up"><span class="header-section-number">7.1</span> Phase 1 : Warm-up</a></li>
+  <li><a href="#phase-2-shuffle" id="toc-phase-2-shuffle" class="nav-link" data-scroll-target="#phase-2-shuffle"><span class="header-section-number">7.2</span> Phase 2 : Shuffle</a></li>
+  <li><a href="#phase-3-job-movielens" id="toc-phase-3-job-movielens" class="nav-link" data-scroll-target="#phase-3-job-movielens"><span class="header-section-number">7.3</span> Phase 3 : Job MovieLens</a></li>
+  <li><a href="#phase-4-questions-de-réflexion" id="toc-phase-4-questions-de-réflexion" class="nav-link" data-scroll-target="#phase-4-questions-de-réflexion"><span class="header-section-number">7.4</span> Phase 4 : Questions de réflexion</a></li>
+  <li><a href="#ressources" id="toc-ressources" class="nav-link" data-scroll-target="#ressources"><span class="header-section-number">7.5</span> Ressources</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -135,6 +256,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mikaël Valot </p>
+          </div>
+  </div>
     
   
     
@@ -146,8 +273,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><img src="figures/projet_mapreduce.png" class="img-fluid"></p>
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
 <p>Un framework MapReduce distribué simplifié, inspiré de Apache Spark.</p>
 <p>Le pattern MapReduce permet de traiter de grandes quantités de données en parallèle sur plusieurs machines. Idées clés :</p>
 <ol type="1">
@@ -161,19 +288,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>les transformations construisent un graphe d’opérations (DAG) qui n’est exécuté que lors d’une action (<code>collect</code>, <code>count</code>).</li>
 </ul>
 </section>
-<section id="objectifs-pédagogiques" class="level1">
-<h1>Objectifs pédagogiques</h1>
+<section id="objectifs-pédagogiques" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Objectifs pédagogiques</h1>
 <ul>
 <li>Implémenter le pattern MapReduce et le concept de shuffle</li>
 <li>Identifier la pertinence de l’immutabilité pour les calculs massivement distribués</li>
 <li>Maîtriser les bases de ZIO (système d’effets fonctionnel)</li>
 </ul>
 </section>
-<section id="installation" class="level1">
-<h1>Installation</h1>
+<section id="installation" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Installation</h1>
 <p>Créez ou rejoignez votre équipe avec ce lien <a href="https://classroom.github.com/a/RmaR7Vwo">GitHub Classroom</a>, puis clonez le projet.</p>
-<section id="commandes-utiles" class="level2">
-<h2 class="anchored" data-anchor-id="commandes-utiles">Commandes utiles</h2>
+<section id="commandes-utiles" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="commandes-utiles"><span class="header-section-number">3.1</span> Commandes utiles</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compiler</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sbt</span> compile</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -190,10 +317,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">sbt</span> <span class="st">"runMain mapreduce.examples.WordCountDistOneJvmApp data/input.txt 2"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="architecture" class="level1">
-<h1>Architecture</h1>
-<section id="structure-du-projet" class="level2">
-<h2 class="anchored" data-anchor-id="structure-du-projet">Structure du projet</h2>
+<section id="architecture" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Architecture</h1>
+<section id="structure-du-projet" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="structure-du-projet"><span class="header-section-number">4.1</span> Structure du projet</h2>
 <pre><code>src/main/scala/mapreduce/
 ├── api/
 │   └── Dataset.scala       # API utilisateur (comme Spark RDD)
@@ -211,8 +338,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 │   └── SocketUtils.scala   # Sérialisation réseau
 └── examples/               # Exemples : WordCount local et distribué</code></pre>
 </section>
-<section id="architecture-driver-worker" class="level2">
-<h2 class="anchored" data-anchor-id="architecture-driver-worker">Architecture Driver-Worker</h2>
+<section id="architecture-driver-worker" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="architecture-driver-worker"><span class="header-section-number">4.2</span> Architecture Driver-Worker</h2>
 <pre><code>                      ┌─────────────────┐
                       │     Driver      │
                       │  (orchestrateur)│
@@ -233,8 +360,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Partitions</strong> : Le nombre de partitions (<code>numPartitions</code>) peut être supérieur au nombre de workers. Chaque worker traite les partitions où <code>partitionId % numWorkers == workerId</code>.</li>
 </ul>
 </section>
-<section id="cycle-de-vie-dun-job" class="level2">
-<h2 class="anchored" data-anchor-id="cycle-de-vie-dun-job">Cycle de vie d’un job</h2>
+<section id="cycle-de-vie-dun-job" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="cycle-de-vie-dun-job"><span class="header-section-number">4.3</span> Cycle de vie d’un job</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -296,8 +423,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="le-shuffle-reducebykey" class="level2">
-<h2 class="anchored" data-anchor-id="le-shuffle-reducebykey">Le Shuffle (reduceByKey)</h2>
+<section id="le-shuffle-reducebykey" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="le-shuffle-reducebykey"><span class="header-section-number">4.4</span> Le Shuffle (reduceByKey)</h2>
 <p>Le shuffle est nécessaire quand on doit regrouper des données par clé. Exemple : compter les mots.</p>
 <p><strong>Avant shuffle</strong> : Chaque worker a des mots arbitraires</p>
 <pre><code>Worker 0: [(hello,1), (world,1), (hello,1)]
@@ -305,8 +432,8 @@ Worker 1: [(foo,1), (hello,1), (bar,1)]</code></pre>
 <p><strong>Après shuffle</strong> : Chaque worker a toutes les valeurs pour certaines clés</p>
 <pre><code>Worker 0: [(hello,1), (hello,1), (hello,1)]  → (hello, 3)
 Worker 1: [(world,1), (foo,1), (bar,1)]      → (world,1), (foo,1), (bar,1)</code></pre>
-<section id="protocole" class="level3">
-<h3 class="anchored" data-anchor-id="protocole">Protocole</h3>
+<section id="protocole" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="protocole"><span class="header-section-number">4.4.1</span> Protocole</h3>
 <ol type="1">
 <li>Le Driver envoie <code>StartShuffle</code> à tous les workers</li>
 <li>Chaque worker partitionne ses données par <code>hash(key) % numPartitions</code></li>
@@ -317,14 +444,14 @@ Worker 1: [(world,1), (foo,1), (bar,1)]      → (world,1), (foo,1), (bar,1)</co
 </section>
 </section>
 </section>
-<section id="déroulement-du-projet" class="level1">
-<h1>Déroulement du projet</h1>
+<section id="déroulement-du-projet" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Déroulement du projet</h1>
 <ul>
 <li>Groupes de 2 ou 3 personnes</li>
 <li></li>
 </ul>
-<section id="déroulement-dune-séance" class="level2">
-<h2 class="anchored" data-anchor-id="déroulement-dune-séance">Déroulement d’une séance</h2>
+<section id="déroulement-dune-séance" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="déroulement-dune-séance"><span class="header-section-number">5.1</span> Déroulement d’une séance</h2>
 <ol type="1">
 <li>Lecture du cahier des charges, questions à l’enseignant</li>
 <li>Répartition des tâches (vous pouvez travailler en pair programming)</li>
@@ -351,8 +478,8 @@ Worker 1: [(world,1), (foo,1), (bar,1)]      → (world,1), (foo,1), (bar,1)</co
 </ul>
 </section>
 </section>
-<section id="critères-dévaluation" class="level1">
-<h1>Critères d’évaluation</h1>
+<section id="critères-dévaluation" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Critères d’évaluation</h1>
 <ul>
 <li><strong>50 % - Fonctionnalités implémentées</strong>
 <ul>
@@ -379,10 +506,10 @@ Worker 1: [(world,1), (foo,1), (bar,1)]      → (world,1), (foo,1), (bar,1)</co
 </ul>
 <p><strong>Il est préférable de terminer peu de fonctionnalités, mais avoir un code propre qui fonctionne.</strong></p>
 </section>
-<section id="travail-à-réaliser" class="level1">
-<h1>Travail à réaliser</h1>
-<section id="phase-1-warm-up" class="level2">
-<h2 class="anchored" data-anchor-id="phase-1-warm-up">Phase 1 : Warm-up</h2>
+<section id="travail-à-réaliser" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Travail à réaliser</h1>
+<section id="phase-1-warm-up" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="phase-1-warm-up"><span class="header-section-number">7.1</span> Phase 1 : Warm-up</h2>
 <p>Implémenter les opérations de base dans <code>Dataset.scala</code> et <code>StageExecutor.scala</code> :</p>
 <ul>
 <li><code>map</code> : transformer chaque élément</li>
@@ -392,8 +519,8 @@ Worker 1: [(world,1), (foo,1), (bar,1)]      → (world,1), (foo,1), (bar,1)</co
 </ul>
 <p><strong>Tests :</strong> <code>mapreduce.DatasetSpec</code> et <code>mapreduce.LocalExecutionSpec</code></p>
 </section>
-<section id="phase-2-shuffle" class="level2">
-<h2 class="anchored" data-anchor-id="phase-2-shuffle">Phase 2 : Shuffle</h2>
+<section id="phase-2-shuffle" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="phase-2-shuffle"><span class="header-section-number">7.2</span> Phase 2 : Shuffle</h2>
 <p>Implémenter l’opération :</p>
 <ul>
 <li><code>reduceByKey</code> : réduire des couples clé-valeur avec une opération sur les valeurs.</li>
@@ -405,8 +532,8 @@ Worker 1: [(world,1), (foo,1), (bar,1)]      → (world,1), (foo,1), (bar,1)</co
 </ul>
 <p><strong>Tests :</strong> <code>mapreduce.ShuffleSpec</code> et <code>mapreduce.DistributedSpec</code>.</p>
 <p><strong>Conseil :</strong> Ecrire un test pour la fusion de partitions.</p>
-<section id="validation-sur-un-fichier-public" class="level3">
-<h3 class="anchored" data-anchor-id="validation-sur-un-fichier-public">Validation sur un fichier public</h3>
+<section id="validation-sur-un-fichier-public" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="validation-sur-un-fichier-public"><span class="header-section-number">7.2.1</span> Validation sur un fichier public</h3>
 <p>Télécharger un livre de Project Gutenberg pour tester WordCount sur un vrai fichier :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download several large books and combine</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://www.gutenberg.org/files/100/100-0.txt  <span class="co"># Shakespeare (~5MB)</span></span>
@@ -455,8 +582,8 @@ Worker 1: [(world,1), (foo,1), (bar,1)]      → (world,1), (foo,1), (bar,1)</co
 <p>Vous pouvez utiliser les logs ou modifier le code pour mesurer le temps total entre <code>"All ... workers connected"</code> et <code>"Found ... unique words"</code>.</p>
 </section>
 </section>
-<section id="phase-3-job-movielens" class="level2">
-<h2 class="anchored" data-anchor-id="phase-3-job-movielens">Phase 3 : Job MovieLens</h2>
+<section id="phase-3-job-movielens" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="phase-3-job-movielens"><span class="header-section-number">7.3</span> Phase 3 : Job MovieLens</h2>
 <p>Télécharger le dataset MovieLens (ml-latest-small) :</p>
 <ul>
 <li><a href="https://grouplens.org/datasets/movielens/">https://grouplens.org/datasets/movielens/</a></li>
@@ -468,8 +595,8 @@ Worker 1: [(world,1), (foo,1), (bar,1)]      → (world,1), (foo,1), (bar,1)</co
 </ul>
 <p><strong>Objectif</strong> : Calculer la note moyenne par genre.</p>
 <p>Vous avez deux possibilités pour implémenter le join enter les deux fichiers.</p>
-<section id="solution-a-broadcast-join-plus-simple" class="level3">
-<h3 class="anchored" data-anchor-id="solution-a-broadcast-join-plus-simple">Solution A : Broadcast join (plus simple)</h3>
+<section id="solution-a-broadcast-join-plus-simple" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="solution-a-broadcast-join-plus-simple"><span class="header-section-number">7.3.1</span> Solution A : Broadcast join (plus simple)</h3>
 <p>Charger le petit fichier (<code>movies.csv</code>) en mémoire dans une <code>Map</code>, puis enrichir le grand fichier :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Charger movies en mémoire (petit fichier)</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> moviesMap<span class="op">:</span> <span class="ex">Map</span><span class="op">[</span><span class="bu">Int</span><span class="op">,</span> <span class="ex">String</span><span class="op">]</span> <span class="op">=</span> <span class="ex">Source</span><span class="op">.</span><span class="fu">fromFile</span><span class="op">(</span><span class="st">"movies.csv"</span><span class="op">)</span></span>
@@ -482,8 +609,8 @@ Worker 1: [(world,1), (foo,1), (bar,1)]      → (world,1), (foo,1), (bar,1)</co
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span><span class="op">(</span>line <span class="op">=&gt;</span> <span class="co">/* parse to (movieId, rating), use moviesMap to get genres */</span><span class="op">)</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ...      </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="solution-b-distributed-join-avancé" class="level3">
-<h3 class="anchored" data-anchor-id="solution-b-distributed-join-avancé">Solution B : Distributed join (avancé)</h3>
+<section id="solution-b-distributed-join-avancé" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="solution-b-distributed-join-avancé"><span class="header-section-number">7.3.2</span> Solution B : Distributed join (avancé)</h3>
 <p>Implémenter une vraie opération <code>join</code> distribuée :</p>
 <p><strong>À implémenter</strong> (<code>Dataset.scala</code>, <code>Op.scala</code>, <code>Planner.scala</code>) :</p>
 <ul>
@@ -493,13 +620,13 @@ Worker 1: [(world,1), (foo,1), (bar,1)]      → (world,1), (foo,1), (bar,1)</co
 </ul>
 <p><strong>Astuce</strong> : Shuffler les deux datasets par clé, puis combiner les partitions localement.</p>
 </section>
-<section id="bonus" class="level3">
-<h3 class="anchored" data-anchor-id="bonus">Bonus</h3>
+<section id="bonus" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="bonus"><span class="header-section-number">7.3.3</span> Bonus</h3>
 <p>Quels sont les 10 films les mieux notés (avec au moins 50 notes) ?</p>
 </section>
 </section>
-<section id="phase-4-questions-de-réflexion" class="level2">
-<h2 class="anchored" data-anchor-id="phase-4-questions-de-réflexion">Phase 4 : Questions de réflexion</h2>
+<section id="phase-4-questions-de-réflexion" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="phase-4-questions-de-réflexion"><span class="header-section-number">7.4</span> Phase 4 : Questions de réflexion</h2>
 <ol type="1">
 <li><p><strong>Chargement des sources</strong> : Regardez <code>Worker.getInput</code>. Chaque worker charge le fichier entier puis filtre sa partition. Pourquoi est-ce inefficace ? Comment un système réel comme Spark gère-t-il cela ?</p></li>
 <li><p><strong>Shuffle peer-to-peer</strong> : Notre shuffle passe par le Driver (goulot d’étranglement). Comment implémenter un shuffle direct entre Workers ?</p></li>
@@ -511,8 +638,8 @@ Worker 1: [(world,1), (foo,1), (bar,1)]      → (world,1), (foo,1), (bar,1)</co
 <li><strong>comparez</strong> les performances avant/après optimisation</li>
 </ul>
 </section>
-<section id="ressources" class="level2">
-<h2 class="anchored" data-anchor-id="ressources">Ressources</h2>
+<section id="ressources" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="ressources"><span class="header-section-number">7.5</span> Ressources</h2>
 <ul>
 <li><a href="./zio_cheatsheet.html">ZIO Cheat Sheet.md</a> : Patterns ZIO utilisés dans ce projet</li>
 <li><a href="https://spark.apache.org/docs/latest/rdd-programming-guide.html">Spark RDD Programming Guide</a> : Documentation Spark pour référence</li>

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mikaël Valot">
 
-<title>CM5 - Gestion des erreurs</title>
+<title>CM5 - Gestion des erreurs – ALTN73 Programmation fonctionnelle avec Scala</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -62,25 +63,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./figures/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-35673c1328022ec05f8a1bab69fe76b7.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -115,14 +118,130 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">CM5 - Gestion des erreurs</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ALTN73 Programmation Fonctionnelle avec Scala</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Cours</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM1 - Introduction à la programmation fonctionnelle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM2 - Introduction à Scala</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">TPs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TD1 - Calcul Lambda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP2 - Calculateur d’Impôt sur le Revenu</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#références" id="toc-références" class="nav-link active" data-scroll-target="#références"><span class="header-section-number">1</span> Références</a></li>
+  <li><a href="#exceptions" id="toc-exceptions" class="nav-link" data-scroll-target="#exceptions"><span class="header-section-number">2</span> Exceptions</a>
+  <ul class="collapse">
+  <li><a href="#throw" id="toc-throw" class="nav-link" data-scroll-target="#throw"><span class="header-section-number">2.1</span> throw</a></li>
+  <li><a href="#trycatchfinally" id="toc-trycatchfinally" class="nav-link" data-scroll-target="#trycatchfinally"><span class="header-section-number">2.2</span> try/catch/finally</a></li>
+  </ul></li>
+  <li><a href="#le-type-option" id="toc-le-type-option" class="nav-link" data-scroll-target="#le-type-option"><span class="header-section-number">3</span> Le type Option</a>
+  <ul class="collapse">
+  <li><a href="#option---exemple-dutilisation" id="toc-option---exemple-dutilisation" class="nav-link" data-scroll-target="#option---exemple-dutilisation"><span class="header-section-number">3.1</span> Option - Exemple d’utilisation</a></li>
+  <li><a href="#option---remplacer-une-exception" id="toc-option---remplacer-une-exception" class="nav-link" data-scroll-target="#option---remplacer-une-exception"><span class="header-section-number">3.2</span> Option - Remplacer une exception</a></li>
+  <li><a href="#option---combiner-avec-map-et-flatmap" id="toc-option---combiner-avec-map-et-flatmap" class="nav-link" data-scroll-target="#option---combiner-avec-map-et-flatmap"><span class="header-section-number">3.3</span> Option - combiner avec map et flatMap</a></li>
+  </ul></li>
+  <li><a href="#le-type-either" id="toc-le-type-either" class="nav-link" data-scroll-target="#le-type-either"><span class="header-section-number">4</span> Le type Either</a>
+  <ul class="collapse">
+  <li><a href="#either---exemple" id="toc-either---exemple" class="nav-link" data-scroll-target="#either---exemple"><span class="header-section-number">4.1</span> Either - Exemple</a></li>
+  <li><a href="#either---modélisation-des-erreurs" id="toc-either---modélisation-des-erreurs" class="nav-link" data-scroll-target="#either---modélisation-des-erreurs"><span class="header-section-number">4.2</span> Either - modélisation des erreurs</a></li>
+  </ul></li>
+  <li><a href="#le-type-try" id="toc-le-type-try" class="nav-link" data-scroll-target="#le-type-try"><span class="header-section-number">5</span> Le type Try</a>
+  <ul class="collapse">
+  <li><a href="#constructeur" id="toc-constructeur" class="nav-link" data-scroll-target="#constructeur"><span class="header-section-number">5.1</span> Constructeur</a></li>
+  <li><a href="#utilisation" id="toc-utilisation" class="nav-link" data-scroll-target="#utilisation"><span class="header-section-number">5.2</span> Utilisation</a></li>
+  </ul></li>
+  <li><a href="#le-type-validation" id="toc-le-type-validation" class="nav-link" data-scroll-target="#le-type-validation"><span class="header-section-number">6</span> Le type Validation</a></li>
+  <li><a href="#bonnes-pratiques" id="toc-bonnes-pratiques" class="nav-link" data-scroll-target="#bonnes-pratiques"><span class="header-section-number">7</span> Bonnes pratiques</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -135,6 +254,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mikaël Valot </p>
+          </div>
+  </div>
     
   
     
@@ -145,15 +270,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="références" class="level1">
-<h1>Références</h1>
+<section id="références" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Références</h1>
 <ul>
 <li><a href="https://docs.scala-lang.org/scala3/book/scala-for-java-devs.html#exceptions-and-error-handling">Exceptions and error handling</a></li>
 <li><a href="https://zio.github.io/zio-prelude/docs/functionaldatatypes/validation">ZIO Validation</a></li>
 </ul>
 </section>
-<section id="exceptions" class="level1">
-<h1>Exceptions</h1>
+<section id="exceptions" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Exceptions</h1>
 <p>Scala supporte les exceptions de manière semblable à Java. La différence principale est qu’en Scala, toutes les exceptions sont <strong>unchecked</strong>. Cela signifie que le compilateur n’oblige pas à intercepter ou à déclarer les “checked” exception dans les signatures de méthodes.</p>
 <p>En Scala, nous utiliserons plutôt les types <code>Option</code> et <code>Either</code> pour gérer nos erreurs métier. Nous éviterons de lancer des exceptions dans notre propre code. Les exceptions seront utilisées dans ces cas :</p>
 <ul>
@@ -161,8 +286,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>utilisation de certaines fonctions du SDK qui peuvent lancer des exceptions</li>
 </ul>
 <p>Nous verrons plus loin comment encapsuler les exceptions dans <code>Try</code>, et pourquoi les exceptions sont à éviter en programmation fonctionnelle.</p>
-<section id="throw" class="level2">
-<h2 class="anchored" data-anchor-id="throw">throw</h2>
+<section id="throw" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="throw"><span class="header-section-number">2.1</span> throw</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// En Java, cette exception serait "checked", car elle hérite d'Exception </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">// En Java, les exceptions "unchecked" héritent de RuntimeException ou Error</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="fu">MinorException</span><span class="op">(</span>s<span class="op">:</span> <span class="ex">String</span><span class="op">)</span> <span class="kw">extends</span> <span class="ex">Exception</span><span class="op">(</span>s<span class="op">)</span></span>
@@ -175,8 +300,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>age <span class="op">&lt;</span> <span class="dv">18</span><span class="op">)</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">throw</span> <span class="kw">new</span> <span class="fu">MinorException</span><span class="op">(</span><span class="st">"Age must be &gt;= 18"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="trycatchfinally" class="level2">
-<h2 class="anchored" data-anchor-id="trycatchfinally">try/catch/finally</h2>
+<section id="trycatchfinally" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="trycatchfinally"><span class="header-section-number">2.2</span> try/catch/finally</h2>
 <ul>
 <li>Vous pouvez utiliser <code>try</code>, <code>catch</code>, <code>finally</code> comme en Java.</li>
 <li>la différence est que le block <code>catch</code> utilise le pattern matching, avec des <code>case</code> pour chaque exception
@@ -214,8 +339,8 @@ Tip
 </div>
 </section>
 </section>
-<section id="le-type-option" class="level1">
-<h1>Le type Option</h1>
+<section id="le-type-option" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Le type Option</h1>
 <p>Le type <code>Option</code> est un ADT qui permet de représenter <strong>“une valeur ou rien”</strong>. On peut aussi le voir comme une <code>Seq</code> qui contient <code>0</code> ou <code>1</code> élément. Il est utilisé lorsqu’une fonction renvoie un résultat qui peut ne pas exister, et remplace l’utilisation de <code>null</code>.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -254,8 +379,8 @@ Important
 <p>En Scala, nous n’utiliserons jamais <code>null</code>, à part pour appeler des bibliothèques Java. Voir un <code>null</code> dans du code Scala devrait immédiatement attirer la suspicion et les foudres du reviewer !</p>
 </div>
 </div>
-<section id="option---exemple-dutilisation" class="level2">
-<h2 class="anchored" data-anchor-id="option---exemple-dutilisation">Option - Exemple d’utilisation</h2>
+<section id="option---exemple-dutilisation" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="option---exemple-dutilisation"><span class="header-section-number">3.1</span> Option - Exemple d’utilisation</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> myList <span class="op">=</span> <span class="ex">List</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> head<span class="op">:</span> <span class="ex">Option</span><span class="op">[</span><span class="bu">Int</span><span class="op">]</span> <span class="op">=</span> liste<span class="op">.</span>headOption <span class="co">// Some(1)</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -290,8 +415,8 @@ Important
 </div>
 </div>
 </section>
-<section id="option---remplacer-une-exception" class="level2">
-<h2 class="anchored" data-anchor-id="option---remplacer-une-exception">Option - Remplacer une exception</h2>
+<section id="option---remplacer-une-exception" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="option---remplacer-une-exception"><span class="header-section-number">3.2</span> Option - Remplacer une exception</h2>
 <p>Nous pouvons l’utiliser pour remplacer une gestion d’exception. L’inconvénient est que nous perdons le message d’erreur de l’exception :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">parseAge</span><span class="op">(</span>age<span class="op">:</span> <span class="ex">String</span><span class="op">):</span> <span class="ex">Option</span><span class="op">[</span><span class="bu">Int</span><span class="op">]</span> <span class="op">=</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span></span>
@@ -325,8 +450,8 @@ Important
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="bu">None</span> <span class="op">=&gt;</span> <span class="bu">None</span></span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="bu">None</span> <span class="op">=&gt;</span> <span class="bu">None</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="option---combiner-avec-map-et-flatmap" class="level2">
-<h2 class="anchored" data-anchor-id="option---combiner-avec-map-et-flatmap">Option - combiner avec map et flatMap</h2>
+<section id="option---combiner-avec-map-et-flatmap" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="option---combiner-avec-map-et-flatmap"><span class="header-section-number">3.3</span> Option - combiner avec map et flatMap</h2>
 <p>Cette approche est peu lisible. Nous pouvons simplifier ce code en utilisant <code>map</code> et <code>flatMap</code>. Le type <code>Option</code> peut en effet être considéré comme une <code>Seq</code> contenant 0 ou 1 élément. Il possède beaucoup de méthodes communes avec <code>Seq</code>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">validatePerson2</span><span class="op">(</span>name<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> ageStr<span class="op">:</span> <span class="ex">String</span><span class="op">):</span> <span class="ex">Option</span><span class="op">[</span>Person<span class="op">]</span> <span class="op">=</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">checkName</span><span class="op">(</span>name<span class="op">)</span></span>
@@ -346,8 +471,8 @@ Important
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Person</span><span class="op">(</span>checkedName<span class="op">,</span> checkedAge<span class="op">)</span>  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="le-type-either" class="level1">
-<h1>Le type Either</h1>
+<section id="le-type-either" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Le type Either</h1>
 <p><code>Option</code> nous permettait de signaler qu’il y avait eu un problème pour produire une valeur. Mais il ne nous permettait pas d’avoir d’informations sur le problème.</p>
 <p><code>Either</code> résout ce problème avec cette convention :</p>
 <ul>
@@ -380,8 +505,8 @@ Important
 </div>
 </div>
 </div>
-<section id="either---exemple" class="level2">
-<h2 class="anchored" data-anchor-id="either---exemple">Either - Exemple</h2>
+<section id="either---exemple" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="either---exemple"><span class="header-section-number">4.1</span> Either - Exemple</h2>
 <p>Reprenons nos méthodes précédentes pour utiliser <code>Either</code> :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">parseAge</span><span class="op">(</span>ageStr<span class="op">:</span> <span class="ex">String</span><span class="op">):</span> Either<span class="op">[</span><span class="ex">String</span><span class="op">,</span> <span class="bu">Int</span><span class="op">]</span> <span class="op">=</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span></span>
@@ -420,8 +545,8 @@ Important
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">validatePerson</span><span class="op">(</span><span class="st">"John"</span><span class="op">,</span> <span class="st">"20"</span><span class="op">)</span></span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Right(Person(John,20))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="either---modélisation-des-erreurs" class="level2">
-<h2 class="anchored" data-anchor-id="either---modélisation-des-erreurs">Either - modélisation des erreurs</h2>
+<section id="either---modélisation-des-erreurs" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="either---modélisation-des-erreurs"><span class="header-section-number">4.2</span> Either - modélisation des erreurs</h2>
 <p>Dans notre exemple, nous avions utilisé <code>String</code> comme type erreur dans <code>Either[String, A]</code>. Cela permet d’avoir un message sous forme de chaîne de caractères. Cela peut être suffisant pour afficher un message dans un programme simple.</p>
 <p>Cependant, cette approche est souvent insuffisante en production :</p>
 <ul>
@@ -474,8 +599,8 @@ Important
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Person</span><span class="op">(</span>checkedName<span class="op">,</span> checkedAge<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="le-type-try" class="level1">
-<h1>Le type Try</h1>
+<section id="le-type-try" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Le type Try</h1>
 <p>Le type <code>Try</code> permet d’encapsuler les méthodes qui lancent des exceptions. Sa structure ressemble à un <code>Either</code> où le type de gauche serait toujours de type <code>Throwable</code>.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -502,8 +627,8 @@ Important
 </div>
 </div>
 </div>
-<section id="constructeur" class="level2">
-<h2 class="anchored" data-anchor-id="constructeur">Constructeur</h2>
+<section id="constructeur" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="constructeur"><span class="header-section-number">5.1</span> Constructeur</h2>
 <p>La définition de <code>Try.apply</code> prend une fonction en paramètre <a href="https://docs.scala-lang.org/tour/by-name-parameters.html"><strong>“by-name”</strong></a> avec <code>r: =&gt; T</code>. Cela signifie que la fonction <code>r</code> ne sera évaluée que lorsqu’on l’appelle.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Try<span class="op">:</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> apply<span class="op">[</span>T<span class="op">](</span>r<span class="op">:</span> <span class="op">=&gt;</span> T<span class="op">):</span> Try<span class="op">[</span>T<span class="op">]</span> <span class="op">=</span></span>
@@ -513,8 +638,8 @@ Important
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">catch</span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>      <span class="cf">case</span> <span class="fu">NonFatal</span><span class="op">(</span>e<span class="op">)</span> <span class="op">=&gt;</span> <span class="fu">Failure</span><span class="op">(</span>e<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="utilisation" class="level2">
-<h2 class="anchored" data-anchor-id="utilisation">Utilisation</h2>
+<section id="utilisation" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="utilisation"><span class="header-section-number">5.2</span> Utilisation</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> scala<span class="op">.</span>util<span class="op">.</span>Try </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">parseAgeTry</span><span class="op">(</span>ageStr<span class="op">:</span> <span class="ex">String</span><span class="op">):</span> Try<span class="op">[</span><span class="bu">Int</span><span class="op">]</span> <span class="op">=</span></span>
@@ -532,8 +657,8 @@ Important
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">map</span><span class="op">(</span>exception <span class="op">=&gt;</span> <span class="fu">PersonIntFieldParsingError</span><span class="op">(</span><span class="st">"age"</span><span class="op">,</span> ageStr<span class="op">))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="le-type-validation" class="level1">
-<h1>Le type Validation</h1>
+<section id="le-type-validation" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Le type Validation</h1>
 <p>Le type <code>Either</code> a un inconvénient : il ne permet pas de connaître la liste des erreurs qui se sont produites. L’enchaînement des vérifications avec <code>flatMap</code> se termine dès qu’il y a une erreur.</p>
 <p>Dans notre méthode <code>validatePerson</code>, on souhaiterait idéalement valider le nom et l’age séparément. Si à la fois le nom et l’age ne sont pas validés, on aimerait avoir les deux messages d’erreur.</p>
 <p>La bibliothèque <strong>ZIO Prelude</strong> possède un type <a href="https://zio.github.io/zio-prelude/docs/functionaldatatypes/validation"><code>Validation</code></a> qui permet de résoudre ce problème :</p>
@@ -576,8 +701,8 @@ Important
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">age must be &gt;= 18  </span></span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="bonnes-pratiques" class="level1">
-<h1>Bonnes pratiques</h1>
+<section id="bonnes-pratiques" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Bonnes pratiques</h1>
 <p>En Scala, les exceptions sont plutôt à réserver lorsqu’on appelle du code Java ou lorsqu’on appelle certaines fonctions du SDK qui malheureusement lancent des exceptions.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">

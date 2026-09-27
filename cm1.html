@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mikaël Valot">
 
-<title>CM1 - Introduction à la programmation fonctionnelle</title>
+<title>CM1 - Introduction à la programmation fonctionnelle – ALTN73 Programmation fonctionnelle avec Scala</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -62,25 +63,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./figures/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-35673c1328022ec05f8a1bab69fe76b7.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -144,18 +147,137 @@ window.Quarto = {
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cm1.html">Cours</a></li><li class="breadcrumb-item"><a href="./cm1.html">CM1 - Introduction à la programmation fonctionnelle</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ALTN73 Programmation Fonctionnelle avec Scala</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Cours</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">CM1 - Introduction à la programmation fonctionnelle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM2 - Introduction à Scala</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">TPs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TD1 - Calcul Lambda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP2 - Calculateur d’Impôt sur le Revenu</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#paradigmes-de-programmation" id="toc-paradigmes-de-programmation" class="nav-link" data-scroll-target="#paradigmes-de-programmation"><span class="header-section-number">1.1</span> Paradigmes de programmation</a></li>
+  <li><a href="#historique" id="toc-historique" class="nav-link" data-scroll-target="#historique"><span class="header-section-number">1.2</span> Historique</a></li>
+  </ul></li>
+  <li><a href="#calcul-lambda" id="toc-calcul-lambda" class="nav-link" data-scroll-target="#calcul-lambda"><span class="header-section-number">2</span> Calcul lambda</a>
+  <ul class="collapse">
+  <li><a href="#opération-α-renommage" id="toc-opération-α-renommage" class="nav-link" data-scroll-target="#opération-α-renommage"><span class="header-section-number">2.1</span> Opération : α-renommage</a></li>
+  <li><a href="#opération-β-reduction" id="toc-opération-β-reduction" class="nav-link" data-scroll-target="#opération-β-reduction"><span class="header-section-number">2.2</span> Opération : β-reduction</a></li>
+  <li><a href="#fonction-dordre-supérieur" id="toc-fonction-dordre-supérieur" class="nav-link" data-scroll-target="#fonction-dordre-supérieur"><span class="header-section-number">2.3</span> Fonction d’ordre supérieur</a></li>
+  <li><a href="#currying" id="toc-currying" class="nav-link" data-scroll-target="#currying"><span class="header-section-number">2.4</span> Currying</a></li>
+  <li><a href="#church-encoding---booléens" id="toc-church-encoding---booléens" class="nav-link" data-scroll-target="#church-encoding---booléens"><span class="header-section-number">2.5</span> Church encoding - booléens</a></li>
+  <li><a href="#church-encoding---entiers-naturels" id="toc-church-encoding---entiers-naturels" class="nav-link" data-scroll-target="#church-encoding---entiers-naturels"><span class="header-section-number">2.6</span> Church encoding - entiers naturels</a></li>
+  <li><a href="#récursion" id="toc-récursion" class="nav-link" data-scroll-target="#récursion"><span class="header-section-number">2.7</span> Récursion</a></li>
+  <li><a href="#combinateur-de-point-fixe" id="toc-combinateur-de-point-fixe" class="nav-link" data-scroll-target="#combinateur-de-point-fixe"><span class="header-section-number">2.8</span> Combinateur de point fixe</a></li>
+  <li><a href="#combinateur-y" id="toc-combinateur-y" class="nav-link" data-scroll-target="#combinateur-y"><span class="header-section-number">2.9</span> Combinateur Y</a></li>
+  <li><a href="#lambda-calcul-simplement-typé" id="toc-lambda-calcul-simplement-typé" class="nav-link" data-scroll-target="#lambda-calcul-simplement-typé"><span class="header-section-number">2.10</span> Lambda-calcul simplement typé</a></li>
+  </ul></li>
+  <li><a href="#langages-fonctionnels" id="toc-langages-fonctionnels" class="nav-link" data-scroll-target="#langages-fonctionnels"><span class="header-section-number">3</span> Langages fonctionnels</a>
+  <ul class="collapse">
+  <li><a href="#chronologie" id="toc-chronologie" class="nav-link" data-scroll-target="#chronologie"><span class="header-section-number">3.1</span> Chronologie</a></li>
+  <li><a href="#fp-languages-features" id="toc-fp-languages-features" class="nav-link" data-scroll-target="#fp-languages-features"><span class="header-section-number">3.2</span> FP Languages Features</a></li>
+  <li><a href="#avantages" id="toc-avantages" class="nav-link" data-scroll-target="#avantages"><span class="header-section-number">3.3</span> Avantages</a></li>
+  <li><a href="#lisp" id="toc-lisp" class="nav-link" data-scroll-target="#lisp"><span class="header-section-number">3.4</span> LISP</a></li>
+  <li><a href="#haskell" id="toc-haskell" class="nav-link" data-scroll-target="#haskell"><span class="header-section-number">3.5</span> Haskell</a></li>
+  </ul></li>
+  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">4</span> Références</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cm1.html">Cours</a></li><li class="breadcrumb-item"><a href="./cm1.html">CM1 - Introduction à la programmation fonctionnelle</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">CM1 - Introduction à la programmation fonctionnelle</h1>
 </div>
@@ -164,6 +286,12 @@ window.Quarto = {
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mikaël Valot </p>
+          </div>
+  </div>
     
   
     
@@ -174,10 +302,10 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
-<section id="paradigmes-de-programmation" class="level2">
-<h2 class="anchored" data-anchor-id="paradigmes-de-programmation">Paradigmes de programmation</h2>
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<section id="paradigmes-de-programmation" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="paradigmes-de-programmation"><span class="header-section-number">1.1</span> Paradigmes de programmation</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -216,8 +344,8 @@ window.Quarto = {
 </ul>
 </div>
 </section>
-<section id="historique" class="level2">
-<h2 class="anchored" data-anchor-id="historique">Historique</h2>
+<section id="historique" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="historique"><span class="header-section-number">1.2</span> Historique</h2>
 <ul>
 <li>1936 - Alonzo Church: calcul lambda =&gt; programmation <strong>fonctionnelle</strong></li>
 <li>1936 - Alan Turing: <a href="https://turingmachine.io/">machine de turing</a> =&gt; programmation <strong>impérative</strong></li>
@@ -232,8 +360,8 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="calcul-lambda" class="level1 smaller">
-<h1 class="smaller">Calcul lambda</h1>
+<section id="calcul-lambda" class="level1 smaller" data-number="2">
+<h1 class="smaller" data-number="2"><span class="header-section-number">2</span> Calcul lambda</h1>
 <p>Théorie sur les fonctions</p>
 <table class="caption-top table">
 <colgroup>
@@ -271,28 +399,28 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<section id="opération-α-renommage" class="level2">
-<h2 class="anchored" data-anchor-id="opération-α-renommage">Opération : α-renommage</h2>
+<section id="opération-α-renommage" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="opération-α-renommage"><span class="header-section-number">2.1</span> Opération : α-renommage</h2>
 <p>Renommage de variable pour éviter les collisions</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>λx<span class="op">.</span>x <span class="op">+</span> <span class="dv">1</span>   →α   λy<span class="op">.</span>y <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="opération-β-reduction" class="level2">
-<h2 class="anchored" data-anchor-id="opération-β-reduction">Opération : β-reduction</h2>
+<section id="opération-β-reduction" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="opération-β-reduction"><span class="header-section-number">2.2</span> Opération : β-reduction</h2>
 <p>Substitution : Dans une application, remplace la variable par l’argument.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(λx<span class="op">.</span>x<span class="op">+</span><span class="dv">1</span>) <span class="dv">3</span>  →β   <span class="dv">3</span> <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>(λx<span class="op">.</span><span class="dt">M</span>) <span class="dt">N</span>    →β   <span class="dt">M</span>[<span class="dt">N</span><span class="op">/</span>x]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="fonction-dordre-supérieur" class="level2">
-<h2 class="anchored" data-anchor-id="fonction-dordre-supérieur">Fonction d’ordre supérieur</h2>
+<section id="fonction-dordre-supérieur" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="fonction-dordre-supérieur"><span class="header-section-number">2.3</span> Fonction d’ordre supérieur</h2>
 <ul>
 <li>(en) Higher-Order function</li>
 <li>Une fonction peut être passée comme argument d’une autre fonction.</li>
 <li>Une fonction peut renvoyer une fonction</li>
 </ul>
 </section>
-<section id="currying" class="level2">
-<h2 class="anchored" data-anchor-id="currying">Currying</h2>
+<section id="currying" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="currying"><span class="header-section-number">2.4</span> Currying</h2>
 <p>Comment définir une fonction prenant plusieurs paramètres ?</p>
 <ul>
 <li>Définir une fonction qui renvoie une fonction</li>
@@ -308,8 +436,8 @@ window.Quarto = {
 <p>(λx.λy.x + y) est une fonction qui prend un paramètre x et qui renvoie une autre fonction prenant un paramètre y.</p>
 </div>
 </section>
-<section id="church-encoding---booléens" class="level2">
-<h2 class="anchored" data-anchor-id="church-encoding---booléens">Church encoding - booléens</h2>
+<section id="church-encoding---booléens" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="church-encoding---booléens"><span class="header-section-number">2.5</span> Church encoding - booléens</h2>
 <p>Comment construire des boucles, instructions conditionnelles, booléens, entiers, … ?</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">True</span>   <span class="ot">=</span> λx<span class="op">.</span>λy<span class="op">.</span>x </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">False</span>  <span class="ot">=</span> λx<span class="op">.</span>λy<span class="op">.</span>y </span>
@@ -322,8 +450,8 @@ window.Quarto = {
 <p>Si le booléen est true, ifthen True M N renvoie le premier argument (définition de True). Cela paraît compliqué, mais une fois que l’on a défini ces éléments, on peut les réutiliser dans d’autres constructions comme le <code>not</code>.</p>
 </div>
 </section>
-<section id="church-encoding---entiers-naturels" class="level2">
-<h2 class="anchored" data-anchor-id="church-encoding---entiers-naturels">Church encoding - entiers naturels</h2>
+<section id="church-encoding---entiers-naturels" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="church-encoding---entiers-naturels"><span class="header-section-number">2.6</span> Church encoding - entiers naturels</h2>
 <p>entier n = fonction qui prend une fonction <code>f</code> et l’applique <code>n</code> fois.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span> <span class="ot">=</span> λf<span class="op">.</span>λx<span class="op">.</span>x</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="ot">=</span> λf<span class="op">.</span>λx<span class="op">.</span>f x</span>
@@ -348,8 +476,8 @@ window.Quarto = {
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>              →β              f (f (f x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="récursion" class="level2">
-<h2 class="anchored" data-anchor-id="récursion">Récursion</h2>
+<section id="récursion" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="récursion"><span class="header-section-number">2.7</span> Récursion</h2>
 <ul>
 <li>comment faire une boucle ? Utiliser la récursion !</li>
 </ul>
@@ -359,8 +487,8 @@ window.Quarto = {
 <li>solution : utiliser un <strong>combinateur de point fixe</strong></li>
 </ul>
 </section>
-<section id="combinateur-de-point-fixe" class="level2">
-<h2 class="anchored" data-anchor-id="combinateur-de-point-fixe">Combinateur de point fixe</h2>
+<section id="combinateur-de-point-fixe" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="combinateur-de-point-fixe"><span class="header-section-number">2.8</span> Combinateur de point fixe</h2>
 <ul>
 <li>combinateur de point fixe = fonction <code>FIX</code> qui a la propriété</li>
 </ul>
@@ -379,8 +507,8 @@ window.Quarto = {
 <p>On retrouve notre définition initiale !</p>
 </div>
 </section>
-<section id="combinateur-y" class="level2">
-<h2 class="anchored" data-anchor-id="combinateur-y">Combinateur Y</h2>
+<section id="combinateur-y" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="combinateur-y"><span class="header-section-number">2.9</span> Combinateur Y</h2>
 <ul>
 <li>Il existe plusieurs implémentations de combinateurs de point fixe</li>
 <li>Le plus connu est le <a href="https://en.wikipedia.org/wiki/Fixed-point_combinator">Y combinator</a></li>
@@ -395,8 +523,8 @@ window.Quarto = {
 <p>Fun fact : “Y combinator” est une compagnie américaine de Venture Capital. Elle maintient <a href="https://news.ycombinator.com/">Hacker News</a>, un des meilleurs sites pour se tenir au courant des nouveautés technologiques.</p>
 </div>
 </section>
-<section id="lambda-calcul-simplement-typé" class="level2">
-<h2 class="anchored" data-anchor-id="lambda-calcul-simplement-typé">Lambda-calcul simplement typé</h2>
+<section id="lambda-calcul-simplement-typé" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="lambda-calcul-simplement-typé"><span class="header-section-number">2.10</span> Lambda-calcul simplement typé</h2>
 <ul>
 <li>Problème : on pourrait utiliser <code>plus</code> avec des booléens, ou <code>not</code> avec des entiers.</li>
 <li>Solution : ajouter des types</li>
@@ -418,10 +546,10 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="langages-fonctionnels" class="level1">
-<h1>Langages fonctionnels</h1>
-<section id="chronologie" class="level2">
-<h2 class="anchored" data-anchor-id="chronologie">Chronologie</h2>
+<section id="langages-fonctionnels" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Langages fonctionnels</h1>
+<section id="chronologie" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="chronologie"><span class="header-section-number">3.1</span> Chronologie</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/fp-languages-timeline.png" class="img-fluid figure-img"></p>
@@ -433,8 +561,8 @@ window.Quarto = {
 <p>Pure FP: Haskell, Elm (tout est fonctionnel par défaut) FP-first: Scala, Clojure, F#, OCaml (fonctionnel mais pragmatique) Multi-paradigm: Rust, Kotlin (bon support FP) FP-capable: Java, C#, Python, Javascript (peut faire du FP mais pas conçu pour)</p>
 </div>
 </section>
-<section id="fp-languages-features" class="level2">
-<h2 class="anchored" data-anchor-id="fp-languages-features">FP Languages Features</h2>
+<section id="fp-languages-features" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="fp-languages-features"><span class="header-section-number">3.2</span> FP Languages Features</h2>
 <ul>
 <li><strong>First class functions</strong>
 <ul>
@@ -466,8 +594,8 @@ window.Quarto = {
 </ul></li>
 </ul>
 </section>
-<section id="avantages" class="level2">
-<h2 class="anchored" data-anchor-id="avantages">Avantages</h2>
+<section id="avantages" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="avantages"><span class="header-section-number">3.3</span> Avantages</h2>
 <ul>
 <li>plus facile à tester et à débugger</li>
 <li>plus facile à raisonner</li>
@@ -477,8 +605,8 @@ window.Quarto = {
 <li>sécurité : validation à la compilation, moins de bugs</li>
 </ul>
 </section>
-<section id="lisp" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="lisp">LISP</h2>
+<section id="lisp" class="level2 smaller" data-number="3.4">
+<h2 class="smaller anchored" data-number="3.4" data-anchor-id="lisp"><span class="header-section-number">3.4</span> LISP</h2>
 <ul>
 <li>langage interprété, typage dynamique</li>
 <li>il existe plusieurs dialectes. Common Lisp est le standard</li>
@@ -507,8 +635,8 @@ window.Quarto = {
 <p>LISP killer apps : Emacs, AutoCAD+AutoLISP, Grammarly</p>
 </div>
 </section>
-<section id="haskell" class="level2">
-<h2 class="anchored" data-anchor-id="haskell">Haskell</h2>
+<section id="haskell" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="haskell"><span class="header-section-number">3.5</span> Haskell</h2>
 <ul>
 <li>langage compilé, typage statique, purement fonctionnel</li>
 <li>inférence de types</li>
@@ -546,8 +674,8 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="références" class="level1">
-<h1>Références</h1>
+<section id="références" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Références</h1>
 <ul>
 <li><a href="https://turingmachine.io/">Turing Machine Visualization</a></li>
 <li>Film à propos d’Alan Turing : <a href="https://en.wikipedia.org/wiki/The_Imitation_Game">The Imitation Game</a></li>

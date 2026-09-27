@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mikaël Valot">
 
-<title>CM6 - Classes de Type</title>
+<title>CM6 - Classes de Type – ALTN73 Programmation fonctionnelle avec Scala</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -62,25 +63,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./figures/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-35673c1328022ec05f8a1bab69fe76b7.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -112,14 +115,125 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">CM6 - Classes de Type</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ALTN73 Programmation Fonctionnelle avec Scala</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Cours</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM1 - Introduction à la programmation fonctionnelle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM2 - Introduction à Scala</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">TPs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TD1 - Calcul Lambda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP2 - Calculateur d’Impôt sur le Revenu</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#références" id="toc-références" class="nav-link active" data-scroll-target="#références"><span class="header-section-number">1</span> Références</a></li>
+  <li><a href="#transparence-référentielle" id="toc-transparence-référentielle" class="nav-link" data-scroll-target="#transparence-référentielle"><span class="header-section-number">2</span> Transparence référentielle</a>
+  <ul class="collapse">
+  <li><a href="#effets-de-bords" id="toc-effets-de-bords" class="nav-link" data-scroll-target="#effets-de-bords"><span class="header-section-number">2.1</span> Effets de bords</a></li>
+  <li><a href="#exceptions-et-transparence-référentielle" id="toc-exceptions-et-transparence-référentielle" class="nav-link" data-scroll-target="#exceptions-et-transparence-référentielle"><span class="header-section-number">2.2</span> Exceptions et transparence référentielle</a></li>
+  <li><a href="#avantages-des-fonctions-pures" id="toc-avantages-des-fonctions-pures" class="nav-link" data-scroll-target="#avantages-des-fonctions-pures"><span class="header-section-number">2.3</span> Avantages des fonctions pures</a></li>
+  </ul></li>
+  <li><a href="#given-using" id="toc-given-using" class="nav-link" data-scroll-target="#given-using"><span class="header-section-number">3</span> given / using</a>
+  <ul class="collapse">
+  <li><a href="#cas-dutilisation-tri" id="toc-cas-dutilisation-tri" class="nav-link" data-scroll-target="#cas-dutilisation-tri"><span class="header-section-number">3.1</span> Cas d’utilisation : Tri</a></li>
+  <li><a href="#implicit-resolution" id="toc-implicit-resolution" class="nav-link" data-scroll-target="#implicit-resolution"><span class="header-section-number">3.2</span> Implicit resolution</a></li>
+  <li><a href="#dérivation-de-given" id="toc-dérivation-de-given" class="nav-link" data-scroll-target="#dérivation-de-given"><span class="header-section-number">3.3</span> Dérivation de given</a></li>
+  </ul></li>
+  <li><a href="#méthodes-dextension" id="toc-méthodes-dextension" class="nav-link" data-scroll-target="#méthodes-dextension"><span class="header-section-number">4</span> Méthodes d’extension</a></li>
+  <li><a href="#classes-de-type-type-classes" id="toc-classes-de-type-type-classes" class="nav-link" data-scroll-target="#classes-de-type-type-classes"><span class="header-section-number">5</span> Classes de type (type classes)</a>
+  <ul class="collapse">
+  <li><a href="#classe-de-type-jsonserializer" id="toc-classe-de-type-jsonserializer" class="nav-link" data-scroll-target="#classe-de-type-jsonserializer"><span class="header-section-number">5.1</span> Classe de type : JsonSerializer</a></li>
+  <li><a href="#classes-de-types-dans-les-bibliothèques" id="toc-classes-de-types-dans-les-bibliothèques" class="nav-link" data-scroll-target="#classes-de-types-dans-les-bibliothèques"><span class="header-section-number">5.2</span> Classes de types dans les bibliothèques</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -132,6 +246,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mikaël Valot </p>
+          </div>
+  </div>
     
   
     
@@ -142,8 +262,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="références" class="level1">
-<h1>Références</h1>
+<section id="références" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Références</h1>
 <ul>
 <li><a href="https://rockthejvm.com/articles/scala-3-given-and-using-clauses">Scala 3 Given and Using clauses - RockTheJVM</a></li>
 <li><a href="https://docs.scala-lang.org/scala3/book/ca-context-parameters.html#context-parameters">Context Parameters - scala-lang.org</a></li>
@@ -151,8 +271,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://en.wikipedia.org/wiki/Monad_(functional_programming)">Monad (FP) - Wikipedia</a></li>
 </ul>
 </section>
-<section id="transparence-référentielle" class="level1">
-<h1>Transparence référentielle</h1>
+<section id="transparence-référentielle" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Transparence référentielle</h1>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -181,8 +301,8 @@ Important
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> impureExpr <span class="op">=</span> <span class="fu">impure</span><span class="op">(</span><span class="dv">3</span><span class="op">)</span> <span class="op">+</span> <span class="fu">impure</span><span class="op">(</span><span class="dv">3</span><span class="op">)</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Si je remplace impure(3) par sa valeur de retour initiale 4, le comportement change</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> impureExpr2 <span class="op">=</span> <span class="dv">4</span> <span class="op">+</span> <span class="dv">4</span> <span class="co">// impureExpr2 != impureExpr</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="effets-de-bords" class="level2">
-<h2 class="anchored" data-anchor-id="effets-de-bords">Effets de bords</h2>
+<section id="effets-de-bords" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="effets-de-bords"><span class="header-section-number">2.1</span> Effets de bords</h2>
 <p>Toute fonction qui a des <strong>effets de bord</strong> (side effect) est impure. Un effet de bord peut être :</p>
 <ul>
 <li>Modifier une variable se trouvant en dehors de la fonction</li>
@@ -192,8 +312,8 @@ Important
 <li>De manière générale, toute interaction avec le monde extérieur.</li>
 </ul>
 </section>
-<section id="exceptions-et-transparence-référentielle" class="level2">
-<h2 class="anchored" data-anchor-id="exceptions-et-transparence-référentielle">Exceptions et transparence référentielle</h2>
+<section id="exceptions-et-transparence-référentielle" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="exceptions-et-transparence-référentielle"><span class="header-section-number">2.2</span> Exceptions et transparence référentielle</h2>
 <p>En programmation fonctionnelle, nous évitons d’utiliser les exceptions, car leur utilisation casse la transparence référentielle :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">area</span><span class="op">(</span>width<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> height<span class="op">:</span> <span class="bu">Int</span><span class="op">):</span> <span class="ex">Double</span> <span class="op">=</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>width <span class="op">&gt;</span> <span class="dv">5</span> <span class="op">||</span> height <span class="op">&gt;</span> <span class="dv">5</span><span class="op">)</span></span>
@@ -218,8 +338,8 @@ Important
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> e<span class="op">:</span> <span class="ex">IllegalArgumentException</span> <span class="op">=&gt;</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Si une fonction lance une exception, on ne peut pas toujours remplacer l’appel d’une fonction par son résultat. Nous n’avons pas ce problème lorsque nous utilisons des structures <code>Either</code> ou <code>Validated</code>.</p>
 </section>
-<section id="avantages-des-fonctions-pures" class="level2">
-<h2 class="anchored" data-anchor-id="avantages-des-fonctions-pures">Avantages des fonctions pures</h2>
+<section id="avantages-des-fonctions-pures" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="avantages-des-fonctions-pures"><span class="header-section-number">2.3</span> Avantages des fonctions pures</h2>
 <p>La transparence référentielle est un concept clé en programmation fonctionnelle. Si la majorité du code de votre programme est composé de fonctions pures, il devient beaucoup plus facile de :</p>
 <ol type="1">
 <li><strong>Comprendre ce que fait le programme</strong>. Si on voit un appel de fonction, on sait que la valeur de retour dépend uniquement des arguments. Pas besoin de tenir compte de l’état d’un attribut, ou de risquer d’avoir des modifications d’attributs dans les arguments.</li>
@@ -229,8 +349,8 @@ Important
 </ol>
 </section>
 </section>
-<section id="given-using" class="level1">
-<h1>given / using</h1>
+<section id="given-using" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> given / using</h1>
 <p>Le mot clé <code>given</code> permet de déclarer un objet qui sera automatiquement passé comme argument d’une fonction utilisant <code>using</code> :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">ServerConfig</span><span class="op">(</span>host<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> port<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -245,8 +365,8 @@ Important
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Lorsqu'on appelle la fonction, pas besoin de passer cfg</span></span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">// si on a une instance "given" du même type dans notre scope  </span></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">callGet</span><span class="op">(</span><span class="st">"/customers"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="cas-dutilisation-tri" class="level2">
-<h2 class="anchored" data-anchor-id="cas-dutilisation-tri">Cas d’utilisation : Tri</h2>
+<section id="cas-dutilisation-tri" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="cas-dutilisation-tri"><span class="header-section-number">3.1</span> Cas d’utilisation : Tri</h2>
 <p>Nous souhaitons trier une liste d’objets <code>Person</code> en fonction d’un attribut <code>surname</code>. Dans notre programme, nous souhaitons offrir un tri “standard”, mais laisser la possibilité à l’appelant de passer un ordre de tri personnalisé.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Person</span><span class="op">(</span>surname<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> name<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> age<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>En Java, nous aurions créé une classe qui implémente <code>Comparator&lt;Person&gt;</code>. En Scala, nous devons déclarer une instance de <code>Ordering[Person]</code> :</p>
@@ -277,8 +397,8 @@ Important
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> people <span class="op">=</span> <span class="ex">List</span><span class="op">(</span><span class="fu">Person</span><span class="op">(</span><span class="st">"Weasley"</span><span class="op">,</span> <span class="st">"Ron"</span><span class="op">,</span> <span class="dv">15</span><span class="op">),</span> <span class="fu">Person</span><span class="op">(</span><span class="st">"Potter"</span><span class="op">,</span> <span class="st">"Harry"</span><span class="op">,</span> <span class="dv">15</span><span class="op">))</span> </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">listPeople</span><span class="op">(</span>people<span class="op">)</span> <span class="co">// &lt;- le compilateur injecte l'ordering ici</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="implicit-resolution" class="level2">
-<h2 class="anchored" data-anchor-id="implicit-resolution">Implicit resolution</h2>
+<section id="implicit-resolution" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="implicit-resolution"><span class="header-section-number">3.2</span> Implicit resolution</h2>
 <p>Lorsque le compilateur voit un appel de méthode où un paramètre <code>using</code> est manquant, comme dans <code>listPeople(people)</code>, il va utiliser un algorithme pour rechercher les instances <code>given</code> correspondantes. C’est le mécanisme <strong>implicit resolution</strong>.</p>
 <p>Pour un paramètre <code>using t: T</code>, le compilateur va rechercher un <code>given</code> de type <code>T</code> dans cet ordre :</p>
 <ul>
@@ -327,8 +447,8 @@ Note
 </div>
 </div>
 </section>
-<section id="dérivation-de-given" class="level2">
-<h2 class="anchored" data-anchor-id="dérivation-de-given">Dérivation de given</h2>
+<section id="dérivation-de-given" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="dérivation-de-given"><span class="header-section-number">3.3</span> Dérivation de given</h2>
 <p>Nous pouvons déclarer des <strong>méthodes</strong> avec <code>given</code>. Cela va permettre au compilateur de construire des instances à la volée.</p>
 <p>Par exemple, supposons que :</p>
 <ul>
@@ -386,8 +506,8 @@ Note
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">// [  1.23,   3.30, None]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="méthodes-dextension" class="level1">
-<h1>Méthodes d’extension</h1>
+<section id="méthodes-dextension" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Méthodes d’extension</h1>
 <p>Une méthode d’extension permet d’ajouter une méthode à un type sans le modifier. Par exemple, imaginons que nous utilisons une bibliothèque externe qui définit :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Circle</span><span class="op">(</span>x<span class="op">:</span> <span class="ex">Double</span><span class="op">,</span> y<span class="op">:</span> <span class="ex">Double</span><span class="op">,</span> radius<span class="op">:</span> <span class="ex">Double</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Cette classe ne possède pas de méthode <code>area</code>, et nous ne pouvons pas modifier son code. Nous pouvons simplement créer un nouvel objet :</p>
@@ -408,8 +528,8 @@ Note
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> c <span class="op">=</span> <span class="fu">Circle</span><span class="op">(</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">)</span></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> a <span class="op">=</span> c<span class="op">.</span>area</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="classes-de-type-type-classes" class="level1">
-<h1>Classes de type (type classes)</h1>
+<section id="classes-de-type-type-classes" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Classes de type (type classes)</h1>
 <ul>
 <li>En POO, une <strong>classe</strong> permet de définir des comportements communs à plusieurs <strong>objets</strong>.
 <ul>
@@ -429,8 +549,8 @@ Note
 <li>(optionnel) ajouter des méthodes d’<code>extension</code> pour simplifier la syntaxe pour les appelants.</li>
 </ol>
 <p>Le concept permet de faire implémenter une interface à des types sans avoir à les modifier. On parle d’<strong>ad-hoc polymorphism</strong> : on peut changer la <em>forme</em> de notre objet à la volée, juste en changeant des <code>imports</code>.</p>
-<section id="classe-de-type-jsonserializer" class="level2">
-<h2 class="anchored" data-anchor-id="classe-de-type-jsonserializer">Classe de type : JsonSerializer</h2>
+<section id="classe-de-type-jsonserializer" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="classe-de-type-jsonserializer"><span class="header-section-number">5.1</span> Classe de type : JsonSerializer</h2>
 <p>Voici un exemple de classe de type qui permet de convertir un objet en Json :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 1. Type class definition</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> JsonSerializer<span class="op">[</span>A<span class="op">]:</span></span>
@@ -473,8 +593,8 @@ Note
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">// [{"name": "Alice", "age": 30}, {"name": "Bob", "age": 20}]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Tout est validé à la compilation. L’appel à <code>.toJson</code> ne compilera pas si les instances de type class du bon type ne sont pas déclarées.</p>
 </section>
-<section id="classes-de-types-dans-les-bibliothèques" class="level2">
-<h2 class="anchored" data-anchor-id="classes-de-types-dans-les-bibliothèques">Classes de types dans les bibliothèques</h2>
+<section id="classes-de-types-dans-les-bibliothèques" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="classes-de-types-dans-les-bibliothèques"><span class="header-section-number">5.2</span> Classes de types dans les bibliothèques</h2>
 <p>Le SDK Scala propose quelques classes de type :</p>
 <ul>
 <li><code>scala.math.Ordering</code> pour trier et comparer</li>
@@ -482,8 +602,8 @@ Note
 <li><code>scala.CanEqual</code> permet d’avoir une erreur de compilation lorsqu’on compare 2 types différents avec <code>==</code> (voir TP).</li>
 </ul>
 <p>La bibliothèque <a href="https://typelevel.org/cats/typeclasses/functor.html"><strong>Cats</strong></a> définit plusieurs classes de types provenant de la <strong>théorie des cagégories</strong>. Cette théorie mathématique étudie les structures et leurs relations, et a des connexions avec la programmation fonctionnelle. Il n’est heureusement pas nécéssaire de comprendre cette théorie pour utiliser les principales classes de types de Cats.</p>
-<section id="cats.functor" class="level3">
-<h3 class="anchored" data-anchor-id="cats.functor">cats.Functor</h3>
+<section id="cats.functor" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="cats.functor"><span class="header-section-number">5.2.1</span> cats.Functor</h3>
 <p>Un <a href="https://typelevel.org/cats/typeclasses/functor.html">Functor</a> est un type sur lequel on a l’opération <code>map</code> :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> Functor<span class="op">[</span>F<span class="op">[</span>_<span class="op">]]</span> <span class="op">{</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> map<span class="op">[</span>A<span class="op">,</span> B<span class="op">](</span>fa<span class="op">:</span> F<span class="op">[</span>A<span class="op">])(</span>f<span class="op">:</span> A <span class="op">=&gt;</span> B<span class="op">):</span> F<span class="op">[</span>B<span class="op">]</span></span>
@@ -540,8 +660,8 @@ Note
 </div>
 </div>
 </section>
-<section id="cats.monad" class="level3">
-<h3 class="anchored" data-anchor-id="cats.monad">cats.Monad</h3>
+<section id="cats.monad" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="cats.monad"><span class="header-section-number">5.2.2</span> cats.Monad</h3>
 <p>From <a href="https://james-iry.blogspot.com/2009/05/brief-incomplete-and-mostly-wrong.html">A Brief, Incomplete, and Mostly Wrong History of Programming Languages</a> <em>“a monad is a monoid in the category of endofunctors, what’s the problem?”</em></p>
 <p>La classe de type <a href="https://typelevel.org/cats/typeclasses/monad.html">Monad</a> a des “pouvoirs” en plus par rapport à <code>Functor</code> : elle permet d’aplatir (<code>flatten</code>) des structures, et de construire (<code>pure</code>) une structure à partir d’une valeur. Comme elle dérive de <code>Functor</code>, elle implémente également <code>flatMap</code>, qui est une combinaison de <code>map</code> et <code>flatten</code>.</p>
 <p>Une définition simplifiée de la classe de type <code>Monad</code> ressemblerait à ceci :</p>

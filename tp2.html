@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mikaël Valot">
 
-<title>TP2 - Calculateur d’Impôt sur le Revenu</title>
+<title>TP2 - Calculateur d’Impôt sur le Revenu – ALTN73 Programmation fonctionnelle avec Scala</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -62,25 +63,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./figures/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-35673c1328022ec05f8a1bab69fe76b7.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -112,18 +115,141 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tp1.html">TPs</a></li><li class="breadcrumb-item"><a href="./tp2.html">TP2 - Calculateur d’Impôt sur le Revenu</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ALTN73 Programmation Fonctionnelle avec Scala</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Cours</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM1 - Introduction à la programmation fonctionnelle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM2 - Introduction à Scala</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">TPs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TD1 - Calcul Lambda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">TP2 - Calculateur d’Impôt sur le Revenu</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#objectifs-pédagogiques" id="toc-objectifs-pédagogiques" class="nav-link" data-scroll-target="#objectifs-pédagogiques"><span class="header-section-number">1.1</span> Objectifs pédagogiques</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">1.2</span> Installation</a></li>
+  <li><a href="#contexte" id="toc-contexte" class="nav-link" data-scroll-target="#contexte"><span class="header-section-number">1.3</span> Contexte</a></li>
+  </ul></li>
+  <li><a href="#modélisation-de-base-des-foyers-fiscaux" id="toc-modélisation-de-base-des-foyers-fiscaux" class="nav-link" data-scroll-target="#modélisation-de-base-des-foyers-fiscaux"><span class="header-section-number">2</span> Modélisation de base des foyers fiscaux</a>
+  <ul class="collapse">
+  <li><a href="#trait-de-base" id="toc-trait-de-base" class="nav-link" data-scroll-target="#trait-de-base"><span class="header-section-number">2.1</span> Trait de base</a></li>
+  <li><a href="#première-implémentation-célibataire" id="toc-première-implémentation-célibataire" class="nav-link" data-scroll-target="#première-implémentation-célibataire"><span class="header-section-number">2.2</span> Première implémentation : Célibataire</a></li>
+  <li><a href="#test-de-la-partie-1" id="toc-test-de-la-partie-1" class="nav-link" data-scroll-target="#test-de-la-partie-1"><span class="header-section-number">2.3</span> Test de la Partie 1</a></li>
+  </ul></li>
+  <li><a href="#trait-pour-les-calculs-dimpôt-avec-mixin" id="toc-trait-pour-les-calculs-dimpôt-avec-mixin" class="nav-link" data-scroll-target="#trait-pour-les-calculs-dimpôt-avec-mixin"><span class="header-section-number">3</span> Trait pour les calculs d’impôt avec mixin</a>
+  <ul class="collapse">
+  <li><a href="#trait-calculateurimpot" id="toc-trait-calculateurimpot" class="nav-link" data-scroll-target="#trait-calculateurimpot"><span class="header-section-number">3.1</span> Trait CalculateurImpot</a></li>
+  <li><a href="#mixin-avec-célibataire" id="toc-mixin-avec-célibataire" class="nav-link" data-scroll-target="#mixin-avec-célibataire"><span class="header-section-number">3.2</span> Mixin avec Célibataire</a></li>
+  <li><a href="#test" id="toc-test" class="nav-link" data-scroll-target="#test"><span class="header-section-number">3.3</span> Test</a></li>
+  </ul></li>
+  <li><a href="#pattern-matching-et-barème-progressif" id="toc-pattern-matching-et-barème-progressif" class="nav-link" data-scroll-target="#pattern-matching-et-barème-progressif"><span class="header-section-number">4</span> Pattern matching et barème progressif</a>
+  <ul class="collapse">
+  <li><a href="#barème-progressif-dans-le-trait" id="toc-barème-progressif-dans-le-trait" class="nav-link" data-scroll-target="#barème-progressif-dans-le-trait"><span class="header-section-number">4.1</span> Barème progressif dans le trait</a></li>
+  <li><a href="#test-1" id="toc-test-1" class="nav-link" data-scroll-target="#test-1"><span class="header-section-number">4.2</span> Test</a></li>
+  </ul></li>
+  <li><a href="#autres-types-de-foyers-fiscaux" id="toc-autres-types-de-foyers-fiscaux" class="nav-link" data-scroll-target="#autres-types-de-foyers-fiscaux"><span class="header-section-number">5</span> Autres types de foyers fiscaux</a>
+  <ul class="collapse">
+  <li><a href="#foyer-couple" id="toc-foyer-couple" class="nav-link" data-scroll-target="#foyer-couple"><span class="header-section-number">5.1</span> Foyer Couple</a></li>
+  <li><a href="#foyer-avec-enfants" id="toc-foyer-avec-enfants" class="nav-link" data-scroll-target="#foyer-avec-enfants"><span class="header-section-number">5.2</span> Foyer avec enfants</a></li>
+  <li><a href="#test-2" id="toc-test-2" class="nav-link" data-scroll-target="#test-2"><span class="header-section-number">5.3</span> Test</a></li>
+  </ul></li>
+  <li><a href="#refactoring-corriger-les-structures-de-données" id="toc-refactoring-corriger-les-structures-de-données" class="nav-link" data-scroll-target="#refactoring-corriger-les-structures-de-données"><span class="header-section-number">6</span> Refactoring : corriger les structures de données</a></li>
+  <li><a href="#refactoring-calculateurimpot" id="toc-refactoring-calculateurimpot" class="nav-link" data-scroll-target="#refactoring-calculateurimpot"><span class="header-section-number">7</span> Refactoring : CalculateurImpot</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tp1.html">TPs</a></li><li class="breadcrumb-item"><a href="./tp2.html">TP2 - Calculateur d’Impôt sur le Revenu</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">TP2 - Calculateur d’Impôt sur le Revenu</h1>
 </div>
@@ -132,6 +258,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mikaël Valot </p>
+          </div>
+  </div>
     
   
     
@@ -142,10 +274,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
-<section id="objectifs-pédagogiques" class="level2">
-<h2 class="anchored" data-anchor-id="objectifs-pédagogiques">Objectifs pédagogiques</h2>
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<section id="objectifs-pédagogiques" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="objectifs-pédagogiques"><span class="header-section-number">1.1</span> Objectifs pédagogiques</h2>
 <p>Cet exercice vous permettra de découvrir et pratiquer les concepts fondamentaux de Scala :</p>
 <ul>
 <li>Types de base (Int, Double, String)</li>
@@ -155,8 +287,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Pattern matching</li>
 </ul>
 </section>
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<section id="installation" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="installation"><span class="header-section-number">1.2</span> Installation</h2>
 <ul>
 <li>Installez IntelliJ Idea (dernière version)</li>
 <li>Installez le plugin Scala</li>
@@ -165,37 +297,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Ouvrez le projet dans IntelliJ</li>
 </ul>
 </section>
-<section id="contexte" class="level2">
-<h2 class="anchored" data-anchor-id="contexte">Contexte</h2>
+<section id="contexte" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="contexte"><span class="header-section-number">1.3</span> Contexte</h2>
 <p>Vous allez développer un calculateur d’impôt sur le revenu en modélisant les foyers fiscaux. Un foyer fiscal est l’entité qui déclare et paie l’impôt (célibataire, couple, famille, etc.).</p>
 </section>
 </section>
-<section id="modélisation-de-base-des-foyers-fiscaux" class="level1">
-<h1>Modélisation de base des foyers fiscaux</h1>
-<section id="trait-de-base" class="level2">
-<h2 class="anchored" data-anchor-id="trait-de-base">Trait de base</h2>
+<section id="modélisation-de-base-des-foyers-fiscaux" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Modélisation de base des foyers fiscaux</h1>
+<section id="trait-de-base" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="trait-de-base"><span class="header-section-number">2.1</span> Trait de base</h2>
 <p>Créez le <code>trait</code> de base pour tous les foyers fiscaux.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">sealed</span> <span class="kw">trait</span> FoyerFiscal <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> revenuTotal<span class="op">:</span> <span class="ex">Double</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> nombreParts<span class="op">:</span> <span class="ex">Double</span>  <span class="co">// Pour le quotient familial</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="première-implémentation-célibataire" class="level2">
-<h2 class="anchored" data-anchor-id="première-implémentation-célibataire">Première implémentation : Célibataire</h2>
+<section id="première-implémentation-célibataire" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="première-implémentation-célibataire"><span class="header-section-number">2.2</span> Première implémentation : Célibataire</h2>
 <p>Créez une case class pour un foyer célibataire. Elle doit contenir son <code>nom</code>, son <code>revenu</code>, et doit hériter de <code>FoyerFiscal</code>.</p>
 </section>
-<section id="test-de-la-partie-1" class="level2">
-<h2 class="anchored" data-anchor-id="test-de-la-partie-1">Test de la Partie 1</h2>
+<section id="test-de-la-partie-1" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="test-de-la-partie-1"><span class="header-section-number">2.3</span> Test de la Partie 1</h2>
 <p>Ajoutez ce code dans un <code>object</code> contenant une méthode annotée <code>@main</code>, et exécutez-le.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> pierre <span class="op">=</span> <span class="fu">Celibataire</span><span class="op">(</span><span class="st">"Pierre Dupont"</span><span class="op">,</span> <span class="fl">35000.0</span><span class="op">)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span><span class="ss">s"${</span>pierre<span class="op">.</span>nom<span class="ss">}</span><span class="st">: </span><span class="ss">${</span>pierre<span class="op">.</span>revenuTotal<span class="ss">}</span><span class="st">€, </span><span class="ss">${</span>pierre<span class="op">.</span>nombreParts<span class="ss">}</span><span class="st"> parts</span><span class="ss">"</span><span class="op">)</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Sortie attendue: Pierre Dupont: 35000.0€, 1.0 parts</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="trait-pour-les-calculs-dimpôt-avec-mixin" class="level1">
-<h1>Trait pour les calculs d’impôt avec mixin</h1>
-<section id="trait-calculateurimpot" class="level2">
-<h2 class="anchored" data-anchor-id="trait-calculateurimpot">Trait CalculateurImpot</h2>
+<section id="trait-pour-les-calculs-dimpôt-avec-mixin" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Trait pour les calculs d’impôt avec mixin</h1>
+<section id="trait-calculateurimpot" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="trait-calculateurimpot"><span class="header-section-number">3.1</span> Trait CalculateurImpot</h2>
 <p>Créez un trait qui définit les calculs d’impôt. Ce trait nécessite l’accès au revenu et au nombre de parts :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> CalculateurImpot <span class="op">{</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Méthodes abstraites que les classes doivent fournir</span></span>
@@ -212,12 +344,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="mixin-avec-célibataire" class="level2">
-<h2 class="anchored" data-anchor-id="mixin-avec-célibataire">Mixin avec Célibataire</h2>
+<section id="mixin-avec-célibataire" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="mixin-avec-célibataire"><span class="header-section-number">3.2</span> Mixin avec Célibataire</h2>
 <p>Modifiez votre classe <code>Celibataire</code> pour qu’elle utilise aussi le trait <code>CalculateurImpot</code>.</p>
 </section>
-<section id="test" class="level2">
-<h2 class="anchored" data-anchor-id="test">Test</h2>
+<section id="test" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="test"><span class="header-section-number">3.3</span> Test</h2>
 <p>Ajoutez une méthode de test contenant le code suivant :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> marie <span class="op">=</span> <span class="fu">Celibataire</span><span class="op">(</span><span class="st">"Marie Martin"</span><span class="op">,</span> <span class="fl">40000.0</span><span class="op">)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span><span class="ss">f"${</span>marie<span class="op">.</span>nom<span class="ss">}</span><span class="st">:</span><span class="ss">"</span><span class="op">)</span></span>
@@ -231,10 +363,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">//   Taux effectif: 15.00%</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="pattern-matching-et-barème-progressif" class="level1">
-<h1>Pattern matching et barème progressif</h1>
-<section id="barème-progressif-dans-le-trait" class="level2">
-<h2 class="anchored" data-anchor-id="barème-progressif-dans-le-trait">Barème progressif dans le trait</h2>
+<section id="pattern-matching-et-barème-progressif" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Pattern matching et barème progressif</h1>
+<section id="barème-progressif-dans-le-trait" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="barème-progressif-dans-le-trait"><span class="header-section-number">4.1</span> Barème progressif dans le trait</h2>
 <p>Ajoutez une méthode <code>calculerImpotProgressif()</code> à votre trait <code>CalculateurImpot</code>. Utilisez le <strong>pattern matching</strong> pour effectuer le calcul. Vous pouvez utiliser ce site pour comprendre le calcul : (Simulateur Impot)[https://www.boursorama.com/impots/simulateurs/impot-revenu]</p>
 <p><strong>Barème français simplifié :</strong></p>
 <ul>
@@ -254,8 +386,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">calculerImpotProgressif</span><span class="op">():</span> <span class="ex">Double</span> <span class="op">=</span> <span class="op">???</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="test-1" class="level2">
-<h2 class="anchored" data-anchor-id="test-1">Test</h2>
+<section id="test-1" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="test-1"><span class="header-section-number">4.2</span> Test</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> testeurs <span class="op">=</span> <span class="ex">List</span><span class="op">(</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Celibataire</span><span class="op">(</span><span class="st">"Paul"</span><span class="op">,</span> <span class="fl">8000.0</span><span class="op">),</span>    <span class="co">// Exonéré</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Celibataire</span><span class="op">(</span><span class="st">"Sophie"</span><span class="op">,</span> <span class="fl">20000.0</span><span class="op">),</span> <span class="co">// Tranche 11%</span></span>
@@ -278,14 +410,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="autres-types-de-foyers-fiscaux" class="level1">
-<h1>Autres types de foyers fiscaux</h1>
-<section id="foyer-couple" class="level2">
-<h2 class="anchored" data-anchor-id="foyer-couple">Foyer Couple</h2>
+<section id="autres-types-de-foyers-fiscaux" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Autres types de foyers fiscaux</h1>
+<section id="foyer-couple" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="foyer-couple"><span class="header-section-number">5.1</span> Foyer Couple</h2>
 <p>Créez une case class pour un couple. Elle doit posséder les deux noms et deux revenus, et hériter de <code>FoyerFiscal</code> ainsi que de <code>CalculateurImpot</code>. Un couple possède 2 parts fiscales.</p>
 </section>
-<section id="foyer-avec-enfants" class="level2">
-<h2 class="anchored" data-anchor-id="foyer-avec-enfants">Foyer avec enfants</h2>
+<section id="foyer-avec-enfants" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="foyer-avec-enfants"><span class="header-section-number">5.2</span> Foyer avec enfants</h2>
 <p>Créez une case class <code>FoyerAvecEnfants</code>. Elle doit posséder un attribut <code>foyerParent</code> et un attribut <code>nombreEnfants</code>.</p>
 <ul>
 <li>Les deux premiers enfants comptent pour une 1/2 part chacun.</li>
@@ -293,8 +425,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Un parent célibataire a une 1/2 part supplémentaire.</li>
 </ul>
 </section>
-<section id="test-2" class="level2">
-<h2 class="anchored" data-anchor-id="test-2">Test</h2>
+<section id="test-2" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="test-2"><span class="header-section-number">5.3</span> Test</h2>
 <p>Ajoutez une méthode de test contenant le code suivant :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> celibataireSeul <span class="op">=</span> <span class="fu">Celibataire</span><span class="op">(</span><span class="st">"Alice"</span><span class="op">,</span> <span class="fl">45000.0</span><span class="op">)</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> couple <span class="op">=</span> <span class="fu">Couple</span><span class="op">(</span><span class="st">"Bob"</span><span class="op">,</span> <span class="st">"Emma"</span><span class="op">,</span> <span class="fl">25000.0</span><span class="op">,</span> <span class="fl">20000.0</span><span class="op">)</span></span>
@@ -321,15 +453,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="refactoring-corriger-les-structures-de-données" class="level1">
-<h1>Refactoring : corriger les structures de données</h1>
+<section id="refactoring-corriger-les-structures-de-données" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Refactoring : corriger les structures de données</h1>
 <p>Avec notre structure de données, il est possible de construire ceci :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> celib <span class="op">=</span> <span class="fu">Celibataire</span><span class="op">(</span><span class="st">"Alice"</span><span class="op">,</span> <span class="fl">45000.0</span><span class="op">)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> foyerEtrange <span class="op">=</span> <span class="fu">FoyerAvecEnfants</span><span class="op">(</span><span class="fu">FoyerAvecEnfants</span><span class="op">(</span>celib<span class="op">,</span> <span class="dv">2</span><span class="op">),</span> <span class="dv">3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Corrigez les classes pour que cela devienne impossible.</p>
 </section>
-<section id="refactoring-calculateurimpot" class="level1">
-<h1>Refactoring : CalculateurImpot</h1>
+<section id="refactoring-calculateurimpot" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Refactoring : CalculateurImpot</h1>
 <p>Faîtes un commit de votre projet. Changez <code>CalculateurImpot</code> en <code>object</code>, et corrigez les classes, méthodes et tests.</p>
 <p>Comparez les deux implémentations. Quels sont les avantages et inconvénients de chacune ?</p>
 <!-- session 1 : seulement 15mn sur ce TP, à continuer -->

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mikaël Valot">
 
-<title>CM3 - Collections, Fonctions, Boucles</title>
+<title>CM3 - Collections, Fonctions, Boucles – ALTN73 Programmation fonctionnelle avec Scala</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -62,25 +63,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./figures/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-35673c1328022ec05f8a1bab69fe76b7.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -115,14 +118,131 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">CM3 - Collections, Fonctions, Boucles</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ALTN73 Programmation Fonctionnelle avec Scala</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Cours</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM1 - Introduction à la programmation fonctionnelle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM2 - Introduction à Scala</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">TPs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TD1 - Calcul Lambda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP2 - Calculateur d’Impôt sur le Revenu</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#références" id="toc-références" class="nav-link active" data-scroll-target="#références"><span class="header-section-number">1</span> Références</a></li>
+  <li><a href="#récursion" id="toc-récursion" class="nav-link" data-scroll-target="#récursion"><span class="header-section-number">2</span> Récursion</a>
+  <ul class="collapse">
+  <li><a href="#récursion-stack-unsafe" id="toc-récursion-stack-unsafe" class="nav-link" data-scroll-target="#récursion-stack-unsafe"><span class="header-section-number">2.1</span> Récursion stack-unsafe</a></li>
+  <li><a href="#récursion-stack-safe" id="toc-récursion-stack-safe" class="nav-link" data-scroll-target="#récursion-stack-safe"><span class="header-section-number">2.2</span> Récursion stack-safe</a></li>
+  </ul></li>
+  <li><a href="#collections" id="toc-collections" class="nav-link" data-scroll-target="#collections"><span class="header-section-number">3</span> Collections</a>
+  <ul class="collapse">
+  <li><a href="#collections-mutable" id="toc-collections-mutable" class="nav-link" data-scroll-target="#collections-mutable"><span class="header-section-number">3.1</span> Collections Mutable</a></li>
+  <li><a href="#collections-immuable" id="toc-collections-immuable" class="nav-link" data-scroll-target="#collections-immuable"><span class="header-section-number">3.2</span> Collections Immuable</a></li>
+  <li><a href="#séquences-immuables---implémentations" id="toc-séquences-immuables---implémentations" class="nav-link" data-scroll-target="#séquences-immuables---implémentations"><span class="header-section-number">3.3</span> Séquences Immuables - implémentations</a></li>
+  <li><a href="#sets-immuables---implémentations" id="toc-sets-immuables---implémentations" class="nav-link" data-scroll-target="#sets-immuables---implémentations"><span class="header-section-number">3.4</span> Sets immuables - implémentations</a></li>
+  <li><a href="#dictionnaires-immuables---implémentations" id="toc-dictionnaires-immuables---implémentations" class="nav-link" data-scroll-target="#dictionnaires-immuables---implémentations"><span class="header-section-number">3.5</span> Dictionnaires immuables - implémentations</a></li>
+  <li><a href="#performance" id="toc-performance" class="nav-link" data-scroll-target="#performance"><span class="header-section-number">3.6</span> Performance</a></li>
+  <li><a href="#collections---opérations" id="toc-collections---opérations" class="nav-link" data-scroll-target="#collections---opérations"><span class="header-section-number">3.7</span> Collections - opérations</a></li>
+  <li><a href="#collections---higher-order-functions" id="toc-collections---higher-order-functions" class="nav-link" data-scroll-target="#collections---higher-order-functions"><span class="header-section-number">3.8</span> Collections - higher order functions</a></li>
+  </ul></li>
+  <li><a href="#boucles" id="toc-boucles" class="nav-link" data-scroll-target="#boucles"><span class="header-section-number">4</span> Boucles</a>
+  <ul class="collapse">
+  <li><a href="#foreach" id="toc-foreach" class="nav-link" data-scroll-target="#foreach"><span class="header-section-number">4.1</span> foreach</a></li>
+  <li><a href="#foreach---générateurs" id="toc-foreach---générateurs" class="nav-link" data-scroll-target="#foreach---générateurs"><span class="header-section-number">4.2</span> foreach - générateurs</a></li>
+  <li><a href="#for-yield" id="toc-for-yield" class="nav-link" data-scroll-target="#for-yield"><span class="header-section-number">4.3</span> for-yield</a></li>
+  <li><a href="#for-yield-avec-if" id="toc-for-yield-avec-if" class="nav-link" data-scroll-target="#for-yield-avec-if"><span class="header-section-number">4.4</span> for-yield avec if</a></li>
+  <li><a href="#while" id="toc-while" class="nav-link" data-scroll-target="#while"><span class="header-section-number">4.5</span> while</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -135,6 +255,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mikaël Valot </p>
+          </div>
+  </div>
     
   
     
@@ -152,21 +278,21 @@ https://github.com/EFREI-BDX/altn73-tp2-tp3-Hugo-Leyx-valade/pull/1/files#r24052
 (pourquoi anglais ? Union type ?)
 https://github.com/EFREI-BDX/altn73-tp2-tp3-rlrrrrr/pull/1/files#diff-e1b1bb930bd1ed73e068979917c646756625b95e416ddaea6ca961f5e3cb85a5
 -->
-<section id="références" class="level1">
-<h1>Références</h1>
+<section id="références" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Références</h1>
 <ul>
 <li><a href="https://docs.scala-lang.org/overviews/collections-2.13/introduction.html">Scala collections</a></li>
 </ul>
 </section>
-<section id="récursion" class="level1">
-<h1>Récursion</h1>
+<section id="récursion" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Récursion</h1>
 <ul>
 <li>En langage purement fonctionnel, on ne peut pas modifier une variable : tout est immutable.</li>
 <li>Comment peut-on écrire une boucle avec une variable <code>i</code> qui change à chaque itération ?</li>
 <li>Utiliser la récursion !</li>
 </ul>
-<section id="récursion-stack-unsafe" class="level2">
-<h2 class="anchored" data-anchor-id="récursion-stack-unsafe">Récursion stack-unsafe</h2>
+<section id="récursion-stack-unsafe" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="récursion-stack-unsafe"><span class="header-section-number">2.1</span> Récursion stack-unsafe</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">somme</span><span class="op">(</span>n<span class="op">:</span> <span class="bu">Int</span><span class="op">):</span> <span class="bu">Int</span> <span class="op">=</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">0</span> then</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span></span>
@@ -178,8 +304,8 @@ https://github.com/EFREI-BDX/altn73-tp2-tp3-rlrrrrr/pull/1/files#diff-e1b1bb930b
 <li><code>somme(100000)</code> =&gt; <strong>StackOverFlowError</strong></li>
 </ul>
 </section>
-<section id="récursion-stack-safe" class="level2">
-<h2 class="anchored" data-anchor-id="récursion-stack-safe">Récursion stack-safe</h2>
+<section id="récursion-stack-safe" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="récursion-stack-safe"><span class="header-section-number">2.2</span> Récursion stack-safe</h2>
 <ul>
 <li>Lorsque l’appel récursif est le <strong>dernier</strong> appel de la fonction, le compilateur peut transformer l’appel en une boucle itérative.</li>
 <li>l’appel est en dit en <strong>“tail position”</strong></li>
@@ -219,8 +345,8 @@ https://github.com/EFREI-BDX/altn73-tp2-tp3-rlrrrrr/pull/1/files#diff-e1b1bb930b
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  acc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="collections" class="level1">
-<h1>Collections</h1>
+<section id="collections" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Collections</h1>
 <ul>
 <li>package <code>scala.collection</code></li>
 <li>Interfaces les plus utilisées :
@@ -231,8 +357,8 @@ https://github.com/EFREI-BDX/altn73-tp2-tp3-rlrrrrr/pull/1/files#diff-e1b1bb930b
 </ul></li>
 <li>Elles prennent un ou 2 paramètre(s) de type <code>[T]</code> (voir CM4)</li>
 </ul>
-<section id="collections-mutable" class="level2">
-<h2 class="anchored" data-anchor-id="collections-mutable">Collections Mutable</h2>
+<section id="collections-mutable" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="collections-mutable"><span class="header-section-number">3.1</span> Collections Mutable</h2>
 <ul>
 <li>package <code>scala.collection.mutable</code></li>
 <li>On privilégie le style fonctionnel
@@ -252,8 +378,8 @@ https://github.com/EFREI-BDX/altn73-tp2-tp3-rlrrrrr/pull/1/files#diff-e1b1bb930b
 <li><code>mutable.HashMap[K, V]</code> se comporte comme une <code>HashMap</code> en Java</li>
 </ul>
 </section>
-<section id="collections-immuable" class="level2">
-<h2 class="anchored" data-anchor-id="collections-immuable">Collections Immuable</h2>
+<section id="collections-immuable" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="collections-immuable"><span class="header-section-number">3.2</span> Collections Immuable</h2>
 <ul>
 <li>package <code>scala.collection.immutable</code></li>
 <li>Importées par défaut si on n’importe pas les collections mutables.</li>
@@ -265,8 +391,8 @@ https://github.com/EFREI-BDX/altn73-tp2-tp3-rlrrrrr/pull/1/files#diff-e1b1bb930b
 <li>les implémentations sont efficaces et ne dupliquent pas complètement les données</li>
 </ul>
 </section>
-<section id="séquences-immuables---implémentations" class="level2">
-<h2 class="anchored" data-anchor-id="séquences-immuables---implémentations">Séquences Immuables - implémentations</h2>
+<section id="séquences-immuables---implémentations" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="séquences-immuables---implémentations"><span class="header-section-number">3.3</span> Séquences Immuables - implémentations</h2>
 <ul>
 <li><code>List</code> est une liste chaînée.</li>
 <li>par défaut, lorsqu’on construit une <code>Seq</code>, on a une <code>List</code></li>
@@ -324,8 +450,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="sets-immuables---implémentations" class="level2">
-<h2 class="anchored" data-anchor-id="sets-immuables---implémentations">Sets immuables - implémentations</h2>
+<section id="sets-immuables---implémentations" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="sets-immuables---implémentations"><span class="header-section-number">3.4</span> Sets immuables - implémentations</h2>
 <ul>
 <li><code>Set(1, 2, 3)</code> =&gt; utilise <code>HashSet</code> par défaut</li>
 <li><code>TreeSet</code> pour conserver un ordre</li>
@@ -357,8 +483,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="dictionnaires-immuables---implémentations" class="level2">
-<h2 class="anchored" data-anchor-id="dictionnaires-immuables---implémentations">Dictionnaires immuables - implémentations</h2>
+<section id="dictionnaires-immuables---implémentations" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="dictionnaires-immuables---implémentations"><span class="header-section-number">3.5</span> Dictionnaires immuables - implémentations</h2>
 <ul>
 <li><code>Map</code> =&gt; utilise <code>HashMap</code> par défaut (sauf pour moins de 5 clés)</li>
 <li><code>ListMap</code> conserve l’ordre d’insertion</li>
@@ -397,11 +523,11 @@ Tip
 </div>
 </div>
 </section>
-<section id="performance" class="level2">
-<h2 class="anchored" data-anchor-id="performance">Performance</h2>
+<section id="performance" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="performance"><span class="header-section-number">3.6</span> Performance</h2>
 <p><a href="https://docs.scala-lang.org/overviews/collections-2.13/performance-characteristics.html">Scala Collections Performance Characteristics</a></p>
-<section id="séquences-immuables" class="level3">
-<h3 class="anchored" data-anchor-id="séquences-immuables">Séquences Immuables</h3>
+<section id="séquences-immuables" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="séquences-immuables"><span class="header-section-number">3.6.1</span> Séquences Immuables</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 18%">
@@ -444,8 +570,8 @@ Tip
 </tbody>
 </table>
 </section>
-<section id="séquences-mutables" class="level3">
-<h3 class="anchored" data-anchor-id="séquences-mutables">Séquences Mutables</h3>
+<section id="séquences-mutables" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="séquences-mutables"><span class="header-section-number">3.6.2</span> Séquences Mutables</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -488,8 +614,8 @@ Tip
 </tbody>
 </table>
 </section>
-<section id="sets-et-maps-immuables" class="level3">
-<h3 class="anchored" data-anchor-id="sets-et-maps-immuables">Sets et Maps (Immuables)</h3>
+<section id="sets-et-maps-immuables" class="level3" data-number="3.6.3">
+<h3 data-number="3.6.3" class="anchored" data-anchor-id="sets-et-maps-immuables"><span class="header-section-number">3.6.3</span> Sets et Maps (Immuables)</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -521,8 +647,8 @@ Tip
 </tbody>
 </table>
 </section>
-<section id="sets-et-maps-mutables" class="level3">
-<h3 class="anchored" data-anchor-id="sets-et-maps-mutables">Sets et Maps (Mutables)</h3>
+<section id="sets-et-maps-mutables" class="level3" data-number="3.6.4">
+<h3 data-number="3.6.4" class="anchored" data-anchor-id="sets-et-maps-mutables"><span class="header-section-number">3.6.4</span> Sets et Maps (Mutables)</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -548,8 +674,8 @@ Tip
 </tbody>
 </table>
 </section>
-<section id="légende" class="level3">
-<h3 class="anchored" data-anchor-id="légende">Légende</h3>
+<section id="légende" class="level3" data-number="3.6.5">
+<h3 data-number="3.6.5" class="anchored" data-anchor-id="légende"><span class="header-section-number">3.6.5</span> Légende</h3>
 <ul>
 <li><strong>O(1)</strong> = Temps constant</li>
 <li><strong>O(1)<sup>eff</sup></strong> = Temps effectivement constant (comme le log<sub>32</sub> n de Vector)</li>
@@ -559,8 +685,8 @@ Tip
 <li><strong>-</strong> = Opération non supportée</li>
 </ul>
 </section>
-<section id="guide-de-décision-rapide" class="level3">
-<h3 class="anchored" data-anchor-id="guide-de-décision-rapide">Guide de décision rapide</h3>
+<section id="guide-de-décision-rapide" class="level3" data-number="3.6.6">
+<h3 data-number="3.6.6" class="anchored" data-anchor-id="guide-de-décision-rapide"><span class="header-section-number">3.6.6</span> Guide de décision rapide</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -580,10 +706,10 @@ Tip
 </div>
 </section>
 </section>
-<section id="collections---opérations" class="level2">
-<h2 class="anchored" data-anchor-id="collections---opérations">Collections - opérations</h2>
-<section id="création-et-ajout" class="level3">
-<h3 class="anchored" data-anchor-id="création-et-ajout">Création et Ajout</h3>
+<section id="collections---opérations" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="collections---opérations"><span class="header-section-number">3.7</span> Collections - opérations</h2>
+<section id="création-et-ajout" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="création-et-ajout"><span class="header-section-number">3.7.1</span> Création et Ajout</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> seq <span class="op">=</span> <span class="bu">Seq</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">)</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> seq2 <span class="op">=</span> seq <span class="op">:+</span> <span class="dv">4</span> <span class="co">// seq.appended(4) =&gt; Seq(1, 2, 3, 4)</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> seq3 <span class="op">=</span> <span class="dv">0</span> <span class="op">+:</span> seq <span class="co">// seq.prepended(0) =&gt; Seq(0, 1, 2, 3, 4)</span></span>
@@ -599,8 +725,8 @@ Tip
 </ul></li>
 </ul>
 </section>
-<section id="suppression" class="level3">
-<h3 class="anchored" data-anchor-id="suppression">Suppression</h3>
+<section id="suppression" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="suppression"><span class="header-section-number">3.7.2</span> Suppression</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> seq <span class="op">=</span> <span class="bu">Seq</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>seq<span class="op">.</span>tail <span class="co">// Seq(2, 3)</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -613,8 +739,8 @@ Tip
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>seq<span class="op">.</span><span class="fu">take</span><span class="op">(</span><span class="dv">2</span><span class="op">)</span> <span class="co">// Seq(1, 2)</span></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>seq<span class="op">.</span><span class="fu">drop</span><span class="op">(</span><span class="dv">2</span><span class="op">)</span> <span class="co">// Seq(3)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="accès" class="level3">
-<h3 class="anchored" data-anchor-id="accès">Accès</h3>
+<section id="accès" class="level3" data-number="3.7.3">
+<h3 data-number="3.7.3" class="anchored" data-anchor-id="accès"><span class="header-section-number">3.7.3</span> Accès</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> seq <span class="op">=</span> <span class="bu">Seq</span><span class="op">(</span><span class="st">"début"</span><span class="op">,</span> <span class="st">"milieu"</span><span class="op">,</span> <span class="st">"fin"</span><span class="op">)</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>seq<span class="op">.</span>head <span class="co">// "début"</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>seq<span class="op">.</span>last <span class="co">// "fin"</span></span>
@@ -630,18 +756,18 @@ Tip
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>myMap<span class="op">.</span><span class="fu">get</span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span> <span class="co">// Option[Int] = Some(65)</span></span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>myMap<span class="op">.</span><span class="fu">get</span><span class="op">(</span><span class="st">"d"</span><span class="op">)</span> <span class="co">// Option[Int] = None</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="comparaison" class="level3">
-<h3 class="anchored" data-anchor-id="comparaison">Comparaison</h3>
+<section id="comparaison" class="level3" data-number="3.7.4">
+<h3 data-number="3.7.4" class="anchored" data-anchor-id="comparaison"><span class="header-section-number">3.7.4</span> Comparaison</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Seq</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">)</span> <span class="op">==</span> <span class="bu">Seq</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">)</span> <span class="op">:+</span> <span class="dv">3</span>    <span class="co">// true</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">// same category</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Vector</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">)</span> <span class="op">==</span> <span class="ex">List</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">)</span> <span class="co">// true</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Set</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">)</span> <span class="op">==</span> <span class="ex">List</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">)</span>    <span class="co">// false, compiler warning</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="collections---higher-order-functions" class="level2">
-<h2 class="anchored" data-anchor-id="collections---higher-order-functions">Collections - higher order functions</h2>
-<section id="function-as-value" class="level3">
-<h3 class="anchored" data-anchor-id="function-as-value">Function as value</h3>
+<section id="collections---higher-order-functions" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="collections---higher-order-functions"><span class="header-section-number">3.8</span> Collections - higher order functions</h2>
+<section id="function-as-value" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="function-as-value"><span class="header-section-number">3.8.1</span> Function as value</h3>
 <ul>
 <li>!! Le mot-clé <code>def</code> définit une <strong>méthode</strong></li>
 <li>Une <strong>fonction</strong> est une valeur qui peut être affectée à une variable, ou passée en paramètre.</li>
@@ -682,8 +808,8 @@ Tip
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> addY <span class="op">=</span> <span class="fu">addXYCurry</span><span class="op">(</span><span class="dv">2</span><span class="op">)</span> <span class="co">// val addY: Int =&gt; Int </span></span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="fu">addY</span><span class="op">(</span><span class="dv">3</span><span class="op">)</span> <span class="co">// 5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="transformation" class="level3">
-<h3 class="anchored" data-anchor-id="transformation">Transformation</h3>
+<section id="transformation" class="level3" data-number="3.8.2">
+<h3 data-number="3.8.2" class="anchored" data-anchor-id="transformation"><span class="header-section-number">3.8.2</span> Transformation</h3>
 <p>Transformation de <code>Seq</code> ou <code>Set</code> :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> seq <span class="op">=</span> <span class="bu">Seq</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">)</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>seq<span class="op">.</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=&gt;</span> x <span class="op">*</span> <span class="dv">2</span><span class="op">)</span> <span class="co">// List(2, 4, 6)</span></span>
@@ -712,16 +838,16 @@ Tip
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">// transforme les clés et les valeurs</span></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>m<span class="op">.</span><span class="fu">map</span><span class="op">((</span>k<span class="op">,</span> v<span class="op">)</span> <span class="op">=&gt;</span> k <span class="op">+</span> k <span class="op">-&gt;</span> v <span class="op">*</span> <span class="dv">2</span><span class="op">)</span> <span class="co">// Map(aa -&gt; 2, bb -&gt; 4, cc -&gt; 6)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="réduction" class="level3">
-<h3 class="anchored" data-anchor-id="réduction">Réduction</h3>
+<section id="réduction" class="level3" data-number="3.8.3">
+<h3 data-number="3.8.3" class="anchored" data-anchor-id="réduction"><span class="header-section-number">3.8.3</span> Réduction</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> sum <span class="op">=</span> seq<span class="op">.</span><span class="fu">reduce</span><span class="op">(</span>_ <span class="op">+</span> _<span class="op">)</span> <span class="co">// !! exception si collection vide</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> product <span class="op">=</span> seq<span class="op">.</span><span class="fu">foldLeft</span><span class="op">(</span><span class="dv">1</span><span class="op">)(</span>_ <span class="op">*</span> _<span class="op">)</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> words <span class="op">=</span> <span class="bu">Seq</span><span class="op">(</span><span class="st">"Hello"</span><span class="op">,</span> <span class="st">"Scala"</span><span class="op">,</span> <span class="st">"World"</span><span class="op">)</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>words<span class="op">.</span><span class="fu">foldLeft</span><span class="op">(</span><span class="st">""</span><span class="op">)((</span>acc<span class="op">,</span> word<span class="op">)</span> <span class="op">=&gt;</span> acc <span class="op">+</span> <span class="st">", "</span> <span class="op">+</span> word<span class="op">)</span> <span class="co">// ", Hello, Scala, World"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="tri" class="level3">
-<h3 class="anchored" data-anchor-id="tri">Tri</h3>
+<section id="tri" class="level3" data-number="3.8.4">
+<h3 data-number="3.8.4" class="anchored" data-anchor-id="tri"><span class="header-section-number">3.8.4</span> Tri</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> unsorted <span class="op">=</span> <span class="bu">Seq</span><span class="op">(</span><span class="dv">5</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">9</span><span class="op">)</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>unsorted<span class="op">.</span>sorted         <span class="co">// List(1, 2, 5, 8, 9) </span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>unsorted<span class="op">.</span>sorted<span class="op">.</span>reverse <span class="co">// List(9, 8, 5, 2, 1)</span></span>
@@ -733,8 +859,8 @@ Tip
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>persons<span class="op">.</span><span class="fu">sortWith</span><span class="op">((</span>p1<span class="op">,</span> p2<span class="op">)</span> <span class="op">=&gt;</span> p1<span class="op">.</span>name <span class="op">&lt;</span> p2<span class="op">.</span>name<span class="op">)</span> </span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">// List(Person(Alice,30), Person(Bob,20), Person(John,40))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="autres-fonctions" class="level3">
-<h3 class="anchored" data-anchor-id="autres-fonctions">Autres fonctions</h3>
+<section id="autres-fonctions" class="level3" data-number="3.8.5">
+<h3 data-number="3.8.5" class="anchored" data-anchor-id="autres-fonctions"><span class="header-section-number">3.8.5</span> Autres fonctions</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> words <span class="op">=</span> <span class="bu">Seq</span><span class="op">(</span><span class="st">"groupBy"</span><span class="op">,</span> <span class="st">"regroupe"</span><span class="op">,</span> <span class="st">"par"</span><span class="op">,</span> <span class="st">"critère"</span><span class="op">)</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> sizeToWord <span class="op">=</span> words<span class="op">.</span><span class="fu">groupBy</span><span class="op">(</span>_<span class="op">.</span>length<span class="op">)</span> </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">// HashMap(7 -&gt; List(groupBy, critère), </span></span>
@@ -748,11 +874,11 @@ Tip
 </section>
 </section>
 </section>
-<section id="boucles" class="level1">
-<h1>Boucles</h1>
+<section id="boucles" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Boucles</h1>
 <p>Le <code>for</code> de Scala est un <strong>“sucre syntaxique”</strong> - il facilite l’écriture, mais on peut toujours le remplacer par une suite d’opérations - toute expression <code>for</code> peut être remplacée par une suite de <code>map</code>, <code>flatMap</code>, <code>filter</code></p>
-<section id="foreach" class="level2">
-<h2 class="anchored" data-anchor-id="foreach">foreach</h2>
+<section id="foreach" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="foreach"><span class="header-section-number">4.1</span> foreach</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> nums <span class="op">=</span> <span class="bu">Seq</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">)</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="op">&lt;-</span> nums <span class="cf">do</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span><span class="op">(</span>n<span class="op">.</span>toString <span class="op">+</span> <span class="st">"; "</span><span class="op">)</span> <span class="co">// 1; 2; 3</span></span>
@@ -760,8 +886,8 @@ Tip
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">// équivalent "desugared" </span></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>nums<span class="op">.</span><span class="fu">foreach</span><span class="op">(</span>n <span class="op">=&gt;</span> n<span class="op">.</span>toString <span class="op">+</span> <span class="st">"; "</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="foreach---générateurs" class="level2">
-<h2 class="anchored" data-anchor-id="foreach---générateurs">foreach - générateurs</h2>
+<section id="foreach---générateurs" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="foreach---générateurs"><span class="header-section-number">4.2</span> foreach - générateurs</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  i <span class="op">&lt;-</span> <span class="dv">1</span> to <span class="dv">2</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  j <span class="op">&lt;-</span> <span class="ch">'a'</span> to <span class="ch">'b'</span></span>
@@ -769,8 +895,8 @@ Tip
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span><span class="op">(</span><span class="ss">s"</span><span class="st">i = </span><span class="ss">$i</span><span class="st">, j = </span><span class="ss">$j</span><span class="st">, k = </span><span class="ss">$k"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="for-yield" class="level2">
-<h2 class="anchored" data-anchor-id="for-yield">for-yield</h2>
+<section id="for-yield" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="for-yield"><span class="header-section-number">4.3</span> for-yield</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> list <span class="op">=</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="op">&lt;-</span> <span class="dv">10</span> to <span class="dv">12</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">yield</span> i <span class="op">*</span> <span class="dv">2</span></span>
@@ -787,8 +913,8 @@ Tip
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">// desugared</span></span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> result2 <span class="op">=</span> <span class="ex">List</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">).</span><span class="fu">flatMap</span><span class="op">(</span>x <span class="op">=&gt;</span> <span class="ex">List</span><span class="op">(</span><span class="dv">10</span><span class="op">,</span> <span class="dv">20</span><span class="op">).</span><span class="fu">map</span><span class="op">(</span>y <span class="op">=&gt;</span> x <span class="op">+</span> y<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="for-yield-avec-if" class="level2">
-<h2 class="anchored" data-anchor-id="for-yield-avec-if">for-yield avec if</h2>
+<section id="for-yield-avec-if" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="for-yield-avec-if"><span class="header-section-number">4.4</span> for-yield avec if</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  i <span class="op">&lt;-</span> <span class="dv">1</span> to <span class="dv">10</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> i <span class="op">&gt;</span> <span class="dv">3</span></span>
@@ -799,8 +925,8 @@ Tip
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">// desugared</span></span>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="op">(</span><span class="dv">1</span> to <span class="dv">10</span><span class="op">).</span><span class="fu">withFilter</span><span class="op">(</span>_ <span class="op">&gt;</span> <span class="dv">3</span><span class="op">).</span><span class="fu">withFilter</span><span class="op">(</span>_ <span class="op">&lt;</span> <span class="dv">6</span><span class="op">).</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=&gt;</span> x<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="while" class="level2">
-<h2 class="anchored" data-anchor-id="while">while</h2>
+<section id="while" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="while"><span class="header-section-number">4.5</span> while</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;</span> <span class="dv">3</span> <span class="cf">do</span></span>

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mikaël Valot">
 
-<title>CM2 - Introduction à Scala</title>
+<title>CM2 - Introduction à Scala – ALTN73 Programmation fonctionnelle avec Scala</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -62,25 +63,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./figures/favicon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-35673c1328022ec05f8a1bab69fe76b7.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-88e8eab2b9e74ff2b2dcb2dc0227e102.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-420711364dc10e56a20e0d0e07b3d212.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626bc743731229bd8adb76e0f8fa352c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -112,18 +115,132 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cm1.html">Cours</a></li><li class="breadcrumb-item"><a href="./cm2.html">CM2 - Introduction à Scala</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./figures/logo-noir.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ALTN73 Programmation Fonctionnelle avec Scala</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Cours</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CM1 - Introduction à la programmation fonctionnelle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cm2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">CM2 - Introduction à Scala</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">TPs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TD1 - Calcul Lambda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tp2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TP2 - Calculateur d’Impôt sur le Revenu</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#présentation" id="toc-présentation" class="nav-link" data-scroll-target="#présentation"><span class="header-section-number">1.1</span> Présentation</a></li>
+  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références"><span class="header-section-number">1.2</span> Références</a></li>
+  </ul></li>
+  <li><a href="#syntaxe-de-base" id="toc-syntaxe-de-base" class="nav-link" data-scroll-target="#syntaxe-de-base"><span class="header-section-number">2</span> Syntaxe de base</a>
+  <ul class="collapse">
+  <li><a href="#hello-world" id="toc-hello-world" class="nav-link" data-scroll-target="#hello-world"><span class="header-section-number">2.1</span> Hello World</a></li>
+  <li><a href="#val-vs-var" id="toc-val-vs-var" class="nav-link" data-scroll-target="#val-vs-var"><span class="header-section-number">2.2</span> val vs var</a></li>
+  <li><a href="#classes" id="toc-classes" class="nav-link" data-scroll-target="#classes"><span class="header-section-number">2.3</span> Classes</a></li>
+  <li><a href="#case-class" id="toc-case-class" class="nav-link" data-scroll-target="#case-class"><span class="header-section-number">2.4</span> Case Class</a></li>
+  <li><a href="#héritage" id="toc-héritage" class="nav-link" data-scroll-target="#héritage"><span class="header-section-number">2.5</span> Héritage</a></li>
+  <li><a href="#héritage---classe-abstraite" id="toc-héritage---classe-abstraite" class="nav-link" data-scroll-target="#héritage---classe-abstraite"><span class="header-section-number">2.6</span> Héritage - classe abstraite</a></li>
+  <li><a href="#héritage---overriding" id="toc-héritage---overriding" class="nav-link" data-scroll-target="#héritage---overriding"><span class="header-section-number">2.7</span> Héritage - overriding</a></li>
+  <li><a href="#trait" id="toc-trait" class="nav-link" data-scroll-target="#trait"><span class="header-section-number">2.8</span> Trait</a></li>
+  <li><a href="#traits---conflits" id="toc-traits---conflits" class="nav-link" data-scroll-target="#traits---conflits"><span class="header-section-number">2.9</span> Traits - conflits</a></li>
+  <li><a href="#companion-object" id="toc-companion-object" class="nav-link" data-scroll-target="#companion-object"><span class="header-section-number">2.10</span> Companion object</a></li>
+  <li><a href="#instructions-conditionelles-ifelse" id="toc-instructions-conditionelles-ifelse" class="nav-link" data-scroll-target="#instructions-conditionelles-ifelse"><span class="header-section-number">2.11</span> Instructions conditionelles : if/else</a></li>
+  <li><a href="#instructions-conditionelles-pattern-matching" id="toc-instructions-conditionelles-pattern-matching" class="nav-link" data-scroll-target="#instructions-conditionelles-pattern-matching"><span class="header-section-number">2.12</span> Instructions conditionelles : pattern matching</a></li>
+  <li><a href="#instructions-conditionelles-pattern-matching-1" id="toc-instructions-conditionelles-pattern-matching-1" class="nav-link" data-scroll-target="#instructions-conditionelles-pattern-matching-1"><span class="header-section-number">2.13</span> Instructions conditionelles : pattern matching</a></li>
+  <li><a href="#hiérarchie-des-types-scala" id="toc-hiérarchie-des-types-scala" class="nav-link" data-scroll-target="#hiérarchie-des-types-scala"><span class="header-section-number">2.14</span> Hiérarchie des types Scala</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cm1.html">Cours</a></li><li class="breadcrumb-item"><a href="./cm2.html">CM2 - Introduction à Scala</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">CM2 - Introduction à Scala</h1>
 </div>
@@ -132,6 +249,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mikaël Valot </p>
+          </div>
+  </div>
     
   
     
@@ -142,16 +265,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/scala-spiral.png" class="img-fluid figure-img"></p>
 <figcaption>Scala staircase</figcaption>
 </figure>
 </div>
-<section id="présentation" class="level2">
-<h2 class="anchored" data-anchor-id="présentation">Présentation</h2>
+<section id="présentation" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="présentation"><span class="header-section-number">1.1</span> Présentation</h2>
 <ul>
 <li>Créateur : 2003 Martin Odersky (EPFL). A été impliqué dans le développement des types génériques en Java 5.</li>
 <li>SCA(lable) LA(nguage)
@@ -176,8 +299,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Permet d’écrire du code très puissant très rapidement. On lit du code 10x plus qu’on ne l’écrit. Un langage concis permet de garder plus de contexte en tête et de naviguer facilement dans des programmes volumineux. Typage fort : si ça compile, ça marche !</li>
 </ul>
 </section>
-<section id="références" class="level2">
-<h2 class="anchored" data-anchor-id="références">Références</h2>
+<section id="références" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="références"><span class="header-section-number">1.2</span> Références</h2>
 <ul>
 <li><p><a href="https://docs.scala-lang.org/tour/tour-of-scala.html">Tour of Scala</a></p></li>
 <li><p><a href="https://www.manning.com/books/functional-programming-in-scala-second-edition">Functional Programming In Scala</a></p></li>
@@ -193,10 +316,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="syntaxe-de-base" class="level1">
-<h1>Syntaxe de base</h1>
-<section id="hello-world" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="hello-world">Hello World</h2>
+<section id="syntaxe-de-base" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Syntaxe de base</h1>
+<section id="hello-world" class="level2 smaller" data-number="2.1">
+<h2 class="smaller anchored" data-number="2.1" data-anchor-id="hello-world"><span class="header-section-number">2.1</span> Hello World</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// object = singleton, une seule instance possible</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">object</span> HelloScala<span class="op">:</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Definition d'une méthode</span></span>
@@ -223,8 +346,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </div>
 </section>
-<section id="val-vs-var" class="level2">
-<h2 class="anchored" data-anchor-id="val-vs-var">val vs var</h2>
+<section id="val-vs-var" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="val-vs-var"><span class="header-section-number">2.2</span> val vs var</h2>
 <ul>
 <li>utiliser <code>val</code> par défaut</li>
 <li>en programmation fonctionnelle, tout doit être immutable</li>
@@ -234,8 +357,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Vous pouvez utiliser <code>var</code> pour écrire un algorithme optimisé. Si la variable mutable n’est pas visible de l’extérieur, la fonction reste une fonction “pure” du point de vue de l’appelant.</p>
 </div>
 </section>
-<section id="classes" class="level2">
-<h2 class="anchored" data-anchor-id="classes">Classes</h2>
+<section id="classes" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="classes"><span class="header-section-number">2.3</span> Classes</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// width et height sont à la fois des paramètres du constructeur </span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">// et des attributs privés immutables</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="ex">Rectangle</span><span class="op">(</span>width<span class="op">:</span> <span class="ex">Float</span><span class="op">,</span> height<span class="op">:</span> <span class="ex">Float</span><span class="op">):</span> </span>
@@ -251,8 +374,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span>rect<span class="op">.</span><span class="fu">scale</span><span class="op">(</span><span class="dv">2</span><span class="op">))</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span>rect<span class="op">.</span><span class="fu">scale</span><span class="op">(</span>mult <span class="op">=</span> <span class="dv">2</span><span class="op">))</span> <span class="co">// les arguments peuvent être nommés</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="case-class" class="level2">
-<h2 class="anchored" data-anchor-id="case-class">Case Class</h2>
+<section id="case-class" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="case-class"><span class="header-section-number">2.4</span> Case Class</h2>
 <ul>
 <li>Notre classe <code>Rectangle</code> aurait besoin :
 <ul>
@@ -272,8 +395,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span>rect<span class="op">)</span> <span class="co">// toString est appelé. Sortie: Rectangle(10.0,3.0)</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> rect2 <span class="op">=</span> rect<span class="op">.</span><span class="fu">copy</span><span class="op">(</span>width <span class="op">=</span> <span class="dv">5</span><span class="op">,</span> height <span class="op">=</span> <span class="dv">2</span><span class="op">)</span> <span class="co">// constructeur par copie</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="héritage" class="level2">
-<h2 class="anchored" data-anchor-id="héritage">Héritage</h2>
+<section id="héritage" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="héritage"><span class="header-section-number">2.5</span> Héritage</h2>
 <ul>
 <li><code>extends</code> pour définir une relation d’héritage entre 2 classes</li>
 </ul>
@@ -291,8 +414,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>il faudrait implémenter <code>equals</code>, <code>toString</code>, …</li>
 </ul>
 </section>
-<section id="héritage---classe-abstraite" class="level2">
-<h2 class="anchored" data-anchor-id="héritage---classe-abstraite">Héritage - classe abstraite</h2>
+<section id="héritage---classe-abstraite" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="héritage---classe-abstraite"><span class="header-section-number">2.6</span> Héritage - classe abstraite</h2>
 <ul>
 <li>solution : <code>Shape</code> doit être abstraite</li>
 <li>remarque : on ne peut pas hériter d’une <code>case class</code></li>
@@ -309,8 +432,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> shape<span class="op">:</span> <span class="ex">Shape</span> <span class="op">=</span> <span class="fu">Circle</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">10</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="héritage---overriding" class="level2">
-<h2 class="anchored" data-anchor-id="héritage---overriding">Héritage - overriding</h2>
+<section id="héritage---overriding" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="héritage---overriding"><span class="header-section-number">2.7</span> Héritage - overriding</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">abstract</span> <span class="kw">class</span> <span class="ex">Shape</span><span class="op">:</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> x<span class="op">:</span> <span class="bu">Int</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> y<span class="op">:</span> <span class="bu">Int</span></span>
@@ -340,8 +463,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </div>
 </section>
-<section id="trait" class="level2">
-<h2 class="anchored" data-anchor-id="trait">Trait</h2>
+<section id="trait" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="trait"><span class="header-section-number">2.8</span> Trait</h2>
 <ul>
 <li>En Scala, les interfaces sont des <code>trait</code></li>
 <li>ils peuvent contenir des implémentations</li>
@@ -368,8 +491,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">override</span> <span class="kw">def</span> description<span class="op">:</span> <span class="ex">String</span> <span class="op">=</span></span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">super</span><span class="op">.</span>description <span class="op">+</span> <span class="ss">s"</span><span class="st"> - Rectangle </span><span class="ss">$width</span><span class="st"> * </span><span class="ss">$height"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="traits---conflits" class="level2">
-<h2 class="anchored" data-anchor-id="traits---conflits">Traits - conflits</h2>
+<section id="traits---conflits" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="traits---conflits"><span class="header-section-number">2.9</span> Traits - conflits</h2>
 <p>Si plusieurs traits redéfinissent la même méthode, le trait le plus à droite a la priorité. Scala implémente un algorithme appelé <strong>linéarisation</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> A<span class="op">:</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> methode <span class="op">=</span> <span class="st">"a"</span></span>
@@ -391,8 +514,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ABC</span><span class="op">().</span>methodeA <span class="co">// a</span></span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="fu">CAB</span><span class="op">().</span>methode <span class="co">// b</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="companion-object" class="level2">
-<h2 class="anchored" data-anchor-id="companion-object">Companion object</h2>
+<section id="companion-object" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="companion-object"><span class="header-section-number">2.10</span> Companion object</h2>
 <ul>
 <li>Toute classe peut avoir un objet “compagnon”.</li>
 <li>il va typiquement contenir des méthodes qui seraient statiques en Java :
@@ -418,8 +541,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="op">???</span> <span class="op">:</span> Nothing <span class="op">=</span> <span class="cf">throw</span> <span class="kw">new</span> NotImplementedError</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="instructions-conditionelles-ifelse" class="level2">
-<h2 class="anchored" data-anchor-id="instructions-conditionelles-ifelse">Instructions conditionelles : if/else</h2>
+<section id="instructions-conditionelles-ifelse" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="instructions-conditionelles-ifelse"><span class="header-section-number">2.11</span> Instructions conditionelles : if/else</h2>
 <ul>
 <li><code>if (condition) exprTrue else exprFalse</code></li>
 <li>c’est une expression, et a son propre type</li>
@@ -433,8 +556,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Pas besoin de <code>return</code>, le <code>if</code> renvoie une <code>String</code>.</p>
 </div>
 </section>
-<section id="instructions-conditionelles-pattern-matching" class="level2">
-<h2 class="anchored" data-anchor-id="instructions-conditionelles-pattern-matching">Instructions conditionelles : pattern matching</h2>
+<section id="instructions-conditionelles-pattern-matching" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="instructions-conditionelles-pattern-matching"><span class="header-section-number">2.12</span> Instructions conditionelles : pattern matching</h2>
 <p>Utilisation basique : remplace switch/case</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">daysInMonthByNumber</span><span class="op">(</span>monthNumber<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> isLeapYear<span class="op">:</span> <span class="ex">Boolean</span> <span class="op">=</span> <span class="kw">false</span><span class="op">):</span> <span class="bu">Int</span> <span class="op">=</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  monthNumber <span class="cf">match</span></span>
@@ -444,8 +567,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// _ signifie "n'importe quelle valeur"</span></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> _ <span class="op">=&gt;</span> <span class="cf">throw</span> <span class="ex">IllegalArgumentException</span><span class="op">(</span><span class="ss">s"</span><span class="st">Invalid month: </span><span class="ss">$monthNumber"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="instructions-conditionelles-pattern-matching-1" class="level2">
-<h2 class="anchored" data-anchor-id="instructions-conditionelles-pattern-matching-1">Instructions conditionelles : pattern matching</h2>
+<section id="instructions-conditionelles-pattern-matching-1" class="level2" data-number="2.13">
+<h2 data-number="2.13" class="anchored" data-anchor-id="instructions-conditionelles-pattern-matching-1"><span class="header-section-number">2.13</span> Instructions conditionelles : pattern matching</h2>
 <ul>
 <li>Utilisation avancée : déstructure les types</li>
 <li><code>sealed</code> permet de garantir que toutes les implémentations du trait sont définies</li>
@@ -464,8 +587,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> c @ <span class="fu">Circle</span><span class="op">(</span>_<span class="op">)</span> <span class="op">=&gt;</span> math<span class="op">.</span>Pi <span class="op">*</span> c<span class="op">.</span>radius <span class="op">*</span> c<span class="op">.</span>radius</span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">// case _ =&gt; // pas nécéssaire, pas d'autres Shape possible</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="hiérarchie-des-types-scala" class="level2">
-<h2 class="anchored" data-anchor-id="hiérarchie-des-types-scala">Hiérarchie des types Scala</h2>
+<section id="hiérarchie-des-types-scala" class="level2" data-number="2.14">
+<h2 data-number="2.14" class="anchored" data-anchor-id="hiérarchie-des-types-scala"><span class="header-section-number">2.14</span> Hiérarchie des types Scala</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/unified-types-diagram.svg" class="img-fluid figure-img"></p>
